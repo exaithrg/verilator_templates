@@ -1,4 +1,4 @@
-TOPNAME = mux41
+TOPNAME = mux42
 
 VERILATOR = verilator
 # verilator --trace --cc --exe --build -j 4 -Wall csrc/sim_top.cpp vsrc/doubleclick.v	
