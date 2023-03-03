@@ -1,7 +1,7 @@
 # NPC Makefile based on nvboard/example/Makefile
 
-TOPNAME = led_ring
-NXDC_FILES = constr/led_ring.nxdc
+TOPNAME = mux42
+NXDC_FILES = constr/mux42.nxdc
 INC_PATH ?=
 
 VERILATOR = verilator
@@ -53,7 +53,7 @@ run: $(BIN)
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	# @echo "make sim"
-	./build/led_ring
+	./build/mux21
 
 wave:
 	gtkwave wave.vcd

@@ -1,5 +1,5 @@
 How to use:
 mk
-mk run
-mk sim
-mk wave
+mk run (start nvboard)
+# mk sim
+# mk wave
