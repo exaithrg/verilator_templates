@@ -1,5 +1,7 @@
 # NOTE
 
+**Support Verilator Version: `4.210`**
+
 ## comb
 
 Template for combinational logic (mux42)
