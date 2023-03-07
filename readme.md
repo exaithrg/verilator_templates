@@ -1,6 +1,7 @@
 # NOTE
 
 **Support Verilator Version: `4.210`**
+Manual: [Verilator_4.210_Users_Guide](https://github.com/exaithrg/Verilator_4.210_Users_Guide)
 
 ## TODO
 use top.cpp and top.v in all templates
