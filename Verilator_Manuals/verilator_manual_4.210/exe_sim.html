@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulation Runtime Arguments &mdash; Verilator 4.210 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/vlt_sphinx.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/verilator_32x32_min.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Errors and Warnings" href="warnings.html" />
+    <link rel="prev" title="verilator_profcfuncs" href="exe_verilator_profcfuncs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #45acf8" >
+            <a href="index.html">
+            <img src="_static/verilator_192_150_min.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.210
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="verilating.html">Verilating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connecting to Verilated Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulating.html">Simulating (Verilated-Model Runtime)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing and Reporting Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ/Frequently Asked Questions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="languages.html">Input Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Language Extensions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="executables.html">Executable and Argument Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator.html">verilator Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator_coverage.html">verilator_coverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator_gantt.html">verilator_gantt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator_profcfuncs.html">verilator_profcfuncs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Simulation Runtime Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="warnings.html">Errors and Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecations.html">Deprecations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors and Origins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Revision History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #45acf8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Verilator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="executables.html">Executable and Argument Reference</a> &raquo;</li>
+      <li>Simulation Runtime Arguments</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/verilator/verilator/blob/master/docs/guide/exe_sim.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="simulation-runtime-arguments">
+<span id="id1"></span><h1>Simulation Runtime Arguments<a class="headerlink" href="#simulation-runtime-arguments" title="Permalink to this heading">¶</a></h1>
+<p>The following are the arguments that may be passed to a Verilated
+executable, provided that executable calls
+<code class="code docutils literal notranslate"><span class="pre">Verilated::commandArgs()</span></code>.</p>
+<p>All simulation runtime arguments begin with “+verilator”, so that the
+user’s executable may skip over all “+verilator” arguments when parsing its
+command line.</p>
+<p>Summary:</p>
+<blockquote>
+<div></div></blockquote>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator-debug">
+<span class="sig-name descname"><span class="pre">+verilator+debug</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator-debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable simulation runtime debugging.  Equivalent to
+<a class="reference internal" href="#cmdoption-arg-verilator-debugi-value"><code class="xref std std-option docutils literal notranslate"><span class="pre">+verilator+debugi+4</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator-debugi-value">
+<span class="sig-name descname"><span class="pre">+verilator+debugi+&lt;value&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator-debugi-value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable simulation runtime debugging at the provided level.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator-error-limit-value">
+<span class="sig-name descname"><span class="pre">+verilator+error+limit+&lt;value&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator-error-limit-value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set number of non-fatal errors (e.g. assertion failures) before exiting
+simulation runtime. Also affects number of $stop calls needed before
+exit. Defaults to 1.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator-help">
+<span class="sig-name descname"><span class="pre">+verilator+help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator-help" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display help and exit.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator-prof-threads-file-filename">
+<span class="sig-name descname"><span class="pre">+verilator+prof+threads+file+&lt;filename&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator-prof-threads-file-filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>When a model was Verilated using <a class="reference internal" href="exe_verilator.html#cmdoption-prof-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--prof-threads</span></code></a>, sets the
+simulation runtime filename to dump to.  Defaults to
+<code class="file docutils literal notranslate"><span class="pre">profile_threads.dat</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator-prof-threads-start-value">
+<span class="sig-name descname"><span class="pre">+verilator+prof+threads+start+&lt;value&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator-prof-threads-start-value" title="Permalink to this definition">¶</a></dt>
+<dd><p>When a model was Verilated using <a class="reference internal" href="exe_verilator.html#cmdoption-prof-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--prof-threads</span></code></a>, the simulation
+runtime will wait until $time is at this value (expressed in units of
+the time precision), then start the profiling warmup, then
+capturing. Generally this should be set to some time that is well within
+the normal operation of the simulation, i.e. outside of reset. If 0, the
+dump is disabled. Defaults to 1.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator-prof-threads-window-value">
+<span class="sig-name descname"><span class="pre">+verilator+prof+threads+window+&lt;value&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator-prof-threads-window-value" title="Permalink to this definition">¶</a></dt>
+<dd><p>When a model was Verilated using <a class="reference internal" href="exe_verilator.html#cmdoption-prof-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--prof-threads</span></code></a>, after $time
+reaches <a class="reference internal" href="#cmdoption-arg-verilator-prof-threads-start-value"><code class="xref std std-option docutils literal notranslate"><span class="pre">+verilator+prof+threads+start+&lt;value&gt;</span></code></a>, Verilator will
+warm up the profiling for this number of eval() calls, then will capture
+the profiling of this number of eval() calls.  Defaults to 2, which
+makes sense for a single-clock-domain module where it’s typical to want
+to capture one posedge eval() and one negedge eval().</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator-rand-reset-value">
+<span class="sig-name descname"><span class="pre">+verilator+rand+reset+&lt;value&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator-rand-reset-value" title="Permalink to this definition">¶</a></dt>
+<dd><p>When a model was Verilated using <a class="reference internal" href="exe_verilator.html#cmdoption-9"><code class="xref std std-option docutils literal notranslate"><span class="pre">--x-initial</span> <span class="pre">unique</span></code></a>, sets the simulation runtime initialization technique.  0
+= Reset to zeros. 1 = Reset to all-ones.  2 = Randomize.  See
+<a class="reference internal" href="languages.html#unknown-states"><span class="std std-ref">Unknown States</span></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator-seed-value">
+<span class="sig-name descname"><span class="pre">+verilator+seed+&lt;value&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator-seed-value" title="Permalink to this definition">¶</a></dt>
+<dd><p>For $random and <a class="reference internal" href="exe_verilator.html#cmdoption-9"><code class="xref std std-option docutils literal notranslate"><span class="pre">--x-initial</span> <span class="pre">unique</span></code></a>, set the
+simulation runtime random seed value.  If zero or not specified picks a
+value from the system random number generator.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator-noassert">
+<span class="sig-name descname"><span class="pre">+verilator+noassert</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator-noassert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable assert checking per runtime argument. This is the same as
+calling <code class="code docutils literal notranslate"><span class="pre">Verilated::assertOn(false)</span></code> in the model.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator-V">
+<span id="cmdoption-arg-verilator-v"></span><span class="sig-name descname"><span class="pre">+verilator+V</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator-V" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows the verbose version, including configuration information.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator-version">
+<span class="sig-name descname"><span class="pre">+verilator+version</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator-version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays program version and exits.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="exe_verilator_profcfuncs.html" class="btn btn-neutral float-left" title="verilator_profcfuncs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="warnings.html" class="btn btn-neutral float-right" title="Errors and Warnings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="copyright.html">Copyright</a> 2021 by Wilson Snyder, under LGPL-3.0 or Artistic-2.0.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D27B0C9QEB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D27B0C9QEB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

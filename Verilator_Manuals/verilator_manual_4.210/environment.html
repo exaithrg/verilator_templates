@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Environment &mdash; Verilator 4.210 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/vlt_sphinx.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/verilator_32x32_min.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Deprecations" href="deprecations.html" />
+    <link rel="prev" title="Files" href="files.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #45acf8" >
+            <a href="index.html">
+            <img src="_static/verilator_192_150_min.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.210
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="verilating.html">Verilating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connecting to Verilated Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulating.html">Simulating (Verilated-Model Runtime)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing and Reporting Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ/Frequently Asked Questions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="languages.html">Input Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Language Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="executables.html">Executable and Argument Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="warnings.html">Errors and Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecations.html">Deprecations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors and Origins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Revision History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #45acf8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Verilator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Environment</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/verilator/verilator/blob/master/docs/guide/environment.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="environment">
+<h1>Environment<a class="headerlink" href="#environment" title="Permalink to this heading">¶</a></h1>
+<p>This section describes the environment variables used by Verilator and
+associated programs.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-LD_LIBRARY_PATH">
+<span id="cmdoption-arg-ld-library-path"></span><span class="sig-name descname"><span class="pre">LD_LIBRARY_PATH</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-LD_LIBRARY_PATH" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic Linux/OS variable specifying what directories have shared
+object (.so) files.  This path should include SystemC and any other
+shared objects needed at simulation runtime.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-MAKE">
+<span id="cmdoption-arg-make"></span><span class="sig-name descname"><span class="pre">MAKE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-MAKE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Names the executable of the make command invoked when using the
+<a class="reference internal" href="exe_verilator.html#cmdoption-build"><code class="xref std std-option docutils literal notranslate"><span class="pre">--build</span></code></a> option.  Some operating systems may require “gmake” to
+this variable to launch GNU make.  If this variable is not specified,
+“make” is used.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-OBJCACHE">
+<span id="cmdoption-arg-objcache"></span><span class="sig-name descname"><span class="pre">OBJCACHE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-OBJCACHE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optionally specifies a caching or distribution program to place in front
+of all runs of the C++ compiler.  For example, “ccache”.  If using
+<strong class="command">distcc</strong> or <strong class="command">icecc</strong>/<strong class="command">icecream</strong>, they would
+generally be run under <strong class="command">ccache</strong>; see the documentation for
+those programs.  If OBJCACHE is not set, and at configure time ccache
+was present, ccache will be used as a default.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-SYSTEMC">
+<span id="cmdoption-arg-systemc"></span><span class="sig-name descname"><span class="pre">SYSTEMC</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-SYSTEMC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated.  Used only if <a class="reference internal" href="#cmdoption-arg-SYSTEMC_INCLUDE"><code class="xref std std-option docutils literal notranslate"><span class="pre">SYSTEMC_INCLUDE</span></code></a> or
+<a class="reference internal" href="#cmdoption-arg-SYSTEMC_LIBDIR"><code class="xref std std-option docutils literal notranslate"><span class="pre">SYSTEMC_LIBDIR</span></code></a> is not set.  If set, specifies the directory
+containing the SystemC distribution.  If not specified, it will come
+from a default optionally specified at configure time (before Verilator
+was compiled).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-SYSTEMC_ARCH">
+<span id="cmdoption-arg-systemc-arch"></span><span class="sig-name descname"><span class="pre">SYSTEMC_ARCH</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-SYSTEMC_ARCH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated.  Used only if <a class="reference internal" href="#cmdoption-arg-SYSTEMC_LIBDIR"><code class="xref std std-option docutils literal notranslate"><span class="pre">SYSTEMC_LIBDIR</span></code></a> is not set.
+Specifies the architecture name used by the SystemC kit.  This is the
+part after the dash in the “lib-{…}” directory name created by a
+<strong class="command">make</strong> in the SystemC distribution.  If not set, Verilator will
+try to intuit the proper setting, or use the default optionally
+specified at configure time (before Verilator was compiled).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-SYSTEMC_CXX_FLAGS">
+<span id="cmdoption-arg-systemc-cxx-flags"></span><span class="sig-name descname"><span class="pre">SYSTEMC_CXX_FLAGS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-SYSTEMC_CXX_FLAGS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies additional flags that are required to be passed to GCC when
+building the SystemC model.  System 2.3.0 may need this set to
+“-pthread”.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-SYSTEMC_INCLUDE">
+<span id="cmdoption-arg-systemc-include"></span><span class="sig-name descname"><span class="pre">SYSTEMC_INCLUDE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-SYSTEMC_INCLUDE" title="Permalink to this definition">¶</a></dt>
+<dd><p>If set, specifies the directory containing the systemc.h header file. If
+not specified, it will come from a default optionally specified at
+configure time (before Verilator was compiled), or computed from
+SYSTEMC/include.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-SYSTEMC_LIBDIR">
+<span id="cmdoption-arg-systemc-libdir"></span><span class="sig-name descname"><span class="pre">SYSTEMC_LIBDIR</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-SYSTEMC_LIBDIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>If set, specifies the directory containing the libsystemc.a library. If
+not specified, it will come from a default optionally specified at
+configure time (before Verilator was compiled), or computed from
+SYSTEMC/lib-SYSTEMC_ARCH.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-VERILATOR_BIN">
+<span id="cmdoption-arg-verilator-bin"></span><span class="sig-name descname"><span class="pre">VERILATOR_BIN</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-VERILATOR_BIN" title="Permalink to this definition">¶</a></dt>
+<dd><p>If set, specifies an alternative name of the <code class="docutils literal notranslate"><span class="pre">verilator</span></code> binary.  May
+be used for debugging and selecting between multiple operating system
+builds.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-VERILATOR_COVERAGE_BIN">
+<span id="cmdoption-arg-verilator-coverage-bin"></span><span class="sig-name descname"><span class="pre">VERILATOR_COVERAGE_BIN</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-VERILATOR_COVERAGE_BIN" title="Permalink to this definition">¶</a></dt>
+<dd><p>If set, specifies an alternative name of the <code class="docutils literal notranslate"><span class="pre">verilator_coverage</span></code>
+binary.  May be used for debugging and selecting between multiple
+operating system builds.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-VERILATOR_GDB">
+<span id="cmdoption-arg-verilator-gdb"></span><span class="sig-name descname"><span class="pre">VERILATOR_GDB</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-VERILATOR_GDB" title="Permalink to this definition">¶</a></dt>
+<dd><p>If set, the command to run when using the <a class="reference internal" href="exe_verilator.html#cmdoption-gdb"><code class="xref std std-option docutils literal notranslate"><span class="pre">--gdb</span></code></a> option, such as
+“ddd”.  If not specified, it will use “gdb”.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-VERILATOR_ROOT">
+<span id="cmdoption-arg-verilator-root"></span><span class="sig-name descname"><span class="pre">VERILATOR_ROOT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-VERILATOR_ROOT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies the directory containing the distribution kit.  This is used
+to find the executable, Perl library, and include files.  If not
+specified, it will come from a default optionally specified at configure
+time (before Verilator was compiled).  It should not be specified if
+using a pre-compiled Verilator package as the hard-coded value should be
+correct.  See <a class="reference internal" href="install.html#installation"><span class="std std-ref">Installation</span></a>.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="files.html" class="btn btn-neutral float-left" title="Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="deprecations.html" class="btn btn-neutral float-right" title="Deprecations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="copyright.html">Copyright</a> 2021 by Wilson Snyder, under LGPL-3.0 or Artistic-2.0.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D27B0C9QEB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D27B0C9QEB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

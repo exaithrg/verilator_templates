@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Executable and Argument Reference &mdash; Verilator 4.210 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/vlt_sphinx.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/verilator_32x32_min.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="verilator Arguments" href="exe_verilator.html" />
+    <link rel="prev" title="Language Extensions" href="extensions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #45acf8" >
+            <a href="index.html">
+            <img src="_static/verilator_192_150_min.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.210
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="verilating.html">Verilating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connecting to Verilated Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulating.html">Simulating (Verilated-Model Runtime)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing and Reporting Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ/Frequently Asked Questions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="languages.html">Input Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Language Extensions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Executable and Argument Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator.html">verilator Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator_coverage.html">verilator_coverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator_gantt.html">verilator_gantt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator_profcfuncs.html">verilator_profcfuncs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_sim.html">Simulation Runtime Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="warnings.html">Errors and Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecations.html">Deprecations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors and Origins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Revision History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #45acf8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Verilator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Executable and Argument Reference</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/verilator/verilator/blob/master/docs/guide/executables.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="executable-and-argument-reference">
+<h1>Executable and Argument Reference<a class="headerlink" href="#executable-and-argument-reference" title="Permalink to this heading">¶</a></h1>
+<p>This section describes the executables that are part of Verilator, and the
+options to each executable.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="extensions.html" class="btn btn-neutral float-left" title="Language Extensions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="exe_verilator.html" class="btn btn-neutral float-right" title="verilator Arguments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="copyright.html">Copyright</a> 2021 by Wilson Snyder, under LGPL-3.0 or Artistic-2.0.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D27B0C9QEB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D27B0C9QEB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

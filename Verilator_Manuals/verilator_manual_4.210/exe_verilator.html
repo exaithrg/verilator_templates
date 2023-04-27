@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>verilator Arguments &mdash; Verilator 4.210 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/vlt_sphinx.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/verilator_32x32_min.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="verilator_coverage" href="exe_verilator_coverage.html" />
+    <link rel="prev" title="Executable and Argument Reference" href="executables.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #45acf8" >
+            <a href="index.html">
+            <img src="_static/verilator_192_150_min.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.210
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="verilating.html">Verilating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connecting to Verilated Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulating.html">Simulating (Verilated-Model Runtime)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing and Reporting Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ/Frequently Asked Questions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="languages.html">Input Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Language Extensions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="executables.html">Executable and Argument Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">verilator Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator_coverage.html">verilator_coverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator_gantt.html">verilator_gantt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator_profcfuncs.html">verilator_profcfuncs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_sim.html">Simulation Runtime Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="warnings.html">Errors and Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecations.html">Deprecations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors and Origins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Revision History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #45acf8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Verilator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="executables.html">Executable and Argument Reference</a> &raquo;</li>
+      <li>verilator Arguments</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/verilator/verilator/blob/master/docs/guide/exe_verilator.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="verilator-arguments">
+<h1>verilator Arguments<a class="headerlink" href="#verilator-arguments" title="Permalink to this heading">¶</a></h1>
+<p>The following are the arguments that may be passed to the “verilator”
+executable.</p>
+<p>Summary:</p>
+<blockquote>
+<div></div></blockquote>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-file.v">
+<span id="cmdoption-arg-file-v"></span><span class="sig-name descname"><span class="pre">&lt;file.v&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-file.v" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies the Verilog file containing the top module to be Verilated.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-file.c-.cc-.cpp-.cxx">
+<span id="cmdoption-arg-file-c-cc-cpp-cxx"></span><span class="sig-name descname"><span class="pre">&lt;file.c/.cc/.cpp/.cxx&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-file.c-.cc-.cpp-.cxx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used with <a class="reference internal" href="#cmdoption-exe"><code class="xref std std-option docutils literal notranslate"><span class="pre">--exe</span></code></a> to specify optional C++ files to be linked in
+with the Verilog code.  The file path should either be absolute, or
+relative to where the make will be executed from, or add to your
+makefile’s VPATH the appropriate directory to find the file.</p>
+<p>See also <a class="reference internal" href="#cmdoption-CFLAGS"><code class="xref std std-option docutils literal notranslate"><span class="pre">-CFLAGS</span></code></a> and <a class="reference internal" href="#cmdoption-LDFLAGS"><code class="xref std std-option docutils literal notranslate"><span class="pre">-LDFLAGS</span></code></a> options, which are
+useful when the C++ files need special compiler flags.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-file.a-.o-.so">
+<span id="cmdoption-arg-file-a-o-so"></span><span class="sig-name descname"><span class="pre">&lt;file.a/.o/.so&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-file.a-.o-.so" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies optional object or library files to be linked in with the
+Verilog code, as a shorthand for <a class="reference internal" href="#cmdoption-LDFLAGS"><code class="xref std std-option docutils literal notranslate"><span class="pre">-LDFLAGS</span> <span class="pre">&lt;file&gt;</span></code></a>. The file path should either be absolute, or relative to
+where the make will be executed from, or add to your makefile’s VPATH
+the appropriate directory to find the file.</p>
+<p>If any files are specified in this way, Verilator will include a make
+rule that uses these files when linking the module’s executable.  This
+generally is only useful when used with the <a class="reference internal" href="#cmdoption-exe"><code class="xref std std-option docutils literal notranslate"><span class="pre">--exe</span></code></a> option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-1364-1995ext-ext">
+<span class="sig-name descname"><span class="pre">+1364-1995ext+&lt;ext&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-1364-1995ext-ext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-1364-2001ext-ext">
+<span class="sig-name descname"><span class="pre">+1364-2001ext+&lt;ext&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-1364-2001ext-ext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-1364-2005ext-ext">
+<span class="sig-name descname"><span class="pre">+1364-2005ext+&lt;ext&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-1364-2005ext-ext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-1800-2005ext-ext">
+<span class="sig-name descname"><span class="pre">+1800-2005ext+&lt;ext&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-1800-2005ext-ext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-1800-2009ext-ext">
+<span class="sig-name descname"><span class="pre">+1800-2009ext+&lt;ext&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-1800-2009ext-ext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-1800-2012ext-ext">
+<span class="sig-name descname"><span class="pre">+1800-2012ext+&lt;ext&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-1800-2012ext-ext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-1800-2017ext-ext">
+<span class="sig-name descname"><span class="pre">+1800-2017ext+&lt;ext&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-1800-2017ext-ext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies the language standard to be used with a specific filename
+extension, &lt;ext&gt;.</p>
+<p>For compatibility with other simulators, see also the synonyms
+<a class="reference internal" href="#cmdoption-arg-verilog1995ext-ext"><code class="xref std std-option docutils literal notranslate"><span class="pre">+verilog1995ext+&lt;ext&gt;</span></code></a>, <a class="reference internal" href="#cmdoption-arg-verilog2001ext-ext"><code class="xref std std-option docutils literal notranslate"><span class="pre">+verilog2001ext+&lt;ext&gt;</span></code></a>, and
+<a class="reference internal" href="#cmdoption-arg-systemverilogext-ext"><code class="xref std std-option docutils literal notranslate"><span class="pre">+systemverilogext+&lt;ext&gt;</span></code></a>.</p>
+<p>For any source file, the language specified by these options takes
+precedence over any language specified by the
+<a class="reference internal" href="#cmdoption-default-language"><code class="xref std std-option docutils literal notranslate"><span class="pre">--default-language</span></code></a> or <a class="reference internal" href="#cmdoption-language"><code class="xref std std-option docutils literal notranslate"><span class="pre">--language</span></code></a> options.</p>
+<p>These options take effect in the order they are encountered. Thus the
+following would use Verilog 1995 for <code class="docutils literal notranslate"><span class="pre">a.v</span></code> and Verilog 2001 for
+<code class="docutils literal notranslate"><span class="pre">b.v</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>verilator ... +1364-1995ext+v a.v +1364-2001ext+v b.v
+</pre></div>
+</div>
+<p>These options are only recommended for legacy mixed language designs, as
+the preferable option is to edit the code to repair new keywords, or add
+appropriate <code class="docutils literal notranslate"><span class="pre">`begin_keywords</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">`begin_keywords</span></code> is a SystemVerilog construct, which specifies
+<em>only</em> the set of keywords to be recognized. This also controls some
+error messages that vary between language standards.  Note at present
+Verilator tends to be overly permissive, e.g. it will accept many
+grammar and other semantic extensions which might not be legal when
+set to an older standard.</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-assert">
+<span class="sig-name descname"><span class="pre">--assert</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-assert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable all assertions.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-autoflush">
+<span class="sig-name descname"><span class="pre">--autoflush</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-autoflush" title="Permalink to this definition">¶</a></dt>
+<dd><p>After every $display or $fdisplay, flush the output stream.  This
+ensures that messages will appear immediately but may reduce
+performance. For best performance call <code class="code docutils literal notranslate"><span class="pre">fflush(stdout)</span></code>
+occasionally in the C++ main loop.  Defaults to off, which will buffer
+output as provided by the normal C/C++ standard library IO.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-bbox-sys">
+<span class="sig-name descname"><span class="pre">--bbox-sys</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-bbox-sys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Black box any unknown $system task or function calls.  System tasks will
+simply become no-operations, and system functions will be replaced with
+unsized zero.  Arguments to such functions will be parsed, but not
+otherwise checked.  This prevents errors when linting in the presence of
+company specific PLI calls.</p>
+<p>Using this argument will likely cause incorrect simulation.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-bbox-unsup">
+<span class="sig-name descname"><span class="pre">--bbox-unsup</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-bbox-unsup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Black box some unsupported language features, currently UDP tables, the
+cmos and tran gate primitives, deassign statements, and mixed edge
+errors.  This may enable linting the rest of the design even when
+unsupported constructs are present.</p>
+<p>Using this argument will likely cause incorrect simulation.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-bin">
+<span class="sig-name descname"><span class="pre">--bin</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;filename&gt;</span></span><a class="headerlink" href="#cmdoption-bin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Override the default filename for Verilator itself.
+When a dependency (.d) file is created, this filename will become a
+source dependency, such that a change in this binary will have make
+rebuild the output files.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-build">
+<span class="sig-name descname"><span class="pre">--build</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-build" title="Permalink to this definition">¶</a></dt>
+<dd><p>After generating the SystemC/C++ code, Verilator will invoke the
+toolchain to build the model library (and executable when <a class="reference internal" href="#cmdoption-exe"><code class="xref std std-option docutils literal notranslate"><span class="pre">--exe</span></code></a>
+is also used). Verilator manages the build itself, and for this –build
+requires GNU Make to be available on the platform.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-CFLAGS">
+<span id="cmdoption-cflags"></span><span class="sig-name descname"><span class="pre">-CFLAGS</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;flags&gt;</span></span><a class="headerlink" href="#cmdoption-CFLAGS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add specified C compiler argument to the generated makefiles. For
+multiple flags either pass them as a single argument with space
+separators quoted in the shell (<strong class="command">-CFLAGS &quot;-a -b&quot;</strong>), or use
+multiple -CFLAGS options (<strong class="command">-CFLAGS -a -CFLAGS -b</strong>).</p>
+<p>When make is run on the generated makefile these will be passed to the
+C++ compiler (g++/clang++/msvc++).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cc">
+<span class="sig-name descname"><span class="pre">--cc</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies C++ without SystemC output mode; see also <a class="reference internal" href="#cmdoption-sc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--sc</span></code></a>
+option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cdc">
+<span class="sig-name descname"><span class="pre">--cdc</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cdc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Permanently experimental.  Perform some clock domain crossing checks and
+issue related warnings (CDCRSTLOGIC) and then exit; if warnings other
+than CDC warnings are needed make a second run with
+<a class="reference internal" href="#cmdoption-lint-only"><code class="xref std std-option docutils literal notranslate"><span class="pre">--lint-only</span></code></a>.  Additional warning information is also written to
+the file <code class="file docutils literal notranslate"><span class="pre">&lt;prefix&gt;__cdc.txt</span></code>.</p>
+<p>Currently only checks some items that other CDC tools missed; if you
+have interest in adding more traditional CDC checks, please contact the
+authors.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-clk">
+<span class="sig-name descname"><span class="pre">--clk</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;signal-name&gt;</span></span><a class="headerlink" href="#cmdoption-clk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sometimes it is quite difficult for Verilator to distinguish clock
+signals from other data signals. Occasionally the clock signals can end
+up in the checking list of signals which determines if further
+evaluation is needed. This will heavily degrade the performance of a
+Verilated model.</p>
+<p>With <a class="reference internal" href="#cmdoption-clk"><code class="xref std std-option docutils literal notranslate"><span class="pre">--clk</span></code></a>, the specified signal-name is taken as a root clock
+into the model, then Verilator will mark the signal as clocker and
+propagate the clocker attribute automatically to other signals derived
+from that. In this way, Verilator will try to avoid taking the clocker
+signal into checking list.</p>
+<p>Note signal-name is specified by the RTL hierarchy path. For example,
+v.foo.bar.  If the signal is the input to top-module, the directly the
+signal name. If you find it difficult to find the exact name, try to use
+a <a class="reference internal" href="extensions.html#cmdoption-verilator-32-clocker"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;clocker*/</span></code></a> metacomment in RTL file to mark the
+signal directly.</p>
+<p>If clock signals are assigned to vectors and then later used
+individually, Verilator will attempt to decompose the vector and connect
+the single-bit clock signals directly.  This should be transparent to
+the user.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-make">
+<span class="sig-name descname"><span class="pre">--make</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;build-tool&gt;</span></span><a class="headerlink" href="#cmdoption-make" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a script for the specified build tool.</p>
+<p>Supported values are <code class="docutils literal notranslate"><span class="pre">gmake</span></code> for GNU Make and <code class="docutils literal notranslate"><span class="pre">cmake</span></code> for CMake.
+Both can be specified together.  If no build tool is specified, gmake is
+assumed.  The executable of gmake can be configured via environment
+variable “MAKE”.</p>
+<p>When using <a class="reference internal" href="#cmdoption-build"><code class="xref std std-option docutils literal notranslate"><span class="pre">--build</span></code></a> Verilator takes over the responsibility of
+building the model library/executable.  For this reason <a class="reference internal" href="#cmdoption-make"><code class="xref std std-option docutils literal notranslate"><span class="pre">--make</span></code></a>
+cannot be specified when using <a class="reference internal" href="#cmdoption-build"><code class="xref std std-option docutils literal notranslate"><span class="pre">--build</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-compiler">
+<span class="sig-name descname"><span class="pre">--compiler</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;compiler-name&gt;</span></span><a class="headerlink" href="#cmdoption-compiler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables workarounds for the specified C++ compiler (list below).
+Currently this does not change any performance tuning options, but it may
+in the future.</p>
+<dl class="simple">
+<dt>clang</dt><dd><p>Tune for clang.  This may reduce execution speed as it enables several
+workarounds to avoid silly hard-coded limits in clang.  This includes
+breaking deep structures as for msvc as described below.</p>
+</dd>
+<dt>gcc</dt><dd><p>Tune for GNU C++, although generated code should work on almost any
+compliant C++ compiler.  Currently the default.</p>
+</dd>
+<dt>msvc</dt><dd><p>Tune for Microsoft Visual C++.  This may reduce execution speed as it
+enables several workarounds to avoid silly hard-coded limits in
+MSVC++.  This includes breaking deeply nested parenthesized
+expressions into sub-expressions to avoid error C1009, and breaking
+deep blocks into functions to avoid error C1061.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-converge-limit">
+<span class="sig-name descname"><span class="pre">--converge-limit</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;loops&gt;</span></span><a class="headerlink" href="#cmdoption-converge-limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Specifies the maximum number of runtime iterations
+before creating a model failed to converge error.  Defaults to 100.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-coverage">
+<span class="sig-name descname"><span class="pre">--coverage</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-coverage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables all forms of coverage, alias for <a class="reference internal" href="#cmdoption-coverage-line"><code class="xref std std-option docutils literal notranslate"><span class="pre">--coverage-line</span></code></a>
+<a class="reference internal" href="#cmdoption-coverage-toggle"><code class="xref std std-option docutils literal notranslate"><span class="pre">--coverage-toggle</span></code></a> <a class="reference internal" href="#cmdoption-coverage-user"><code class="xref std std-option docutils literal notranslate"><span class="pre">--coverage-user</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-coverage-line">
+<span class="sig-name descname"><span class="pre">--coverage-line</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-coverage-line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables basic block line coverage analysis. See <a class="reference internal" href="simulating.html#line-coverage"><span class="std std-ref">Line Coverage</span></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-coverage-max-width">
+<span class="sig-name descname"><span class="pre">--coverage-max-width</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;width&gt;</span></span><a class="headerlink" href="#cmdoption-coverage-max-width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Specify the maximum bit width of a signal that is
+subject to toggle coverage.  Defaults to 256, as covering large vectors
+may greatly slow coverage simulations.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-coverage-toggle">
+<span class="sig-name descname"><span class="pre">--coverage-toggle</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-coverage-toggle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables adding signal toggle coverage.  See <a class="reference internal" href="simulating.html#toggle-coverage"><span class="std std-ref">Toggle Coverage</span></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-coverage-underscore">
+<span class="sig-name descname"><span class="pre">--coverage-underscore</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-coverage-underscore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable coverage of signals that start with an underscore. Normally,
+these signals are not covered.  See also <a class="reference internal" href="#cmdoption-trace-underscore"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-underscore</span></code></a>
+option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-coverage-user">
+<span class="sig-name descname"><span class="pre">--coverage-user</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-coverage-user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables adding user inserted functional coverage.  See <a class="reference internal" href="simulating.html#user-coverage"><span class="std std-ref">Functional Coverage</span></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-D-var">
+<span id="cmdoption-d-var"></span><span class="sig-name descname"><span class="pre">-D&lt;var&gt;</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-D-var" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the given preprocessor symbol.  Similar to <a class="reference internal" href="#cmdoption-arg-0"><code class="xref std std-option docutils literal notranslate"><span class="pre">+define</span></code></a>, but does not allow multiple definitions with a single
+option using plus signs. “+define” is fairly standard across Verilog
+tools while “-D” is similar to <strong class="command">gcc -D</strong>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-debug">
+<span class="sig-name descname"><span class="pre">--debug</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run under debug.</p>
+<ul class="simple">
+<li><p>Select the debug executable of Verilator (if available), this
+generally is a less-optimized binary with symbols present (so GDB can be used on it).</p></li>
+<li><p>Enable debugging messages (equivalent to <a class="reference internal" href="#cmdoption-debugi"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debugi</span> <span class="pre">3</span></code></a>).</p></li>
+<li><p>Enable internal assertions (equivalent to <a class="reference internal" href="#cmdoption-debug-check"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug-check</span></code></a>).</p></li>
+<li><p>Enable intermediate form dump files (equivalent to <a class="reference internal" href="#cmdoption-dump-treei"><code class="xref std std-option docutils literal notranslate"><span class="pre">--dump-treei</span> <span class="pre">3</span></code></a>).</p></li>
+<li><p>Leak to make node numbers unique (equivalent to <a class="reference internal" href="#cmdoption-no-debug-leak"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug-leak</span></code></a>.</p></li>
+<li><p>Call abort() instead of exit() if there are any errors (so GDB can see
+the program state).</p></li>
+</ul>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-debug-check">
+<span class="sig-name descname"><span class="pre">--debug-check</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-debug-check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Enable internal debugging assertion checks, without
+changing debug verbosity.  Enabled automatically with <a class="reference internal" href="#cmdoption-debug"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug</span></code></a>
+option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-no-debug-leak">
+<span class="sig-name descname"><span class="pre">--no-debug-leak</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-no-debug-leak" title="Permalink to this definition">¶</a></dt>
+<dd><p>In <a class="reference internal" href="#cmdoption-debug"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug</span></code></a> mode, by default Verilator intentionally leaks
+AstNode instances instead of freeing them, so that each node pointer is
+unique in the resulting tree files and dot files.</p>
+<p>This option disables the leak. This may avoid out-of-memory errors when
+Verilating large models in <a class="reference internal" href="#cmdoption-debug"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug</span></code></a> mode.</p>
+<p>Outside of <a class="reference internal" href="#cmdoption-debug"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug</span></code></a> mode, AstNode instances should never be
+leaked and this option has no effect.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-debugi">
+<span class="sig-name descname"><span class="pre">--debugi</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;level&gt;</span></span><a class="headerlink" href="#cmdoption-debugi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed - for developer use.  Set internal debugging level
+globally to the specified debug level (1-10). Higher levels produce more
+detailed messages.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-debugi-srcfile">
+<span class="sig-name descname"><span class="pre">--debugi-&lt;srcfile&gt;</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;level&gt;</span></span><a class="headerlink" href="#cmdoption-debugi-srcfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed - for developer use.  Set the specified Verilator source
+file to the specified level (e.g. <a class="reference internal" href="#cmdoption-debugi"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debugi-V3Width</span> <span class="pre">9</span></code></a>). Higher levels produce more detailed messages.  See
+<a class="reference internal" href="#cmdoption-debug"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug</span></code></a> for other implications of enabling debug.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-default-language">
+<span class="sig-name descname"><span class="pre">--default-language</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-default-language" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select the language to be used by default when first processing each
+Verilog file.  The language value must be “VAMS”, “1364-1995”,
+“1364-2001”, “1364-2001-noconfig”, “1364-2005”, “1800-2005”,
+“1800-2009”, “1800-2012”, “1800-2017”, or “1800+VAMS”.</p>
+<p>Any language associated with a particular file extension (see the
+various +&lt;lang&gt;*ext+ options) will be used in preference to the
+language specified by <a class="reference internal" href="#cmdoption-default-language"><code class="xref std std-option docutils literal notranslate"><span class="pre">--default-language</span></code></a>.</p>
+<p>The <a class="reference internal" href="#cmdoption-default-language"><code class="xref std std-option docutils literal notranslate"><span class="pre">--default-language</span></code></a> is only recommended for legacy code
+using the same language in all source files, as the preferable option is
+to edit the code to repair new keywords, or add appropriate
+<code class="code docutils literal notranslate"><span class="pre">`begin_keywords</span></code>. For legacy mixed language designs, the various
+<code class="docutils literal notranslate"><span class="pre">+&lt;lang&gt;ext+</span></code> options should be used.</p>
+<p>If no language is specified, either by this option or <code class="docutils literal notranslate"><span class="pre">+&lt;lang&gt;ext+</span></code>
+options, then the latest SystemVerilog language (IEEE 1800-2017) is
+used.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-define-var">
+<span class="sig-name descname"><span class="pre">+define+&lt;var&gt;</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-define-var" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-0">
+<span class="sig-name descname"><span class="pre">+define+&lt;var&gt;</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;[+&lt;var2&gt;=&lt;value2&gt;][...]</span></span><a class="headerlink" href="#cmdoption-arg-0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the given preprocessor symbol, or multiple symbols if separated
+by plus signs.  Similar to <a class="reference internal" href="#cmdoption-D-var"><code class="xref std std-option docutils literal notranslate"><span class="pre">-D</span></code></a>; +define is fairly
+standard across Verilog tools while <a class="reference internal" href="#cmdoption-D-var"><code class="xref std std-option docutils literal notranslate"><span class="pre">-D</span></code></a> is similar to
+<strong class="command">gcc -D</strong>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-dpi-hdr-only">
+<span class="sig-name descname"><span class="pre">--dpi-hdr-only</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-dpi-hdr-only" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only generate the DPI header file.  This option has no effect on the
+name or location of the emitted DPI header file, it is output in
+<a class="reference internal" href="#cmdoption-Mdir"><code class="xref std std-option docutils literal notranslate"><span class="pre">--Mdir</span></code></a> as it would be without this option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-dump-defines">
+<span class="sig-name descname"><span class="pre">--dump-defines</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-dump-defines" title="Permalink to this definition">¶</a></dt>
+<dd><p>With <a class="reference internal" href="#cmdoption-E"><code class="xref std std-option docutils literal notranslate"><span class="pre">-E</span></code></a>, suppress normal output, and instead print a list of
+all defines existing at the end of pre-processing the input
+files. Similar to GCC “-dM” option. This also gives you a way of finding
+out what is predefined in Verilator using the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>touch foo.v <span class="p">;</span> verilator -E --dump-defines foo.v
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-dump-tree">
+<span class="sig-name descname"><span class="pre">--dump-tree</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-dump-tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Enable writing .tree debug files with dumping level 3,
+which dumps the standard critical stages.  For details on the format see
+the Verilator Internals manual.  <a class="reference internal" href="#cmdoption-dump-tree"><code class="xref std std-option docutils literal notranslate"><span class="pre">--dump-tree</span></code></a> is enabled
+automatically with <a class="reference internal" href="#cmdoption-debug"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug</span></code></a>, so <a class="reference internal" href="#cmdoption-dump-tree"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug</span> <span class="pre">--no-dump-tree</span></code></a> may be useful if the dump files are large and not
+desired.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-dump-treei">
+<span class="sig-name descname"><span class="pre">--dump-treei</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;level&gt;</span></span><a class="headerlink" href="#cmdoption-dump-treei" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-dump-treei-srcfile">
+<span class="sig-name descname"><span class="pre">--dump-treei-&lt;srcfile&gt;</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;level&gt;</span></span><a class="headerlink" href="#cmdoption-dump-treei-srcfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed - for developer use.  Set internal tree dumping level
+globally to a specific dumping level or set the specified Verilator
+source file to the specified tree dumping level (e.g.
+<a class="reference internal" href="#cmdoption-dump-treei"><code class="xref std std-option docutils literal notranslate"><span class="pre">--dump-treei-V3Order</span> <span class="pre">9</span></code></a>).  Level 0 disables dumps
+and is equivalent to <a class="reference internal" href="#cmdoption-dump-tree"><code class="xref std std-option docutils literal notranslate"><span class="pre">--no-dump-tree</span></code></a>.  Level 9
+enables dumping of every stage.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-dump-tree-addrids">
+<span class="sig-name descname"><span class="pre">--dump-tree-addrids</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-dump-tree-addrids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed - for developer use.  Replace AST node addresses with
+short identifiers in tree dumps to enhance readability.  Each unique
+pointer value is mapped to a unique identifier, but note that this is
+not necessarily unique per node instance as an address might get reused
+by a newly allocated node after a node with the same address has been
+dumped then freed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-E">
+<span id="cmdoption-e"></span><span class="sig-name descname"><span class="pre">-E</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-E" title="Permalink to this definition">¶</a></dt>
+<dd><p>Preprocess the source code, but do not compile, similar to C++
+preprocessing using <strong class="command">gcc -E</strong>.  Output is written to standard
+out.  Beware of enabling debugging messages, as they will also go to
+standard out.</p>
+<p>See also <a class="reference internal" href="#cmdoption-dump-defines"><code class="xref std std-option docutils literal notranslate"><span class="pre">--dump-defines</span></code></a>, <a class="reference internal" href="#cmdoption-P"><code class="xref std std-option docutils literal notranslate"><span class="pre">-P</span></code></a>, and
+<a class="reference internal" href="#cmdoption-pp-comments"><code class="xref std std-option docutils literal notranslate"><span class="pre">--pp-comments</span></code></a> options.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-error-limit">
+<span class="sig-name descname"><span class="pre">--error-limit</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-error-limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>After this number of errors are encountered during Verilator run, exit.
+Warnings are not counted in this limit.  Defaults to 50.</p>
+<p>Does not affect simulation runtime errors, for those see
+<a class="reference internal" href="exe_sim.html#cmdoption-arg-verilator-error-limit-value"><code class="xref std std-option docutils literal notranslate"><span class="pre">+verilator+error+limit+&lt;value&gt;</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-exe">
+<span class="sig-name descname"><span class="pre">--exe</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-exe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate an executable.  You will also need to pass additional .cpp
+files on the command line that implement the main loop for your
+simulation.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-expand-limit">
+<span class="sig-name descname"><span class="pre">--expand-limit</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-expand-limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Fine-tune optimizations to set the maximum size of an
+expression in 32-bit words to expand into separate word-based
+statements.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-F">
+<span id="cmdoption-f"></span><span class="sig-name descname"><span class="pre">-F</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;file&gt;</span></span><a class="headerlink" href="#cmdoption-F" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the specified file, and act as if all text inside it was specified
+as command line arguments.  Any relative paths are relative to the
+directory containing the specified file.  See also <a class="reference internal" href="#cmdoption-0"><code class="xref std std-option docutils literal notranslate"><span class="pre">-f</span></code></a>
+option. Note <a class="reference internal" href="#cmdoption-F"><code class="xref std std-option docutils literal notranslate"><span class="pre">-F</span></code></a> is fairly standard across Verilog tools.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-0">
+<span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;file&gt;</span></span><a class="headerlink" href="#cmdoption-0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the specified file, and act as if all text inside it was specified
+as command line arguments.  Any relative paths are relative to the
+current directory.  See also <a class="reference internal" href="#cmdoption-F"><code class="xref std std-option docutils literal notranslate"><span class="pre">-F</span></code></a> option. Note <a class="reference internal" href="#cmdoption-0"><code class="xref std std-option docutils literal notranslate"><span class="pre">-f</span></code></a> is
+fairly standard across Verilog tools.</p>
+<p>The file may contain <code class="code docutils literal notranslate"><span class="pre">//</span></code> comments which are ignored to the end of
+the line.  It may also contain <code class="code docutils literal notranslate"><span class="pre">/*</span> <span class="pre">..</span> <span class="pre">*/</span></code> comments which are
+ignored, be cautious that wildcards are not handled in -f files, and
+that <code class="code docutils literal notranslate"><span class="pre">directory/*</span></code> is the beginning of a comment, not a wildcard.
+Any <code class="code docutils literal notranslate"><span class="pre">$VAR</span></code>, <code class="code docutils literal notranslate"><span class="pre">$(VAR)</span></code>, or <code class="code docutils literal notranslate"><span class="pre">${VAR}</span></code> will be replaced
+with the specified environment variable.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-FI">
+<span id="cmdoption-fi"></span><span class="sig-name descname"><span class="pre">-FI</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;file&gt;</span></span><a class="headerlink" href="#cmdoption-FI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force include of the specified C++ header file.  All generated C++ files
+will insert a #include of the specified file before any other
+includes. The specified file might be used to contain define prototypes
+of custom <code class="code docutils literal notranslate"><span class="pre">VL_VPRINTF</span></code> functions, and may need to include
+<code class="file docutils literal notranslate"><span class="pre">verilatedos.h</span></code> as this file is included before any other standard
+includes.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-flatten">
+<span class="sig-name descname"><span class="pre">--flatten</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-flatten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force flattening of the design’s hierarchy, with all modules, tasks and
+functions inlined. Typically used with <a class="reference internal" href="#cmdoption-xml-only"><code class="xref std std-option docutils literal notranslate"><span class="pre">--xml-only</span></code></a>. Note
+flattening large designs may require significant CPU time, memory and
+storage.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-G-name">
+<span id="cmdoption-g-name"></span><span class="sig-name descname"><span class="pre">-G&lt;name&gt;</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-G-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overwrites the given parameter of the toplevel module. The value is
+limited to basic data literals:</p>
+<dl class="simple">
+<dt>Verilog integer literals</dt><dd><p>The standard Verilog integer literals are supported, so values like
+32’h8, 2’b00, 4 etc. are allowed. Care must be taken that the single
+quote (I’) is properly escaped in an interactive shell, e.g.,
+as <code class="code docutils literal notranslate"><span class="pre">-GWIDTH=8'hx</span></code>.</p>
+</dd>
+<dt>C integer literals</dt><dd><p>It is also possible to use C integer notation, including hexadecimal
+(0x..), octal (0..) or binary (0b..) notation.</p>
+</dd>
+<dt>Double literals</dt><dd><dl class="simple">
+<dt>Double literals must be one of the following styles:</dt><dd><ul class="simple">
+<li><p>contains a dot (.) (e.g. 1.23)</p></li>
+<li><p>contains an exponent (e/E) (e.g. 12e3)</p></li>
+<li><p>contains p/P for hexadecimal floating point in C99 (e.g. 0x123.ABCp1)</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>Strings</dt><dd><p>Strings must be in double quotes (“”). They must be escaped properly
+on the command line, e.g. as <code class="code docutils literal notranslate"><span class="pre">-GSTR=&quot;&quot;My</span> <span class="pre">String&quot;&quot;</span></code> or
+<code class="code docutils literal notranslate"><span class="pre">-GSTR='&quot;My</span> <span class="pre">String&quot;'</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gate-stmts">
+<span class="sig-name descname"><span class="pre">--gate-stmts</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-gate-stmts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Set the maximum number of statements that may be present
+in an equation for the gate substitution optimization to inline that
+equation.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gdb">
+<span class="sig-name descname"><span class="pre">--gdb</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gdb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run Verilator underneath an interactive GDB (or VERILATOR_GDB
+environment variable value) session.  See also <a class="reference internal" href="#cmdoption-gdbbt"><code class="xref std std-option docutils literal notranslate"><span class="pre">--gdbbt</span></code></a> option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-gdbbt">
+<span class="sig-name descname"><span class="pre">--gdbbt</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-gdbbt" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <a class="reference internal" href="#cmdoption-debug"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug</span></code></a> is specified, run Verilator underneath a GDB process
+and print a backtrace on exit, then exit GDB immediately.  Without
+<a class="reference internal" href="#cmdoption-debug"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug</span></code></a> or if GDB doesn’t seem to work, this flag is ignored.
+Intended for easy creation of backtraces by users; otherwise see the
+<a class="reference internal" href="#cmdoption-gdb"><code class="xref std std-option docutils literal notranslate"><span class="pre">--gdb</span></code></a> option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-generate-key">
+<span class="sig-name descname"><span class="pre">--generate-key</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-generate-key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a true-random key suitable for use with <a class="reference internal" href="#cmdoption-protect-key"><code class="xref std std-option docutils literal notranslate"><span class="pre">--protect-key</span></code></a>,
+print it, and exit immediately.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-getenv">
+<span class="sig-name descname"><span class="pre">--getenv</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;variable&gt;</span></span><a class="headerlink" href="#cmdoption-getenv" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the variable is declared in the environment, print it and exit
+immediately. Otherwise, if it’s built into Verilator
+(e.g. VERILATOR_ROOT), print that and exit immediately. Otherwise, print
+a newline and exit immediately. This can be useful in makefiles. See
+also <a class="reference internal" href="#cmdoption-V"><code class="xref std std-option docutils literal notranslate"><span class="pre">-V</span></code></a>, and the various <code class="file docutils literal notranslate"><span class="pre">*.mk</span></code> files.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-help">
+<span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-help" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays this message and program version and exits.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-hierarchical">
+<span class="sig-name descname"><span class="pre">--hierarchical</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-hierarchical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable hierarchical Verilation otherwise
+<a class="reference internal" href="extensions.html#cmdoption-verilator-32-hier_block"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;hier_block*/</span></code></a> metacomment is ignored.  See
+<a class="reference internal" href="verilating.html#hierarchical-verilation"><span class="std std-ref">Hierarchical Verilation</span></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-I-dir">
+<span id="cmdoption-i-dir"></span><span class="sig-name descname"><span class="pre">-I&lt;dir&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-I-dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#cmdoption-y"><code class="xref std std-option docutils literal notranslate"><span class="pre">-y</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-if-depth">
+<span class="sig-name descname"><span class="pre">--if-depth</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-if-depth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Set the depth at which the IFDEPTH warning will fire,
+defaults to 0 which disables this warning.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-incdir-dir">
+<span class="sig-name descname"><span class="pre">+incdir+&lt;dir&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-incdir-dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#cmdoption-y"><code class="xref std std-option docutils literal notranslate"><span class="pre">-y</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-inline-mult">
+<span class="sig-name descname"><span class="pre">--inline-mult</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-inline-mult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tune the inlining of modules.  The default value of 2000 specifies that up
+to 2000 new operations may be added to the model by inlining, if more than
+this number of operations would result, the module is not inlined.  Larger
+values, or a value &lt; 1 will inline everything, will lead to longer compile
+times, but potentially faster simulation speed.  This setting is ignored
+for very small modules; they will always be inlined, if allowed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-j">
+<span class="sig-name descname"><span class="pre">-j</span></span><span class="sig-prename descclassname"> <span class="pre">[&lt;value&gt;]</span></span><a class="headerlink" href="#cmdoption-j" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the level of parallelism for <a class="reference internal" href="#cmdoption-build"><code class="xref std std-option docutils literal notranslate"><span class="pre">--build</span></code></a>. The &lt;value&gt; must
+be a positive integer specifying the maximum number of parallel build
+jobs, or can be omitted. When &lt;value&gt; is omitted, the build will not try
+to limit the number of parallel build jobs but attempt to execute all
+independent build steps in parallel.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-LDFLAGS">
+<span id="cmdoption-ldflags"></span><span class="sig-name descname"><span class="pre">-LDFLAGS</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;flags&gt;</span></span><a class="headerlink" href="#cmdoption-LDFLAGS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add specified C linker arguments to the generated makefiles.  For multiple
+flags either pass them as a single argument with space separators quoted
+in the shell (<code class="docutils literal notranslate"><span class="pre">-LDFLAGS</span> <span class="pre">&quot;-a</span> <span class="pre">-b&quot;</span></code>), or use multiple -LDFLAGS arguments
+(<code class="docutils literal notranslate"><span class="pre">-LDFLAGS</span> <span class="pre">-a</span> <span class="pre">-LDFLAGS</span> <span class="pre">-b</span></code>).</p>
+<p>When make is run on the generated makefile these will be passed to the
+C++ linker (ld) <strong>after</strong> the primary file being linked.  This flag is
+called <a class="reference internal" href="#cmdoption-LDFLAGS"><code class="xref std std-option docutils literal notranslate"><span class="pre">-LDFLAGS</span></code></a> as that’s the traditional name in simulators;
+it’s would have been better called LDLIBS as that’s the Makefile
+variable it controls.  (In Make, LDFLAGS is before the first object,
+LDLIBS after.  -L libraries need to be in the Make variable LDLIBS, not
+LDFLAGS.)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-l2-name">
+<span class="sig-name descname"><span class="pre">--l2-name</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-l2-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instead of using the module name when showing Verilog scope, use the
+name provided. This allows simplifying some Verilator-embedded modeling
+methodologies. Default is an l2-name matching the top module. The
+default before Verilator 3.884 was <code class="docutils literal notranslate"><span class="pre">--l2-name</span> <span class="pre">v</span></code>.</p>
+<p>For example, the program <code class="code docutils literal notranslate"><span class="pre">module</span> <span class="pre">t;</span> <span class="pre">initial</span> <span class="pre">$display(&quot;%m&quot;);</span>
+<span class="pre">endmodule</span></code> will show by default “t”. With <code class="docutils literal notranslate"><span class="pre">--l2-name</span> <span class="pre">v</span></code> it will print
+“v”.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-language">
+<span class="sig-name descname"><span class="pre">--language</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-language" title="Permalink to this definition">¶</a></dt>
+<dd><p>A synonym for <a class="reference internal" href="#cmdoption-default-language"><code class="xref std std-option docutils literal notranslate"><span class="pre">--default-language</span></code></a>, for compatibility with other
+tools and earlier versions of Verilator.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-libext-ext-ext-...">
+<span id="cmdoption-arg-libext-ext-ext"></span><span class="sig-name descname"><span class="pre">+libext+&lt;ext&gt;[+&lt;ext&gt;][...]</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-libext-ext-ext-..." title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the extensions that should be used for finding modules.  If for
+example module “my” is referenced, look in <code class="file docutils literal notranslate"><span class="pre">my.&lt;ext&gt;</span></code>.  Note
+“+libext+” is fairly standard across Verilog tools.  Defaults to
+“.v+.sv”.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-lint-only">
+<span class="sig-name descname"><span class="pre">--lint-only</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-lint-only" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the files for lint violations only, do not create any other
+output.</p>
+<p>You may also want the <a class="reference internal" href="#cmdoption-Wall"><code class="xref std std-option docutils literal notranslate"><span class="pre">-Wall</span></code></a> option to enable messages that are
+considered stylistic and not enabled by default.</p>
+<p>If the design is not to be completely Verilated see also the
+<a class="reference internal" href="#cmdoption-bbox-sys"><code class="xref std std-option docutils literal notranslate"><span class="pre">--bbox-sys</span></code></a> and <a class="reference internal" href="#cmdoption-bbox-unsup"><code class="xref std std-option docutils literal notranslate"><span class="pre">--bbox-unsup</span></code></a> options.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-MAKEFLAGS">
+<span id="cmdoption-makeflags"></span><span class="sig-name descname"><span class="pre">-MAKEFLAGS</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;string&gt;</span></span><a class="headerlink" href="#cmdoption-MAKEFLAGS" title="Permalink to this definition">¶</a></dt>
+<dd><p>When using <a class="reference internal" href="#cmdoption-build"><code class="xref std std-option docutils literal notranslate"><span class="pre">--build</span></code></a>, add the specified argument to the invoked
+make command line.  For multiple flags either pass them as a single
+argument with space separators quoted in the shell (e.g.  <code class="docutils literal notranslate"><span class="pre">-MAKEFLAGS</span>
+<span class="pre">&quot;-a</span> <span class="pre">-b&quot;</span></code>), or use multiple -MAKEFLAGS arguments
+(e.g. <code class="docutils literal notranslate"><span class="pre">-MAKEFLAGS</span> <span class="pre">-l</span> <span class="pre">-MAKEFLAGS</span> <span class="pre">-k</span></code>). Use of this option should not be
+required for simple builds using the host toolchain.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-max-num-width">
+<span class="sig-name descname"><span class="pre">--max-num-width</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-max-num-width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the maximum number literal width (e.g. in 1024’d22 this it the
+1024).  Defaults to 64K.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-MMD">
+<span id="cmdoption-mmd"></span><span class="sig-name descname"><span class="pre">--MMD</span></span><span class="sig-prename descclassname"> <span class="pre">=item</span> <span class="pre">--no-MMD</span></span><a class="headerlink" href="#cmdoption-MMD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable/disable creation of .d dependency files, used for make dependency
+detection, similar to gcc -MMD option.  By default this option is
+enabled for <a class="reference internal" href="#cmdoption-cc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--cc</span></code></a> or <a class="reference internal" href="#cmdoption-sc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--sc</span></code></a> modes.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-MP">
+<span id="cmdoption-mp"></span><span class="sig-name descname"><span class="pre">--MP</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-MP" title="Permalink to this definition">¶</a></dt>
+<dd><p>When creating .d dependency files with <a class="reference internal" href="#cmdoption-MMD"><code class="xref std std-option docutils literal notranslate"><span class="pre">--MMD</span></code></a> option, make phony
+targets.  Similar to <strong class="command">gcc -MP</strong> option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Mdir">
+<span id="cmdoption-mdir"></span><span class="sig-name descname"><span class="pre">--Mdir</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;directory&gt;</span></span><a class="headerlink" href="#cmdoption-Mdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies the name of the Make object directory.  All generated files
+will be placed in this directory.  If not specified, “obj_dir” is used.
+The directory is created if it does not exist and the parent directories
+exist; otherwise manually create the Mdir before calling Verilator.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-no-merge-const-pool">
+<span class="sig-name descname"><span class="pre">--no-merge-const-pool</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-no-merge-const-pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  In order to minimize cache footprint, values of different
+data type, that are yet emitted identically in C++ are merged in the
+constant pool.  This option disables this and causes every constant pool
+entry with a distinct data type to be emitted separately.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-mod-prefix">
+<span class="sig-name descname"><span class="pre">--mod-prefix</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;topname&gt;</span></span><a class="headerlink" href="#cmdoption-mod-prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies the name to prepend to all lower level classes.  Defaults to
+the same as <a class="reference internal" href="#cmdoption-prefix"><code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-no-clk">
+<span class="sig-name descname"><span class="pre">--no-clk</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;signal-name&gt;</span></span><a class="headerlink" href="#cmdoption-no-clk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prevent the specified signal from being marked as clock. See
+<a class="reference internal" href="#cmdoption-clk"><code class="xref std std-option docutils literal notranslate"><span class="pre">--clk</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-no-decoration">
+<span class="sig-name descname"><span class="pre">--no-decoration</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-no-decoration" title="Permalink to this definition">¶</a></dt>
+<dd><p>When creating output Verilated code, minimize comments, white space,
+symbol names and other decorative items, at the cost of greatly reduced
+readability. This may assist C++ compile times. This will not typically
+change the ultimate model’s performance, but may in some cases.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-no-pins64">
+<span class="sig-name descname"><span class="pre">--no-pins64</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-no-pins64" title="Permalink to this definition">¶</a></dt>
+<dd><p>Backward compatible alias for <a class="reference internal" href="#cmdoption-pins-bv"><code class="xref std std-option docutils literal notranslate"><span class="pre">--pins-bv</span> <span class="pre">33</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-no-skip-identical">
+<span class="sig-name descname"><span class="pre">--no-skip-identical</span></span><span class="sig-prename descclassname"> <span class="pre">=item</span> <span class="pre">--skip-identical</span></span><a class="headerlink" href="#cmdoption-no-skip-identical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Disables or enables skipping execution of Verilator if
+all source files are identical, and all output files exist with newer
+dates.  By default this option is enabled for <a class="reference internal" href="#cmdoption-cc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--cc</span></code></a> or
+<a class="reference internal" href="#cmdoption-sc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--sc</span></code></a> modes only.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-notimingchecks">
+<span class="sig-name descname"><span class="pre">+notimingchecks</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-notimingchecks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ignored for compatibility with other simulators.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-O0">
+<span id="cmdoption-o0"></span><span class="sig-name descname"><span class="pre">-O0</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-O0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables optimization of the model.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-O3">
+<span id="cmdoption-o3"></span><span class="sig-name descname"><span class="pre">-O3</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-O3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables slow optimizations for the code Verilator itself generates (as
+opposed to <a class="reference internal" href="#cmdoption-CFLAGS"><code class="xref std std-option docutils literal notranslate"><span class="pre">-CFLAGS</span> <span class="pre">-O3</span></code></a> which effects the C compiler’s
+optimization.  <a class="reference internal" href="#cmdoption-O3"><code class="xref std std-option docutils literal notranslate"><span class="pre">-O3</span></code></a> may improve simulation performance at the
+cost of compile time.  This currently sets <a class="reference internal" href="#cmdoption-inline-mult"><code class="xref std std-option docutils literal notranslate"><span class="pre">--inline-mult</span> <span class="pre">-1</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-O-optimization-letter">
+<span id="cmdoption-o-optimization-letter"></span><span class="sig-name descname"><span class="pre">-O&lt;optimization-letter&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-O-optimization-letter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Enables or disables a specific optimizations, with the
+optimization selected based on the letter passed.  A lowercase letter
+disables an optimization, an upper case letter enables it.  This is
+intended for debugging use only; see the source code for
+version-dependent mappings of optimizations to -O letters.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-o">
+<span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;executable&gt;</span></span><a class="headerlink" href="#cmdoption-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the name for the final executable built if using <a class="reference internal" href="#cmdoption-exe"><code class="xref std std-option docutils literal notranslate"><span class="pre">--exe</span></code></a>.
+Defaults to the <a class="reference internal" href="#cmdoption-prefix"><code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code></a> if not specified.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-no-order-clock-delay">
+<span class="sig-name descname"><span class="pre">--no-order-clock-delay</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-no-order-clock-delay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Disables a bug fix for ordering of clock enables with
+delayed assignments.  This option should only be used when suggested by
+the developers.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-output-split">
+<span class="sig-name descname"><span class="pre">--output-split</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;statements&gt;</span></span><a class="headerlink" href="#cmdoption-output-split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables splitting the output .cpp files into multiple outputs.  When a
+C++ file exceeds the specified number of operations, a new file will be
+created at the next function boundary.  In addition, if the total output
+code size exceeds the specified value, VM_PARALLEL_BUILDS will be set to
+1 by default in the generated make files, making parallel compilation
+possible. Using <a class="reference internal" href="#cmdoption-output-split"><code class="xref std std-option docutils literal notranslate"><span class="pre">--output-split</span></code></a> should have only a trivial
+impact on model performance. But can greatly improve C++ compilation
+speed. The use of “ccache” (set for you if present at configure time) is
+also more effective with this option.</p>
+<p>This option is on by default with a value of 20000. To disable, pass with a
+value of 0.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-output-split-cfuncs">
+<span class="sig-name descname"><span class="pre">--output-split-cfuncs</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;statements&gt;</span></span><a class="headerlink" href="#cmdoption-output-split-cfuncs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables splitting functions in the output .cpp files into multiple
+functions.  When a generated function exceeds the specified number of
+operations, a new function will be created.  With
+<a class="reference internal" href="#cmdoption-output-split"><code class="xref std std-option docutils literal notranslate"><span class="pre">--output-split</span></code></a>, this will enable the C++ compiler to compile
+faster, at a small loss in performance that gets worse with decreasing
+split values.  Note that this option is stronger than
+<a class="reference internal" href="#cmdoption-output-split"><code class="xref std std-option docutils literal notranslate"><span class="pre">--output-split</span></code></a> in the sense that <a class="reference internal" href="#cmdoption-output-split"><code class="xref std std-option docutils literal notranslate"><span class="pre">--output-split</span></code></a> will
+not split inside a function.</p>
+<p>Defaults to the value of <a class="reference internal" href="#cmdoption-output-split"><code class="xref std std-option docutils literal notranslate"><span class="pre">--output-split</span></code></a>, unless explicitly
+specified.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-output-split-ctrace">
+<span class="sig-name descname"><span class="pre">--output-split-ctrace</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;statements&gt;</span></span><a class="headerlink" href="#cmdoption-output-split-ctrace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Similar to <a class="reference internal" href="#cmdoption-output-split-cfuncs"><code class="xref std std-option docutils literal notranslate"><span class="pre">--output-split-cfuncs</span></code></a>, enables splitting trace
+functions in the output .cpp files into multiple functions.</p>
+<p>Defaults to the value of <a class="reference internal" href="#cmdoption-output-split"><code class="xref std std-option docutils literal notranslate"><span class="pre">--output-split</span></code></a>, unless explicitly
+specified.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-P">
+<span id="cmdoption-p"></span><span class="sig-name descname"><span class="pre">-P</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-P" title="Permalink to this definition">¶</a></dt>
+<dd><p>With <a class="reference internal" href="#cmdoption-E"><code class="xref std std-option docutils literal notranslate"><span class="pre">-E</span></code></a>, disable generation of <code class="code docutils literal notranslate"><span class="pre">&amp;96;line</span></code> markers and
+blank lines, similar to <strong class="command">gcc -P</strong>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pins64">
+<span class="sig-name descname"><span class="pre">--pins64</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pins64" title="Permalink to this definition">¶</a></dt>
+<dd><p>Backward compatible alias for <a class="reference internal" href="#cmdoption-pins-bv"><code class="xref std std-option docutils literal notranslate"><span class="pre">--pins-bv</span> <span class="pre">65</span></code></a>.  Note
+that’s a 65, not a 64.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pins-bv">
+<span class="sig-name descname"><span class="pre">--pins-bv</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;width&gt;</span></span><a class="headerlink" href="#cmdoption-pins-bv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies SystemC inputs/outputs of greater than or equal to &lt;width&gt;
+bits wide should use sc_bv’s instead of uint32/vluint64_t’s.  The
+default is “–pins-bv 65”, and the value must be less than or equal
+to 65.  Versions before Verilator 3.671 defaulted to “–pins-bv 33”.
+The more sc_bv is used, the worse for performance.  Use the
+<a class="reference internal" href="extensions.html#cmdoption-verilator-32-sc_bv"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;sc_bv*/</span></code></a> metacomment to select specific ports to
+be sc_bv.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pins-sc-uint">
+<span class="sig-name descname"><span class="pre">--pins-sc-uint</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pins-sc-uint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies SystemC inputs/outputs of greater than 2 bits wide should use
+sc_uint between 2 and 64.  When combined with the
+<a class="reference internal" href="#cmdoption-pins-sc-biguint"><code class="xref std std-option docutils literal notranslate"><span class="pre">--pins-sc-biguint</span></code></a> combination, it results in sc_uint being used
+between 2 and 64 and sc_biguint being used between 65 and 512.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pins-sc-biguint">
+<span class="sig-name descname"><span class="pre">--pins-sc-biguint</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pins-sc-biguint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies SystemC inputs/outputs of greater than 65 bits wide should use
+sc_biguint between 65 and 512, and sc_bv from 513 upwards.  When
+combined with the <a class="reference internal" href="#cmdoption-pins-sc-uint"><code class="xref std std-option docutils literal notranslate"><span class="pre">--pins-sc-uint</span></code></a> combination, it results in
+sc_uint being used between 2 and 64 and sc_biguint being used between 65
+and 512.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pins-uint8">
+<span class="sig-name descname"><span class="pre">--pins-uint8</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pins-uint8" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies SystemC inputs/outputs that are smaller than the
+<a class="reference internal" href="#cmdoption-pins-bv"><code class="xref std std-option docutils literal notranslate"><span class="pre">--pins-bv</span></code></a> setting and 8 bits or less should use uint8_t instead
+of uint32_t.  Likewise pins of width 9-16 will use uint16_t instead of
+uint32_t.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pipe-filter">
+<span class="sig-name descname"><span class="pre">--pipe-filter</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;command&gt;</span></span><a class="headerlink" href="#cmdoption-pipe-filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Verilator will spawn the specified command as a
+subprocess pipe, to allow the command to perform custom edits on the
+Verilog code before it reaches Verilator.</p>
+<p>Before reading each Verilog file, Verilator will pass the file name to
+the subprocess’ stdin with <code class="code docutils literal notranslate"><span class="pre">read</span> <span class="pre">&quot;&lt;filename&gt;&quot;</span></code>.  The filter may
+then read the file and perform any filtering it desires, and feeds the
+new file contents back to Verilator on stdout by first emitting a line
+defining the length in bytes of the filtered output
+<code class="code docutils literal notranslate"><span class="pre">Content-Length:</span> <span class="pre">&lt;bytes&gt;</span></code>, followed by the new filtered
+contents. Output to stderr from the filter feeds through to Verilator’s
+stdout and if the filter exits with non-zero status Verilator
+terminates.  See the file:<cite>t/t_pipe_filter</cite> test for an example.</p>
+<p>To debug the output of the filter, try using the <a class="reference internal" href="#cmdoption-E"><code class="xref std std-option docutils literal notranslate"><span class="pre">-E</span></code></a> option to
+see preprocessed output.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pp-comments">
+<span class="sig-name descname"><span class="pre">--pp-comments</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-pp-comments" title="Permalink to this definition">¶</a></dt>
+<dd><p>With <a class="reference internal" href="#cmdoption-E"><code class="xref std std-option docutils literal notranslate"><span class="pre">-E</span></code></a>, show comments in preprocessor output.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-prefix">
+<span class="sig-name descname"><span class="pre">--prefix</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;topname&gt;</span></span><a class="headerlink" href="#cmdoption-prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies the name of the top level class and makefile.  Defaults to V
+prepended to the name of the <a class="reference internal" href="#cmdoption-top"><code class="xref std std-option docutils literal notranslate"><span class="pre">--top</span></code></a> option, or V prepended to
+the first Verilog filename passed on the command line.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-prof-c">
+<span class="sig-name descname"><span class="pre">--prof-c</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-prof-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>When compiling the C++ code, enable the compiler’s profiling flag
+(e.g. <code class="code docutils literal notranslate"><span class="pre">g++</span> <span class="pre">-pg</span></code>). See <a class="reference internal" href="simulating.html#profiling"><span class="std std-ref">Code Profiling</span></a>.</p>
+<p>Using <a class="reference internal" href="#cmdoption-prof-cfuncs"><code class="xref std std-option docutils literal notranslate"><span class="pre">--prof-cfuncs</span></code></a> also enables <code class="xref std std-option docutils literal notranslate"><span class="pre">prof-c</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-prof-cfuncs">
+<span class="sig-name descname"><span class="pre">--prof-cfuncs</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-prof-cfuncs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify the created C++ functions to support profiling.  The functions
+will be minimized to contain one “basic” statement, generally a single
+always block or wire statement.  (Note this will slow down the
+executable by ~5%.)  Furthermore, the function name will be suffixed
+with the basename of the Verilog module and line number the statement
+came from.  This allows gprof or oprofile reports to be correlated with
+the original Verilog source statements. See <a class="reference internal" href="simulating.html#profiling"><span class="std std-ref">Code Profiling</span></a>.</p>
+<p>Using <a class="reference internal" href="#cmdoption-prof-cfuncs"><code class="xref std std-option docutils literal notranslate"><span class="pre">--prof-cfuncs</span></code></a> also enables <code class="xref std std-option docutils literal notranslate"><span class="pre">prof-c</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-prof-threads">
+<span class="sig-name descname"><span class="pre">--prof-threads</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-prof-threads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable gantt chart data collection for threaded builds. See <a class="reference internal" href="simulating.html#thread-profiling"><span class="std std-ref">Thread Profiling</span></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-protect-key">
+<span class="sig-name descname"><span class="pre">--protect-key</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;key&gt;</span></span><a class="headerlink" href="#cmdoption-protect-key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies the private key for <a class="reference internal" href="#cmdoption-protect-ids"><code class="xref std std-option docutils literal notranslate"><span class="pre">--protect-ids</span></code></a>. For best security
+this key should be 16 or more random bytes, a reasonable secure choice
+is the output of <strong class="command">verilator --generate-key</strong> . Typically, a key
+would be created by the user once for a given protected design library,
+then every Verilator run for subsequent versions of that library would
+be passed the same <a class="reference internal" href="#cmdoption-protect-key"><code class="xref std std-option docutils literal notranslate"><span class="pre">--protect-key</span></code></a>. Thus, if the input Verilog is
+similar between library versions (Verilator runs), the Verilated code
+will likewise be mostly similar.</p>
+<p>If <a class="reference internal" href="#cmdoption-protect-key"><code class="xref std std-option docutils literal notranslate"><span class="pre">--protect-key</span></code></a> is not specified and a key is needed,
+Verilator will generate a new key for every Verilator run. As the key is
+not saved, this is best for security, but means every Verilator run will
+give vastly different output even for identical input, perhaps harming
+compile times (and certainly thrashing any “ccache”).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-protect-ids">
+<span class="sig-name descname"><span class="pre">--protect-ids</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-protect-ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hash any private identifiers (variable, module, and assertion block
+names that are not on the top level) into hashed random-looking
+identifiers, resulting after compilation in protected library binaries
+that expose less design information.  This hashing uses the provided or
+default <a class="reference internal" href="#cmdoption-protect-key"><code class="xref std std-option docutils literal notranslate"><span class="pre">--protect-key</span></code></a>, see important details there.</p>
+<p>Verilator will also create a <code class="file docutils literal notranslate"><span class="pre">&lt;prefix&gt;__idmap.xml</span></code> file which
+contains the mapping from the hashed identifiers back to the original
+identifiers. This idmap file is to be kept private, and is to assist
+mapping any simulation runtime design assertions, coverage, or trace
+information, which will report the hashed identifiers, back to the
+original design’s identifier names.</p>
+<p>Using DPI imports/exports is allowed and generally relatively safe in
+terms of information disclosed, which is limited to the DPI function
+prototyptes.  Use of the VPI is not recommended as many design details
+may be exposed, and an INSECURE warning will be issued.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-protect-lib">
+<span class="sig-name descname"><span class="pre">--protect-lib</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;name&gt;</span></span><a class="headerlink" href="#cmdoption-protect-lib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produces C++, Verilog wrappers and a Makefile which can in turn produce
+a DPI library which can be used by Verilator or other simulators along
+with the corresponding Verilog wrapper.  The Makefile will build both a
+static and dynamic version of the library named <code class="file docutils literal notranslate"><span class="pre">lib&lt;name&gt;.a</span></code> and
+<code class="file docutils literal notranslate"><span class="pre">lib&lt;name&gt;.so</span></code> respectively.  This is done because some simulators
+require a dynamic library, but the static library is arguably easier to
+use if possible.  <a class="reference internal" href="#cmdoption-protect-lib"><code class="xref std std-option docutils literal notranslate"><span class="pre">--protect-lib</span></code></a> implies <a class="reference internal" href="#cmdoption-protect-ids"><code class="xref std std-option docutils literal notranslate"><span class="pre">--protect-ids</span></code></a>.</p>
+<p>This allows for the secure delivery of sensitive IP without the need for
+encrypted RTL (i.e. IEEE P1735).  See <code class="file docutils literal notranslate"><span class="pre">examples/make_protect_lib</span></code>
+in the distribution for a demonstration of how to build and use the DPI
+library.</p>
+<p>When using <a class="reference internal" href="#cmdoption-protect-lib"><code class="xref std std-option docutils literal notranslate"><span class="pre">--protect-lib</span></code></a> it is advised to also use
+<a class="reference internal" href="#cmdoption-3"><code class="xref std std-option docutils literal notranslate"><span class="pre">--timescale-override</span> <span class="pre">/1fs</span></code></a> to ensure the
+model has a time resolution that is always compatible with the time
+precision of the upper instantiating module.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-private">
+<span class="sig-name descname"><span class="pre">--private</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-private" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opposite of <a class="reference internal" href="#cmdoption-public"><code class="xref std std-option docutils literal notranslate"><span class="pre">--public</span></code></a>.  Is the default; this option exists for
+backwards compatibility.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-public">
+<span class="sig-name descname"><span class="pre">--public</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-public" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is only for historical debug use.  Using it may result in
+mis-simulation of generated clocks.</p>
+<p>Declares all signals and modules public.  This will turn off signal
+optimizations as if all signals had a <a class="reference internal" href="extensions.html#cmdoption-2"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;public*/</span></code></a>
+metacomments and inlining.  This will also turn off inlining as if all
+modules had a <a class="reference internal" href="extensions.html#cmdoption-verilator-32-public_module"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;public_module*/</span></code></a>, unless the
+module specifically enabled it with
+<a class="reference internal" href="extensions.html#cmdoption-verilator-32-inline_module"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;inline_module*/</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-public-flat-rw">
+<span class="sig-name descname"><span class="pre">--public-flat-rw</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-public-flat-rw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declares all variables, ports and wires public as if they had
+<code class="code docutils literal notranslate"><span class="pre">/*verilator</span> <span class="pre">public_flat_rw</span> <span class="pre">&#64;</span>
+<span class="pre">(&lt;variable's_source_process_edge&gt;)*/</span></code> metacomments.  This will make them
+VPI accessible by their flat name, but not turn off module inlining.
+This is particularly useful in combination with <a class="reference internal" href="#cmdoption-vpi"><code class="xref std std-option docutils literal notranslate"><span class="pre">--vpi</span></code></a>. This may
+also in some rare cases result in mis-simulation of generated clocks.
+Instead of this global option, marking only those signals that need
+public_flat_rw is typically significantly better performing.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pvalue-name">
+<span class="sig-name descname"><span class="pre">-pvalue+&lt;name&gt;</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-pvalue-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overwrites the given parameter(s) of the toplevel module. See <a class="reference internal" href="#cmdoption-G-name"><code class="xref std std-option docutils literal notranslate"><span class="pre">-G</span></code></a> for a detailed description.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-quiet-exit">
+<span class="sig-name descname"><span class="pre">--quiet-exit</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-quiet-exit" title="Permalink to this definition">¶</a></dt>
+<dd><p>When exiting due to an error, do not display the “Exiting due to Errors”
+nor “Command Failed” messages.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-relative-includes">
+<span class="sig-name descname"><span class="pre">--relative-includes</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-relative-includes" title="Permalink to this definition">¶</a></dt>
+<dd><p>When a file references an include file, resolve the filename relative to
+the path of the referencing file, instead of relative to the current
+directory.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-reloop-limit">
+<span class="sig-name descname"><span class="pre">--reloop-limit</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-reloop-limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed. Verilator attempts to turn some common sequences of
+statements into loops in the output. This argument specifies the minimum
+number of iterations the resulting loop needs to have in order to perform
+this transformation. Default limit is 40. A smaller number may slightly
+improve C++ compilation time on designs where these sequences are common,
+however effect on model performance requires benchmarking.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-report-unoptflat">
+<span class="sig-name descname"><span class="pre">--report-unoptflat</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-report-unoptflat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extra diagnostics for UNOPTFLAT warnings. This includes for each loop,
+the 10 widest variables in the loop, and the 10 most fanned out
+variables in the loop. These are candidates for splitting into multiple
+variables to break the loop.</p>
+<p>In addition produces a GraphViz DOT file of the entire strongly
+connected components within the source associated with each loop. This
+is produced irrespective of whether <a class="reference internal" href="#cmdoption-dump-tree"><code class="xref std std-option docutils literal notranslate"><span class="pre">--dump-tree</span></code></a> is set. Such
+graphs may help in analyzing the problem, but can be very large indeed.</p>
+<p>Various commands exist for viewing and manipulating DOT files. For
+example the “dot” command can be used to convert a DOT file to a PDF for
+printing. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dot -Tpdf -O Vt_unoptflat_simple_2_35_unoptflat.dot
+</pre></div>
+</div>
+<p>will generate a PDF <code class="file docutils literal notranslate"><span class="pre">Vt_unoptflat_simple_2_35_unoptflat.dot.pdf</span></code>
+from the DOT file.</p>
+<p>As an alternative, the <strong class="command">xdot</strong> command can be used to view DOT
+files interactively:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xdot Vt_unoptflat_simple_2_35_unoptflat.dot
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-rr">
+<span class="sig-name descname"><span class="pre">--rr</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-rr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run Verilator and record with the <strong class="command">rr</strong> command.  See:
+rr-project.org.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-savable">
+<span class="sig-name descname"><span class="pre">--savable</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-savable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable including save and restore functions in the generated model.  See
+<a class="reference internal" href="simulating.html#save-restore"><span class="std std-ref">Save/Restore</span></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sc">
+<span class="sig-name descname"><span class="pre">--sc</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies SystemC output mode; see also <a class="reference internal" href="#cmdoption-cc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--cc</span></code></a> option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stats">
+<span class="sig-name descname"><span class="pre">--stats</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a dump file with statistics on the design in
+<code class="file docutils literal notranslate"><span class="pre">&lt;prefix&gt;__stats.txt</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stats-vars">
+<span class="sig-name descname"><span class="pre">--stats-vars</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-stats-vars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates more detailed statistics, including a list of all the variables
+by size (plain <a class="reference internal" href="#cmdoption-stats"><code class="xref std std-option docutils literal notranslate"><span class="pre">--stats</span></code></a> just gives a count).  See
+<a class="reference internal" href="#cmdoption-stats"><code class="xref std std-option docutils literal notranslate"><span class="pre">--stats</span></code></a>, which is implied by this.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-structs-packed">
+<span class="sig-name descname"><span class="pre">--structs-packed</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-structs-packed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts all unpacked structures to packed structures and issues a
+UNPACKED warning.  Currently this is the default and
+<a class="reference internal" href="#cmdoption-structs-packed"><code class="xref std std-option docutils literal notranslate"><span class="pre">--no-structs-packed</span></code></a> will not work.
+Specifying this option allows for forward compatibility when a future
+version of Verilator no longer always packs unpacked structures.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sv">
+<span class="sig-name descname"><span class="pre">-sv</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies SystemVerilog language features should be enabled; equivalent
+to <a class="reference internal" href="#cmdoption-language"><code class="xref std std-option docutils literal notranslate"><span class="pre">--language</span> <span class="pre">1800-2017</span></code></a>.  This option is selected
+by default, it exists for compatibility with other simulators.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-systemverilogext-ext">
+<span class="sig-name descname"><span class="pre">+systemverilogext+&lt;ext&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-systemverilogext-ext" title="Permalink to this definition">¶</a></dt>
+<dd><p>A synonym for <a class="reference internal" href="#cmdoption-arg-1800-2017ext-ext"><code class="xref std std-option docutils literal notranslate"><span class="pre">+1800-2017ext+&lt;ext&gt;</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-threads">
+<span class="sig-name descname"><span class="pre">--threads</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;threads&gt;</span></span><a class="headerlink" href="#cmdoption-threads" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-no-threads">
+<span class="sig-name descname"><span class="pre">--no-threads</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-no-threads" title="Permalink to this definition">¶</a></dt>
+<dd><p>With “–threads 0” or “–no-threads”, the default, the generated model
+is not thread safe. With “–threads 1”, the generated model is single
+threaded but may run in a multithreaded environment. With “–threads N”,
+where N &gt;= 2, the model is generated to run multithreaded on up to N
+threads. See <a class="reference internal" href="verilating.html#multithreading"><span class="std std-ref">Multithreading</span></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-threads-dpi">
+<span class="sig-name descname"><span class="pre">--threads-dpi</span></span><span class="sig-prename descclassname"> <span class="pre">all</span></span><a class="headerlink" href="#cmdoption-threads-dpi" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-1">
+<span class="sig-name descname"><span class="pre">--threads-dpi</span></span><span class="sig-prename descclassname"> <span class="pre">none</span></span><a class="headerlink" href="#cmdoption-1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-2">
+<span class="sig-name descname"><span class="pre">--threads-dpi</span></span><span class="sig-prename descclassname"> <span class="pre">pure</span></span><a class="headerlink" href="#cmdoption-2" title="Permalink to this definition">¶</a></dt>
+<dd><p>When using <a class="reference internal" href="#cmdoption-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--threads</span></code></a>, controls which DPI imported tasks and
+functions are considered thread safe.</p>
+<dl class="simple">
+<dt>With “–threads-dpi all”,</dt><dd><p>Enable Verilator to assume all DPI imports are threadsafe, and to use
+thread-local storage for communication with DPI, potentially improving
+performance. Any DPI libraries need appropriate mutexes to avoid
+undefined behavior.</p>
+</dd>
+<dt>With “–threads-dpi none”,</dt><dd><p>Verilator assume DPI imports are not thread safe, and Verilator will
+serialize calls to DPI imports by default, potentially harming
+performance.</p>
+</dd>
+<dt>With “–threads-dpi pure”, the default,</dt><dd><p>Verilator assumes DPI pure imports are threadsafe, but non-pure DPI
+imports are not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-threads-max-mtasks">
+<span class="sig-name descname"><span class="pre">--threads-max-mtasks</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-threads-max-mtasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  When using <a class="reference internal" href="#cmdoption-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--threads</span></code></a>, specify the number of
+mtasks the model is to be partitioned into. If unspecified, Verilator
+approximates a good value.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-timescale">
+<span class="sig-name descname"><span class="pre">--timescale</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;timeunit&gt;/&lt;timeprecision&gt;</span></span><a class="headerlink" href="#cmdoption-timescale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets default timescale, timeunit and timeprecision for when “<cite>timescale”
+does not occur before a given module.  Default is “1ps/1ps” (to match
+SystemC).  This is overridden by :vlopt:</cite>–timescale-override`.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-timescale-override">
+<span class="sig-name descname"><span class="pre">--timescale-override</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;timeunit&gt;/&lt;timeprecision&gt;</span></span><a class="headerlink" href="#cmdoption-timescale-override" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-3">
+<span class="sig-name descname"><span class="pre">--timescale-override</span></span><span class="sig-prename descclassname"> <span class="pre">/&lt;timeprecision&gt;</span></span><a class="headerlink" href="#cmdoption-3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overrides all “`timescale”s in sources. The timeunit may be left empty
+to specify only to override the timeprecision, e.g. “/1fs”.</p>
+<p>The time precision must be consistent with SystemC’s
+“sc_set_time_resolution()”, or the C++ code instantiating the Verilated
+module.  As “1fs” is the finest time precision it may be desirable to
+always use a precision of “1fs”.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-top">
+<span class="sig-name descname"><span class="pre">--top</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;topname&gt;</span></span><a class="headerlink" href="#cmdoption-top" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-top-module">
+<span class="sig-name descname"><span class="pre">--top-module</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;topname&gt;</span></span><a class="headerlink" href="#cmdoption-top-module" title="Permalink to this definition">¶</a></dt>
+<dd><p>When the input Verilog contains more than one top level module,
+specifies the name of the Verilog module to become the top level module,
+and sets the default for <a class="reference internal" href="#cmdoption-prefix"><code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code></a> if not explicitly specified.
+This is not needed with standard designs with only one top.  See also
+<a class="reference internal" href="warnings.html#cmdoption-arg-MULTITOP"><code class="xref std std-option docutils literal notranslate"><span class="pre">MULTITOP</span></code></a> warning.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-trace">
+<span class="sig-name descname"><span class="pre">--trace</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds waveform tracing code to the model using VCD format. This overrides
+<a class="reference internal" href="#cmdoption-trace-fst"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-fst</span></code></a>.</p>
+<p>Verilator will generate additional <code class="file docutils literal notranslate"><span class="pre">&lt;prefix&gt;__Trace*.cpp</span></code> files
+that will need to be compiled.  In addition <code class="file docutils literal notranslate"><span class="pre">verilated_vcd_sc.cpp</span></code>
+(for SystemC traces) or <code class="file docutils literal notranslate"><span class="pre">verilated_vcd_c.cpp</span></code> (for both) must be
+compiled and linked in.  If using the Verilator generated Makefiles,
+these files will be added to the source file lists for you.  If you are
+not using the Verilator Makefiles, you will need to add these to your
+Makefile manually.</p>
+<p>Having tracing compiled in may result in some small performance losses,
+even when tracing is not turned on during model execution.</p>
+<p>See also <a class="reference internal" href="#cmdoption-trace-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-threads</span></code></a> option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-trace-coverage">
+<span class="sig-name descname"><span class="pre">--trace-coverage</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-trace-coverage" title="Permalink to this definition">¶</a></dt>
+<dd><p>With <a class="reference internal" href="#cmdoption-trace"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace</span></code></a> and <code class="docutils literal notranslate"><span class="pre">--coverage-*</span></code>, enable tracing to include a
+traced signal for every <a class="reference internal" href="#cmdoption-coverage-line"><code class="xref std std-option docutils literal notranslate"><span class="pre">--coverage-line</span></code></a> or
+<a class="reference internal" href="#cmdoption-coverage-user"><code class="xref std std-option docutils literal notranslate"><span class="pre">--coverage-user</span></code></a>-inserted coverage point, to assist in
+debugging coverage items.  Note <a class="reference internal" href="#cmdoption-coverage-toggle"><code class="xref std std-option docutils literal notranslate"><span class="pre">--coverage-toggle</span></code></a> does not get
+additional signals added, as the original signals being toggle-analyzed
+are already visible.</p>
+<p>The added signal will be a 32-bit value which will increment on each
+coverage occurrence. Due to this, this option may greatly increase trace
+file sizes and reduce simulation speed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-trace-depth">
+<span class="sig-name descname"><span class="pre">--trace-depth</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;levels&gt;</span></span><a class="headerlink" href="#cmdoption-trace-depth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the number of levels deep to enable tracing, for example
+<a class="reference internal" href="#cmdoption-trace-depth"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-depth</span> <span class="pre">1</span></code></a> to only see the top level’s
+signals.  Defaults to the entire model.  Using a small number will
+decrease visibility, but greatly improve simulation performance and
+trace file size.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-trace-fst">
+<span class="sig-name descname"><span class="pre">--trace-fst</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-trace-fst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable FST waveform tracing in the model. This overrides
+<a class="reference internal" href="#cmdoption-trace"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace</span></code></a>.  See also <a class="reference internal" href="#cmdoption-trace-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-threads</span></code></a> option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-trace-max-array">
+<span class="sig-name descname"><span class="pre">--trace-max-array</span></span><span class="sig-prename descclassname"> <span class="pre">*depth*</span></span><a class="headerlink" href="#cmdoption-trace-max-array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Specify the maximum array depth of a signal that may be
+traced.  Defaults to 32, as tracing large arrays may greatly slow traced
+simulations.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-trace-max-width">
+<span class="sig-name descname"><span class="pre">--trace-max-width</span></span><span class="sig-prename descclassname"> <span class="pre">*width*</span></span><a class="headerlink" href="#cmdoption-trace-max-width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Specify the maximum bit width of a signal that may be
+traced.  Defaults to 256, as tracing large vectors may greatly slow
+traced simulations.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-no-trace-params">
+<span class="sig-name descname"><span class="pre">--no-trace-params</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-no-trace-params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable tracing of parameters.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-trace-structs">
+<span class="sig-name descname"><span class="pre">--trace-structs</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-trace-structs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable tracing to show the name of packed structure, union, and packed
+array fields, rather than a single combined packed bus.  Due to VCD file
+format constraints this may result in significantly slower trace times
+and larger trace files.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-trace-threads">
+<span class="sig-name descname"><span class="pre">--trace-threads</span></span><span class="sig-prename descclassname"> <span class="pre">*threads*</span></span><a class="headerlink" href="#cmdoption-trace-threads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable waveform tracing using separate threads. This is typically faster
+in simulation runtime but uses more total compute. This option is
+independent of, and works with, both <a class="reference internal" href="#cmdoption-trace"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace</span></code></a> and
+<a class="reference internal" href="#cmdoption-trace-fst"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-fst</span></code></a>.  Different trace formats can take advantage of
+more trace threads to varying degrees. Currently VCD tracing can utilize
+at most “–trace-threads 1”, and FST tracing can utilize at most
+“–trace-threads 2”. This overrides <a class="reference internal" href="#cmdoption-no-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--no-threads</span></code></a> .</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-trace-underscore">
+<span class="sig-name descname"><span class="pre">--trace-underscore</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-trace-underscore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable tracing of signals that start with an underscore. Normally, these
+signals are not output during tracing.  See also
+<a class="reference internal" href="#cmdoption-coverage-underscore"><code class="xref std std-option docutils literal notranslate"><span class="pre">--coverage-underscore</span></code></a> option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-U-var">
+<span id="cmdoption-u-var"></span><span class="sig-name descname"><span class="pre">-U&lt;var&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-U-var" title="Permalink to this definition">¶</a></dt>
+<dd><p>Undefines the given preprocessor symbol.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-unroll-count">
+<span class="sig-name descname"><span class="pre">--unroll-count</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;loops&gt;</span></span><a class="headerlink" href="#cmdoption-unroll-count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Specifies the maximum number of loop iterations that may be
+unrolled.  See also <a class="reference internal" href="warnings.html#cmdoption-arg-BLKLOOPINIT"><code class="xref std std-option docutils literal notranslate"><span class="pre">BLKLOOPINIT</span></code></a> warning.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-unroll-stmts">
+<span class="sig-name descname"><span class="pre">--unroll-stmts</span></span><span class="sig-prename descclassname"> <span class="pre">*statements*</span></span><a class="headerlink" href="#cmdoption-unroll-stmts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Specifies the maximum number of statements in a loop for
+that loop to be unrolled. See also <a class="reference internal" href="warnings.html#cmdoption-arg-BLKLOOPINIT"><code class="xref std std-option docutils literal notranslate"><span class="pre">BLKLOOPINIT</span></code></a> warning.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-unused-regexp">
+<span class="sig-name descname"><span class="pre">--unused-regexp</span></span><span class="sig-prename descclassname"> <span class="pre">*regexp*</span></span><a class="headerlink" href="#cmdoption-unused-regexp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Specifies a simple regexp with * and ? that if a signal
+name matches will suppress the UNUSED warning.  Defaults to
+“*unused*”.  Setting it to “” disables matching.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-V">
+<span id="cmdoption-v"></span><span class="sig-name descname"><span class="pre">-V</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-V" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows the verbose version, including configuration information compiled
+into Verilator.  (Similar to <strong class="command">perl -V</strong>.)  See also
+<a class="reference internal" href="#cmdoption-getenv"><code class="xref std std-option docutils literal notranslate"><span class="pre">--getenv</span></code></a> option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-4">
+<span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"> <span class="pre">*filename*</span></span><a class="headerlink" href="#cmdoption-4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the filename as a Verilog library.  Any modules in the file may be
+used to resolve instances in the top level module, else ignored.  Note
+“-v” is fairly standard across Verilog tools.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-no-verilate">
+<span class="sig-name descname"><span class="pre">--no-verilate</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-no-verilate" title="Permalink to this definition">¶</a></dt>
+<dd><p>When using <a class="reference internal" href="#cmdoption-build"><code class="xref std std-option docutils literal notranslate"><span class="pre">--build</span></code></a>, disable generation of C++/SystemC code, and
+execute only the build. This can be useful for rebuilding Verilated code
+produced by a previous invocation of Verilator.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilog1995ext-ext">
+<span class="sig-name descname"><span class="pre">+verilog1995ext+&lt;ext&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilog1995ext-ext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synonym for <a class="reference internal" href="#cmdoption-arg-1364-1995ext-ext"><code class="xref std std-option docutils literal notranslate"><span class="pre">+1364-1995ext+&lt;ext&gt;</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilog2001ext-ext">
+<span class="sig-name descname"><span class="pre">+verilog2001ext+&lt;ext&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilog2001ext-ext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synonym for <a class="reference internal" href="#cmdoption-arg-1364-2001ext-ext"><code class="xref std std-option docutils literal notranslate"><span class="pre">+1364-2001ext+&lt;ext&gt;</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-version">
+<span class="sig-name descname"><span class="pre">--version</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays program version and exits.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-vpi">
+<span class="sig-name descname"><span class="pre">--vpi</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-vpi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable use of VPI and linking against the <code class="file docutils literal notranslate"><span class="pre">verilated_vpi.cpp</span></code> files.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-waiver-output">
+<span class="sig-name descname"><span class="pre">--waiver-output</span></span><span class="sig-prename descclassname"> <span class="pre">*filename*</span></span><a class="headerlink" href="#cmdoption-waiver-output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a waiver file which contains all waiver statements to suppress
+the warnings emitted during this Verilator run. This in particular is
+useful as a starting point for solving linter warnings or suppressing
+them systematically.</p>
+<p>The generated file is in the Verilator Configuration format, see
+<a class="reference internal" href="#configuration-files"><span class="std std-ref">Configuration Files</span></a>, and can directly be consumed by
+Verilator. The standard file extension is “.vlt”.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Wall">
+<span id="cmdoption-wall"></span><span class="sig-name descname"><span class="pre">-Wall</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-Wall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable all code style warnings, including code style warnings that are
+normally disabled by default. Equivalent to <a class="reference internal" href="#cmdoption-Wwarn-lint"><code class="xref std std-option docutils literal notranslate"><span class="pre">-Wwarn-lint</span></code></a>
+<a class="reference internal" href="#cmdoption-Wwarn-style"><code class="xref std std-option docutils literal notranslate"><span class="pre">-Wwarn-style</span></code></a>.  Excludes some specialty warnings,
+i.e. IMPERFECTSCH.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Werror-message">
+<span id="cmdoption-werror-message"></span><span class="sig-name descname"><span class="pre">-Werror-&lt;message&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-Werror-message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Promote the specified warning message into an error message.  This is
+generally to discourage users from violating important site-wide rules,
+for example “-Werror-NOUNOPTFLAT”.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Wfuture-message">
+<span id="cmdoption-wfuture-message"></span><span class="sig-name descname"><span class="pre">-Wfuture-&lt;message&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-Wfuture-message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rarely needed.  Suppress unknown Verilator comments or warning messages
+with the given message code.  This is used to allow code written with
+pragmas for a later version of Verilator to run under a older version;
+add “-Wfuture-” arguments for each message code or comment that the new
+version supports which the older version does not support.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Wno-message">
+<span id="cmdoption-wno-message"></span><span class="sig-name descname"><span class="pre">-Wno-&lt;message&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-Wno-message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable the specified warning/error message.  This will override any
+lint_on directives in the source, i.e. the warning will still not be
+printed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Wno-context">
+<span id="cmdoption-wno-context"></span><span class="sig-name descname"><span class="pre">-Wno-context</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-Wno-context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable showing the suspected context of the warning message by quoting
+the source text at the suspected location.  This can be used to appease
+tools which process the warning messages but may get confused by lines
+from the original source.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Wno-fatal">
+<span id="cmdoption-wno-fatal"></span><span class="sig-name descname"><span class="pre">-Wno-fatal</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-Wno-fatal" title="Permalink to this definition">¶</a></dt>
+<dd><p>When warnings are detected, print them, but do not terminate Verilator.</p>
+<p>Having warning messages in builds can be sloppy.  It is recommended you
+cleanup your code, use inline lint_off, or use <code class="docutils literal notranslate"><span class="pre">-Wno-...</span></code> options
+rather than using this option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Wno-lint">
+<span id="cmdoption-wno-lint"></span><span class="sig-name descname"><span class="pre">-Wno-lint</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-Wno-lint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable all lint related warning messages, and all style warnings.  This is
+equivalent to <code class="docutils literal notranslate"><span class="pre">-Wno-ALWCOMBORDER</span> <span class="pre">-Wno-BSSPACE</span> <span class="pre">-Wno-CASEINCOMPLETE</span>
+<span class="pre">-Wno-CASEOVERLAP</span> <span class="pre">-Wno-CASEX</span> <span class="pre">-Wno-CASTCONST</span> <span class="pre">-Wno-CASEWITHX</span> <span class="pre">-Wno-CMPCONST</span> <span class="pre">-Wno-COLONPLUS</span>
+<span class="pre">-Wno-ENDLABEL</span> <span class="pre">-Wno-IMPLICIT</span> <span class="pre">-Wno-LITENDIAN</span> <span class="pre">-Wno-PINCONNECTEMPTY</span>
+<span class="pre">-Wno-PINMISSING</span> <span class="pre">-Wno-SYNCASYNCNET</span> <span class="pre">-Wno-UNDRIVEN</span> <span class="pre">-Wno-UNSIGNED</span> <span class="pre">-Wno-UNUSED</span>
+<span class="pre">-Wno-WIDTH</span></code> plus the list shown for Wno-style.</p>
+<p>It is strongly recommended you cleanup your code rather than using this
+option, it is only intended to be use when running test-cases of code
+received from third parties.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Wno-style">
+<span id="cmdoption-wno-style"></span><span class="sig-name descname"><span class="pre">-Wno-style</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-Wno-style" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable all code style related warning messages (note by default they are
+already disabled).  This is equivalent to <code class="docutils literal notranslate"><span class="pre">-Wno-DECLFILENAME</span> <span class="pre">-Wno-DEFPARAM</span>
+<span class="pre">-Wno-EOFNEWLINE</span> <span class="pre">-Wno-IMPORTSTAR</span> <span class="pre">-Wno-INCABSPATH</span> <span class="pre">-Wno-PINCONNECTEMPTY</span>
+<span class="pre">-Wno-PINNOCONNECT</span> <span class="pre">-Wno-SYNCASYNCNET</span> <span class="pre">-Wno-UNDRIVEN</span> <span class="pre">-Wno-UNUSED</span>
+<span class="pre">-Wno-VARHIDDEN</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Wpedantic">
+<span id="cmdoption-wpedantic"></span><span class="sig-name descname"><span class="pre">-Wpedantic</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-Wpedantic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Warn on any construct demanded by IEEE, and disable all Verilator
+extensions that may interfere with IEEE compliance to the standard
+defined with <a class="reference internal" href="#cmdoption-default-language"><code class="xref std std-option docutils literal notranslate"><span class="pre">--default-language</span></code></a> (etc).  Similar to
+<strong class="command">gcc -Wpedantic</strong>.  Rarely used, and intended only for strict
+compliance tests.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Wwarn-message">
+<span id="cmdoption-wwarn-message"></span><span class="sig-name descname"><span class="pre">-Wwarn-&lt;message&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-Wwarn-message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables the specified warning message.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Wwarn-lint">
+<span id="cmdoption-wwarn-lint"></span><span class="sig-name descname"><span class="pre">-Wwarn-lint</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-Wwarn-lint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable all lint related warning messages (note by default they are already
+enabled), but do not affect style messages.  This is equivalent to
+<code class="docutils literal notranslate"><span class="pre">-Wwarn-ALWCOMBORDER</span> <span class="pre">-Wwarn-BSSPACE</span> <span class="pre">-Wwarn-CASEINCOMPLETE</span>
+<span class="pre">-Wwarn-CASEOVERLAP</span> <span class="pre">-Wwarn-CASEX</span> <span class="pre">-Wwarn-CASTCONST</span> <span class="pre">-Wwarn-CASEWITHX</span> <span class="pre">-Wwarn-CMPCONST</span>
+<span class="pre">-Wwarn-COLONPLUS</span> <span class="pre">-Wwarn-ENDLABEL</span> <span class="pre">-Wwarn-IMPLICIT</span> <span class="pre">-Wwarn-LITENDIAN</span>
+<span class="pre">-Wwarn-PINMISSING</span> <span class="pre">-Wwarn-REALCVT</span> <span class="pre">-Wwarn-UNSIGNED</span> <span class="pre">-Wwarn-WIDTH</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-Wwarn-style">
+<span id="cmdoption-wwarn-style"></span><span class="sig-name descname"><span class="pre">-Wwarn-style</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-Wwarn-style" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable all code style related warning messages.  This is equivalent to
+<code class="docutils literal notranslate"><span class="pre">-Wwarn</span> <span class="pre">ASSIGNDLY</span> <span class="pre">-Wwarn-DECLFILENAME</span> <span class="pre">-Wwarn-DEFPARAM</span> <span class="pre">-Wwarn-EOFNEWLINE</span>
+<span class="pre">-Wwarn-INCABSPATH</span> <span class="pre">-Wwarn-PINNOCONNECT</span> <span class="pre">-Wwarn-SYNCASYNCNET</span> <span class="pre">-Wwarn-UNDRIVEN</span>
+<span class="pre">-Wwarn-UNUSED</span> <span class="pre">-Wwarn-VARHIDDEN</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-x-assign">
+<span class="sig-name descname"><span class="pre">--x-assign</span></span><span class="sig-prename descclassname"> <span class="pre">0</span></span><a class="headerlink" href="#cmdoption-x-assign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-5">
+<span class="sig-name descname"><span class="pre">--x-assign</span></span><span class="sig-prename descclassname"> <span class="pre">1</span></span><a class="headerlink" href="#cmdoption-5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-6">
+<span class="sig-name descname"><span class="pre">--x-assign</span></span><span class="sig-prename descclassname"> <span class="pre">fast</span> <span class="pre">(default)</span></span><a class="headerlink" href="#cmdoption-6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-7">
+<span class="sig-name descname"><span class="pre">--x-assign</span></span><span class="sig-prename descclassname"> <span class="pre">unique</span></span><a class="headerlink" href="#cmdoption-7" title="Permalink to this definition">¶</a></dt>
+<dd><p>Controls the two-state value that is substituted when an explicit X
+value is encountered in the source.  “–x-assign fast”, the default,
+converts all Xs to whatever is best for performance.  “–x-assign 0”
+converts all Xs to 0s, and is also fast.  “–x-assign 1” converts all Xs
+to 1s, this is nearly as fast as 0, but more likely to find reset bugs
+as active high logic will fire. Using “–x-assign unique” will result in
+all explicit Xs being replaced by a constant value determined at
+runtime. The value is determined by calling a function at initialization
+time. This enables randomization of Xs with different seeds on different
+executions. This method is the slowest, but safest for finding reset
+bugs.</p>
+<p>If using “–x-assign unique”, you may want to seed your random number
+generator such that each regression run gets a different randomization
+sequence. The simplest is to use the <a class="reference internal" href="exe_sim.html#cmdoption-arg-verilator-seed-value"><code class="xref std std-option docutils literal notranslate"><span class="pre">+verilator+seed+&lt;value&gt;</span></code></a>
+runtime option.  Alternatively use the system’s <code class="code docutils literal notranslate"><span class="pre">srand48()</span></code> or for
+Windows <code class="code docutils literal notranslate"><span class="pre">srand()</span></code> function to do this.  You’ll probably also want
+to print any seeds selected, and code to enable rerunning with that same
+seed so you can reproduce bugs.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This option applies only to values which are explicitly written as X
+in the Verilog source code. Initial values of clocks are set to 0
+unless <cite>–x-initial-edge</cite> is specified. Initial values of all other
+state holding variables are controlled with <cite>–x-initial</cite>.</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-x-initial">
+<span class="sig-name descname"><span class="pre">--x-initial</span></span><span class="sig-prename descclassname"> <span class="pre">0</span></span><a class="headerlink" href="#cmdoption-x-initial" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-8">
+<span class="sig-name descname"><span class="pre">--x-initial</span></span><span class="sig-prename descclassname"> <span class="pre">fast</span></span><a class="headerlink" href="#cmdoption-8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-9">
+<span class="sig-name descname"><span class="pre">--x-initial</span></span><span class="sig-prename descclassname"> <span class="pre">unique</span> <span class="pre">(default)</span></span><a class="headerlink" href="#cmdoption-9" title="Permalink to this definition">¶</a></dt>
+<dd><p>Controls the two-state value that is used to initialize variables that
+are not otherwise initialized.</p>
+<dl class="simple">
+<dt>“–x-initial 0”,</dt><dd><p>initializes all otherwise uninitialized variables to zero.</p>
+</dd>
+<dt>“–x-initial unique”, the default,</dt><dd><p>initializes variables using a function, which determines the value to
+use each initialization. This gives greatest flexibility and allows
+finding reset bugs.  See <a class="reference internal" href="languages.html#unknown-states"><span class="std std-ref">Unknown States</span></a>.</p>
+</dd>
+<dt>“–x-initial fast”,</dt><dd><p>is best for performance, and initializes all variables to a state
+Verilator determines is optimal.  This may allow further code
+optimizations, but will likely hide any code bugs relating to missing
+resets.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This option applies only to initial values of variables. Initial
+values of clocks are set to 0 unless <a class="reference internal" href="#cmdoption-x-initial-edge"><code class="xref std std-option docutils literal notranslate"><span class="pre">--x-initial-edge</span></code></a> is
+specified.</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-x-initial-edge">
+<span class="sig-name descname"><span class="pre">--x-initial-edge</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-x-initial-edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables emulation of event driven simulators which generally trigger an
+edge on a transition from X to 1 (posedge) or X to 0 (negedge). Thus the
+following code, where <code class="code docutils literal notranslate"><span class="pre">rst_n</span></code> is uninitialized would set
+<code class="code docutils literal notranslate"><span class="pre">res_n</span></code> to <code class="code docutils literal notranslate"><span class="pre">1'b1</span></code> when <code class="code docutils literal notranslate"><span class="pre">rst_n</span></code> is first set to zero:</p>
+<div class="highlight-sv notranslate"><div class="highlight"><pre><span></span><span class="kt">reg</span><span class="w">  </span><span class="n">res_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">1&#39;b0</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">always</span><span class="w"> </span><span class="p">@(</span><span class="k">negedge</span><span class="w"> </span><span class="n">rst_n</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rst_n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mb">1&#39;b0</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span><span class="w"></span>
+<span class="w">      </span><span class="n">res_n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mb">1&#39;b1</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">end</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In Verilator, by default, uninitialized clocks are given a value of
+zero, so the above <code class="code docutils literal notranslate"><span class="pre">always</span></code> block would not trigger.</p>
+<p>While it is not good practice, there are some designs that rely on X
+rarr 0 triggering a negedge, particularly in reset sequences. Using
+<a class="reference internal" href="#cmdoption-x-initial-edge"><code class="xref std std-option docutils literal notranslate"><span class="pre">--x-initial-edge</span></code></a> with Verilator will replicate this
+behavior. It will also ensure that X rarr 1 triggers a posedge.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using this option can affect convergence, andit may be necessary to
+use <a class="reference internal" href="#cmdoption-converge-limit"><code class="xref std std-option docutils literal notranslate"><span class="pre">--converge-limit</span></code></a> to increase the number of convergence
+iterations. This may be another indication of problems with the
+modeled design that should be addressed.</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-xml-only">
+<span class="sig-name descname"><span class="pre">--xml-only</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-xml-only" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create XML output only, do not create any other output.</p>
+<p>The XML format is intended to be used to leverage Verilator’s parser and
+elaboration to feed to other downstream tools. Be aware that the XML
+format is still evolving; there will be some changes in future versions.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-xml-output">
+<span class="sig-name descname"><span class="pre">--xml-output</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;filename&gt;</span></span><a class="headerlink" href="#cmdoption-xml-output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filename for XML output file. Using this option automatically sets
+<a class="reference internal" href="#cmdoption-xml-only"><code class="xref std std-option docutils literal notranslate"><span class="pre">--xml-only</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-y">
+<span class="sig-name descname"><span class="pre">-y</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;dir&gt;</span></span><a class="headerlink" href="#cmdoption-y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the directory to the list of directories that should be searched for
+include files or libraries.  The three flags <a class="reference internal" href="#cmdoption-y"><code class="xref std std-option docutils literal notranslate"><span class="pre">-y</span></code></a>,
+<a class="reference internal" href="#cmdoption-arg-incdir-dir"><code class="xref std std-option docutils literal notranslate"><span class="pre">+incdir+&lt;dir&gt;</span></code></a> and <a class="reference internal" href="#cmdoption-I-dir"><code class="xref std std-option docutils literal notranslate"><span class="pre">-I&lt;dir&gt;</span></code></a> have similar effect;
+<a class="reference internal" href="#cmdoption-arg-incdir-dir"><code class="xref std std-option docutils literal notranslate"><span class="pre">+incdir+&lt;dir&gt;</span></code></a> and <a class="reference internal" href="#cmdoption-y"><code class="xref std std-option docutils literal notranslate"><span class="pre">-y</span></code></a> are fairly standard across
+Verilog tools while <a class="reference internal" href="#cmdoption-I-dir"><code class="xref std std-option docutils literal notranslate"><span class="pre">-I&lt;dir&gt;</span></code></a> is used by many C++ compilers.</p>
+<p>Verilator defaults to the current directory “-y .” and any specified
+<a class="reference internal" href="#cmdoption-Mdir"><code class="xref std std-option docutils literal notranslate"><span class="pre">--Mdir</span></code></a>, though these default paths are used after any user
+specified directories.  This allows ‘-y “$(pwd)”’ to be used if absolute
+filenames are desired for error messages instead of relative filenames.</p>
+</dd></dl>
+
+</section>
+<section id="configuration-files">
+<span id="id1"></span><h1>Configuration Files<a class="headerlink" href="#configuration-files" title="Permalink to this heading">¶</a></h1>
+<p>In addition to the command line, warnings and other features for the
+<strong class="command">verilator</strong> command may be controlled with configuration files,
+typically named with the .vlt extension (what makes it a configuration file
+is the <a class="reference internal" href="extensions.html#cmdoption-arg-verilator_config"><code class="xref std std-option docutils literal notranslate"><span class="pre">`verilator_config</span></code></a> directive). An example:</p>
+<div class="highlight-sv notranslate"><div class="highlight"><pre><span></span><span class="no">`verilator_config</span><span class="w"></span>
+<span class="n">lint_off</span><span class="w"> </span><span class="o">-</span><span class="n">rule</span><span class="w"> </span><span class="n">WIDTH</span><span class="w"></span>
+<span class="n">lint_off</span><span class="w"> </span><span class="o">-</span><span class="n">rule</span><span class="w"> </span><span class="n">CASEX</span><span class="w">  </span><span class="o">-</span><span class="n">file</span><span class="w"> </span><span class="s">&quot;silly_vendor_code.v&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This disables WIDTH warnings globally, and CASEX for a specific file.</p>
+<p>Configuration files are fed through the normal Verilog preprocessor prior
+to parsing, so “`ifdef”, “`define”, and comments may be used as if the
+configuration file was normal Verilog code.</p>
+<p>Note that file or line-specific configuration only applies to files read
+after the configuration file. It is therefore recommended to pass the
+configuration file to Verilator as the first file.</p>
+<p>The grammar of configuration commands is as follows:</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-verilator_config">
+<span id="cmdoption-arg-verilator-config"></span><span class="sig-name descname"><span class="pre">`verilator_config</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-verilator_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take remaining text and treat it as Verilator configuration commands.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-coverage_on">
+<span id="cmdoption-arg-coverage-on"></span><span class="sig-name descname"><span class="pre">coverage_on</span></span><span class="sig-prename descclassname">&#160; <span class="pre">[-file</span> <span class="pre">&quot;&lt;filename&gt;&quot;</span> <span class="pre">[-lines</span> <span class="pre">&lt;line&gt;</span> <span class="pre">[</span> <span class="pre">-</span> <span class="pre">&lt;line&gt;</span> <span class="pre">]]]</span></span><a class="headerlink" href="#cmdoption-arg-coverage_on" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-coverage_off">
+<span id="cmdoption-arg-coverage-off"></span><span class="sig-name descname"><span class="pre">coverage_off</span></span><span class="sig-prename descclassname"> <span class="pre">[-file</span> <span class="pre">&quot;&lt;filename&gt;&quot;</span> <span class="pre">[-lines</span> <span class="pre">&lt;line&gt;</span> <span class="pre">[</span> <span class="pre">-</span> <span class="pre">&lt;line&gt;</span> <span class="pre">]]]</span></span><a class="headerlink" href="#cmdoption-arg-coverage_off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable/disable coverage for the specified filename (or wildcard with
+‘*’ or ‘?’, or all files if omitted) and range of line numbers (or all
+lines if omitted).  Often used to ignore an entire module for coverage
+analysis purposes.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-clock_enable">
+<span id="cmdoption-arg-clock-enable"></span><span class="sig-name descname"><span class="pre">clock_enable</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-clock_enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicate the signal is used to gate a clock, and the user takes
+responsibility for insuring there are no races related to it.</p>
+<p>Same as <a class="reference internal" href="extensions.html#cmdoption-verilator-32-clock_enable"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;clock_enable*/</span></code></a> metacomment.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-clocker">
+<span class="sig-name descname"><span class="pre">clocker</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span> <span class="pre">[-task</span> <span class="pre">&quot;&lt;taskname&gt;&quot;]</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-clocker" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-1">
+<span class="sig-name descname"><span class="pre">clocker</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span> <span class="pre">[-function</span> <span class="pre">&quot;&lt;funcname&gt;&quot;]</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-no_clocker">
+<span id="cmdoption-arg-no-clocker"></span><span class="sig-name descname"><span class="pre">no_clocker</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span> <span class="pre">[-task</span> <span class="pre">&quot;&lt;taskname&gt;&quot;]</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-no_clocker" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-2">
+<span class="sig-name descname"><span class="pre">no_clocker</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span> <span class="pre">[-function</span> <span class="pre">&quot;&lt;funcname&gt;&quot;]</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicate the signal is used as clock or not. This information is used by
+Verilator to mark the signal as clocker and propagate the clocker
+attribute automatically to derived signals. See <a class="reference internal" href="#cmdoption-clk"><code class="xref std std-option docutils literal notranslate"><span class="pre">--clk</span></code></a>.</p>
+<p>Same as <a class="reference internal" href="extensions.html#cmdoption-verilator-32-clocker"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;clocker*/</span></code></a> metacomment.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-coverage_block_off">
+<span id="cmdoption-arg-coverage-block-off"></span><span class="sig-name descname"><span class="pre">coverage_block_off</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span> <span class="pre">-block</span> <span class="pre">&quot;&lt;blockname&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-coverage_block_off" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-3">
+<span class="sig-name descname"><span class="pre">coverage_block_off</span></span><span class="sig-prename descclassname"> <span class="pre">-file</span> <span class="pre">&quot;&lt;filename&gt;&quot;</span> <span class="pre">-line</span> <span class="pre">&lt;lineno&gt;</span></span><a class="headerlink" href="#cmdoption-arg-3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies the entire begin/end block should be ignored for coverage
+analysis purposes.  Can either be specified as a named block or as a
+filename and line number.</p>
+<p>Same as <a class="reference internal" href="extensions.html#cmdoption-verilator-32-coverage_block_off"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;coverage_block_off*/</span></code></a> metacomment.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-full_case">
+<span id="cmdoption-arg-full-case"></span><span class="sig-name descname"><span class="pre">full_case</span></span><span class="sig-prename descclassname"> <span class="pre">-file</span> <span class="pre">&quot;&lt;filename&gt;&quot;</span> <span class="pre">-lines</span> <span class="pre">&lt;lineno&gt;</span></span><a class="headerlink" href="#cmdoption-arg-full_case" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-parallel_case">
+<span id="cmdoption-arg-parallel-case"></span><span class="sig-name descname"><span class="pre">parallel_case</span></span><span class="sig-prename descclassname"> <span class="pre">-file</span> <span class="pre">&quot;&lt;filename&gt;&quot;</span> <span class="pre">-lines</span> <span class="pre">&lt;lineno&gt;</span></span><a class="headerlink" href="#cmdoption-arg-parallel_case" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as <code class="code docutils literal notranslate"><span class="pre">//synopsys</span> <span class="pre">full_case</span></code> and <code class="code docutils literal notranslate"><span class="pre">//synopsys</span>
+<span class="pre">parallel_case</span></code>. When these synthesis directives are discovered,
+Verilator will either formally prove the directive to be true, or
+failing that, will insert the appropriate code to detect failing cases
+at simulation runtime and print an “Assertion failed” error message.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-hier_block">
+<span id="cmdoption-arg-hier-block"></span><span class="sig-name descname"><span class="pre">hier_block</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-hier_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that the module is a unit of hierarchical Verilation.  Note
+that the setting is ignored unless the <a class="reference internal" href="#cmdoption-hierarchical"><code class="xref std std-option docutils literal notranslate"><span class="pre">--hierarchical</span></code></a> option is
+specified.  See <a class="reference internal" href="verilating.html#hierarchical-verilation"><span class="std std-ref">Hierarchical Verilation</span></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-inline">
+<span class="sig-name descname"><span class="pre">inline</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-inline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies the module may be inlined into any modules that use this
+module.  Same as <a class="reference internal" href="extensions.html#cmdoption-verilator-32-inline_module"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;inline_module*/</span></code></a> metacomment.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-isolate_assignments">
+<span id="cmdoption-arg-isolate-assignments"></span><span class="sig-name descname"><span class="pre">isolate_assignments</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span> <span class="pre">[-task</span> <span class="pre">&quot;&lt;taskname&gt;&quot;]</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-isolate_assignments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-4">
+<span class="sig-name descname"><span class="pre">isolate_assignments</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span> <span class="pre">[-function</span> <span class="pre">&quot;&lt;funcname&gt;&quot;]</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-5">
+<span class="sig-name descname"><span class="pre">isolate_assignments</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span> <span class="pre">-function</span> <span class="pre">&quot;&lt;fname&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to indicate the assignments to this signal in any blocks should be
+isolated into new blocks.  When there is a large combinatorial block
+that is resulting in an UNOPTFLAT warning, attaching this to the signal
+causing a false loop may clear up the problem.</p>
+<p>Same as <a class="reference internal" href="extensions.html#cmdoption-verilator-32-isolate_assignments"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;isolate_assignments*/</span></code></a> metacomment.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-no_inline">
+<span id="cmdoption-arg-no-inline"></span><span class="sig-name descname"><span class="pre">no_inline</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-no_inline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies the module should not be inlined into any modules that use
+this module.  Same as <a class="reference internal" href="extensions.html#cmdoption-verilator-32-no_inline_module"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;no_inline_module*/</span></code></a>
+metacomment.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-6">
+<span class="sig-name descname"><span class="pre">no_inline</span></span><span class="sig-prename descclassname"> <span class="pre">[-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;]</span> <span class="pre">-task</span> <span class="pre">&quot;&lt;taskname&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-7">
+<span class="sig-name descname"><span class="pre">no_inline</span></span><span class="sig-prename descclassname"> <span class="pre">[-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;]</span> <span class="pre">-function</span> <span class="pre">&quot;&lt;funcname&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-7" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the function or task should not be inlined into where it is
+used.  This may reduce the size of the final executable when a task is
+used a very large number of times.  For this flag to work, the task and
+tasks below it must be pure; they cannot reference any variables outside
+the task itself.</p>
+<p>Same as <a class="reference internal" href="extensions.html#cmdoption-verilator-32-no_inline_task"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;no_inline_task*/</span></code></a> metacomment.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lint_on">
+<span id="cmdoption-arg-lint-on"></span><span class="sig-name descname"><span class="pre">lint_on</span></span><span class="sig-prename descclassname">&#160; <span class="pre">[-rule</span> <span class="pre">&lt;message&gt;]</span> <span class="pre">[-file</span> <span class="pre">&quot;&lt;filename&gt;&quot;</span> <span class="pre">[-lines</span> <span class="pre">&lt;line&gt;</span> <span class="pre">[</span> <span class="pre">-</span> <span class="pre">&lt;line&gt;]]]</span></span><a class="headerlink" href="#cmdoption-arg-lint_on" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lint_off">
+<span id="cmdoption-arg-lint-off"></span><span class="sig-name descname"><span class="pre">lint_off</span></span><span class="sig-prename descclassname"> <span class="pre">[-rule</span> <span class="pre">&lt;message&gt;]</span> <span class="pre">[-file</span> <span class="pre">&quot;&lt;filename&gt;&quot;</span> <span class="pre">[-lines</span> <span class="pre">&lt;line&gt;</span> <span class="pre">[</span> <span class="pre">-</span> <span class="pre">&lt;line&gt;]]]</span></span><a class="headerlink" href="#cmdoption-arg-lint_off" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-8">
+<span class="sig-name descname"><span class="pre">lint_off</span></span><span class="sig-prename descclassname"> <span class="pre">[-rule</span> <span class="pre">&lt;message&gt;]</span> <span class="pre">[-file</span> <span class="pre">&quot;&lt;filename&gt;&quot;]</span> <span class="pre">[-match</span> <span class="pre">&quot;&lt;string&gt;&quot;]</span></span><a class="headerlink" href="#cmdoption-arg-8" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable/disables the specified lint warning, in the specified filename
+(or wildcard with ‘*’ or ‘?’, or all files if omitted) and range of
+line numbers (or all lines if omitted).</p>
+<p>With lint_off using “*” will override any lint_on directives in the
+source, i.e. the warning will still not be printed.</p>
+<p>If the -rule is omitted, all lint warnings (see list in
+<a class="reference internal" href="#cmdoption-Wno-lint"><code class="xref std std-option docutils literal notranslate"><span class="pre">-Wno-lint</span></code></a>) are enabled/disabled.  This will override all later
+lint warning enables for the specified region.</p>
+<p>If -match is set the linter warnings are matched against this (wildcard)
+string and are waived in case they match and iff rule and file (with
+wildcard) also match.</p>
+<p>In previous versions -rule was named -msg. The latter is deprecated, but
+still works with a deprecation info, it may be removed in future
+versions.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-public">
+<span class="sig-name descname"><span class="pre">public</span></span><span class="sig-prename descclassname"> <span class="pre">[-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;]</span> <span class="pre">[-task/-function</span> <span class="pre">&quot;&lt;taskname&gt;&quot;]</span>&#160; <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-public" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-public_flat">
+<span id="cmdoption-arg-public-flat"></span><span class="sig-name descname"><span class="pre">public_flat</span></span><span class="sig-prename descclassname"> <span class="pre">[-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;]</span> <span class="pre">[-task/-function</span> <span class="pre">&quot;&lt;taskname&gt;&quot;]</span>&#160; <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-public_flat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-public_flat_rd">
+<span id="cmdoption-arg-public-flat-rd"></span><span class="sig-name descname"><span class="pre">public_flat_rd</span></span><span class="sig-prename descclassname"> <span class="pre">[-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;]</span> <span class="pre">[-task/-function</span> <span class="pre">&quot;&lt;taskname&gt;&quot;]</span>&#160; <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-public_flat_rd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-public_flat_rw">
+<span id="cmdoption-arg-public-flat-rw"></span><span class="sig-name descname"><span class="pre">public_flat_rw</span></span><span class="sig-prename descclassname"> <span class="pre">[-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;]</span> <span class="pre">[-task/-function</span> <span class="pre">&quot;&lt;taskname&gt;&quot;]</span>&#160; <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span> <span class="pre">&quot;&#64;(edge)&quot;</span></span><a class="headerlink" href="#cmdoption-arg-public_flat_rw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the variable to be public.  Same as
+<a class="reference internal" href="extensions.html#cmdoption-2"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;public*/</span></code></a> or
+<a class="reference internal" href="extensions.html#cmdoption-verilator-32-public_flat"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;public_flat*/</span></code></a>, etc, metacomments. See
+e.g. <a class="reference internal" href="connecting.html#vpi-example"><span class="std std-ref">VPI Example</span></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-sc_bv">
+<span id="cmdoption-arg-sc-bv"></span><span class="sig-name descname"><span class="pre">sc_bv</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span> <span class="pre">[-task</span> <span class="pre">&quot;&lt;taskname&gt;&quot;]</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-sc_bv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-9">
+<span class="sig-name descname"><span class="pre">sc_bv</span></span><span class="sig-prename descclassname"> <span class="pre">-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;</span> <span class="pre">[-function</span> <span class="pre">&quot;&lt;funcname&gt;&quot;]</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-9" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the port to be of <code class="code docutils literal notranslate"><span class="pre">sc_bv&lt;{width}&gt;</span></code> type, instead of bool,
+vluint32_t or vluint64_t.  Same as <a class="reference internal" href="extensions.html#cmdoption-verilator-32-sc_bv"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;sc_bv*/</span></code></a>
+metacomment.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-sformat">
+<span class="sig-name descname"><span class="pre">sformat</span></span><span class="sig-prename descclassname"> <span class="pre">[-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;]</span> <span class="pre">[-task</span> <span class="pre">&quot;&lt;taskname&gt;&quot;]</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-sformat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-10">
+<span class="sig-name descname"><span class="pre">sformat</span></span><span class="sig-prename descclassname"> <span class="pre">[-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;]</span> <span class="pre">[-function</span> <span class="pre">&quot;&lt;funcname&gt;&quot;]</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;signame&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-10" title="Permalink to this definition">¶</a></dt>
+<dd><p>Must be applied to the final argument of type <code class="code docutils literal notranslate"><span class="pre">input</span> <span class="pre">string</span></code> of a
+function or task to indicate the function or task should pass all
+remaining arguments through $sformatf.  This allows creation of DPI
+functions with $display like behavior.  See the
+<code class="file docutils literal notranslate"><span class="pre">test_regress/t/t_dpi_display.v</span></code> file for an example.</p>
+<p>Same as <a class="reference internal" href="extensions.html#cmdoption-verilator-32-sformat"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;sformat*/</span></code></a> metacomment.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-split_var">
+<span id="cmdoption-arg-split-var"></span><span class="sig-name descname"><span class="pre">split_var</span></span><span class="sig-prename descclassname"> <span class="pre">[-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;]</span> <span class="pre">[-task</span> <span class="pre">&quot;&lt;taskname&gt;&quot;]</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;varname&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-split_var" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-11">
+<span class="sig-name descname"><span class="pre">split_var</span></span><span class="sig-prename descclassname"> <span class="pre">[-module</span> <span class="pre">&quot;&lt;modulename&gt;&quot;]</span> <span class="pre">[-function</span> <span class="pre">&quot;&lt;funcname&gt;&quot;]</span> <span class="pre">-var</span> <span class="pre">&quot;&lt;varname&gt;&quot;</span></span><a class="headerlink" href="#cmdoption-arg-11" title="Permalink to this definition">¶</a></dt>
+<dd><p>Break the variable into multiple pieces typically to resolve UNOPTFLAT
+performance issues. Typically the variables to attach this to are
+recommended by Verilator itself, see <a class="reference internal" href="warnings.html#cmdoption-arg-UNOPTFLAT"><code class="xref std std-option docutils literal notranslate"><span class="pre">UNOPTFLAT</span></code></a>.</p>
+<p>Same as <a class="reference internal" href="extensions.html#cmdoption-verilator-32-split_var"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;split_var*/</span></code></a> metacomment.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-tracing_on">
+<span id="cmdoption-arg-tracing-on"></span><span class="sig-name descname"><span class="pre">tracing_on</span></span><span class="sig-prename descclassname">&#160; <span class="pre">[-file</span> <span class="pre">&quot;&lt;filename&gt;&quot;</span> <span class="pre">[-lines</span> <span class="pre">&lt;line&gt;</span> <span class="pre">[</span> <span class="pre">-</span> <span class="pre">&lt;line&gt;</span> <span class="pre">]]]</span></span><a class="headerlink" href="#cmdoption-arg-tracing_on" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-tracing_off">
+<span id="cmdoption-arg-tracing-off"></span><span class="sig-name descname"><span class="pre">tracing_off</span></span><span class="sig-prename descclassname"> <span class="pre">[-file</span> <span class="pre">&quot;&lt;filename&gt;&quot;</span> <span class="pre">[-lines</span> <span class="pre">&lt;line&gt;</span> <span class="pre">[</span> <span class="pre">-</span> <span class="pre">&lt;line&gt;</span> <span class="pre">]]]</span></span><a class="headerlink" href="#cmdoption-arg-tracing_off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable/disable waveform tracing for all future signals declared in the
+specified filename (or wildcard with ‘*’ or ‘?’, or all files if
+omitted) and range of line numbers (or all lines if omitted).</p>
+<p>For tracing_off, instances below any module in the files/ranges
+specified will also not be traced.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="executables.html" class="btn btn-neutral float-left" title="Executable and Argument Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="exe_verilator_coverage.html" class="btn btn-neutral float-right" title="verilator_coverage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="copyright.html">Copyright</a> 2021 by Wilson Snyder, under LGPL-3.0 or Artistic-2.0.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D27B0C9QEB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D27B0C9QEB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

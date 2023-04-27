@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>verilator_coverage &mdash; Verilator 4.210 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/vlt_sphinx.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/verilator_32x32_min.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="verilator_gantt" href="exe_verilator_gantt.html" />
+    <link rel="prev" title="verilator Arguments" href="exe_verilator.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #45acf8" >
+            <a href="index.html">
+            <img src="_static/verilator_192_150_min.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.210
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="verilating.html">Verilating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connecting to Verilated Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulating.html">Simulating (Verilated-Model Runtime)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing and Reporting Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ/Frequently Asked Questions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="languages.html">Input Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Language Extensions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="executables.html">Executable and Argument Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator.html">verilator Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">verilator_coverage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#verilator-coverage-example-usage">verilator_coverage Example Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verilator-coverage-arguments">verilator_coverage Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator_gantt.html">verilator_gantt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_verilator_profcfuncs.html">verilator_profcfuncs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe_sim.html">Simulation Runtime Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="warnings.html">Errors and Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecations.html">Deprecations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors and Origins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Revision History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #45acf8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Verilator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="executables.html">Executable and Argument Reference</a> &raquo;</li>
+      <li>verilator_coverage</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/verilator/verilator/blob/master/docs/guide/exe_verilator_coverage.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="verilator-coverage">
+<h1>verilator_coverage<a class="headerlink" href="#verilator-coverage" title="Permalink to this heading">¶</a></h1>
+<p>Verilator_coverage processes Verilated model-generated coverage reports.</p>
+<p>With –annotate, it reads the specified coverage data file and generates
+annotated source code with coverage metrics annotated.  If multiple
+coverage points exist on the same source code line, additional lines will
+be inserted to report the additional points.</p>
+<p>Additional Verilog-XL-style standard arguments specify the search paths
+necessary to find the source code that the coverage analysis was performed
+on.</p>
+<p>To filter those items to be included in coverage, you may read
+logs/coverage.dat into an editor and do a M-x keep-lines to include only
+those statistics of interest and save to a new .dat file.</p>
+<p>For Verilog conditions that should never occur, either add a $stop
+statement to the appropriate statement block, or see
+<a class="reference internal" href="extensions.html#cmdoption-verilator-32-coverage_off"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;coverage_off*/</span></code></a>.  This will remove the coverage
+points after the model is re-Verilated.</p>
+<p>For an overview of use of verilator_coverage, see <a class="reference internal" href="simulating.html#coverage-analysis"><span class="std std-ref">Coverage Analysis</span></a>.</p>
+<section id="verilator-coverage-example-usage">
+<h2>verilator_coverage Example Usage<a class="headerlink" href="#verilator-coverage-example-usage" title="Permalink to this heading">¶</a></h2>
+<blockquote>
+<div><p>verilator_coverage –help
+verilator_coverage –version</p>
+<p>verilator_coverage –annotate &lt;obj&gt;</p>
+<p>verilator_coverage  -write merged.dat -read &lt;datafiles&gt;…</p>
+<p>verilator_coverage  -write-info merged.info -read &lt;datafiles&gt;…</p>
+</div></blockquote>
+</section>
+<section id="verilator-coverage-arguments">
+<h2>verilator_coverage Arguments<a class="headerlink" href="#verilator-coverage-arguments" title="Permalink to this heading">¶</a></h2>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-verilator_coverage-arg-filename">
+<span id="cmdoption-verilator-coverage-arg-filename"></span><span class="sig-name descname"><span class="pre">&lt;filename&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-verilator_coverage-arg-filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Specifies the input coverage data file.  Multiple filenames may be provided
+to read multiple inputs.  If no data file is specified, by default
+“coverage.dat” will be read.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-verilator_coverage-annotate">
+<span id="cmdoption-verilator-coverage-annotate"></span><span class="sig-name descname"><span class="pre">--annotate</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_directory&gt;</span></span><a class="headerlink" href="#cmdoption-verilator_coverage-annotate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Specifies the directory name that source files with annotated coverage data
+should be written to.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-verilator_coverage-annotate-all">
+<span id="cmdoption-verilator-coverage-annotate-all"></span><span class="sig-name descname"><span class="pre">--annotate-all</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-verilator_coverage-annotate-all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Specifies all files should be shown.  By default, only those source files
+which have low coverage are written to the output directory.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-verilator_coverage-annotate-min">
+<span id="cmdoption-verilator-coverage-annotate-min"></span><span class="sig-name descname"><span class="pre">--annotate-min</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;count&gt;</span></span><a class="headerlink" href="#cmdoption-verilator_coverage-annotate-min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Specifies if the coverage point does not include the count number of
+coverage hits, then the coverage point will be considered above the
+threashold, and the coverage report will put a “%” to indicate the coverage
+is not sufficient.  Defaults to 10.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-verilator_coverage-help">
+<span id="cmdoption-verilator-coverage-help"></span><span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-verilator_coverage-help" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Displays a help summary, the program version, and exits.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-verilator_coverage-rank">
+<span id="cmdoption-verilator-coverage-rank"></span><span class="sig-name descname"><span class="pre">--rank</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-verilator_coverage-rank" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Prints an experimental report listing the relative importance of each test
+in covering all of the coverage points.  The report shows “Covered” which
+indicates the number of points that test covers; a test is considered to
+cover a point if it has a bucket count of at least 1. The “rank” column has
+a higher number t indicate the test is more important, and rank 0 means the
+test does not need to be run to cover the points.  “RankPts” indicates the
+number of coverage points this test will contribute to overall coverage if
+all tests are run in the order of highest to lowest rank.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-verilator_coverage-unlink">
+<span id="cmdoption-verilator-coverage-unlink"></span><span class="sig-name descname"><span class="pre">--unlink</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-verilator_coverage-unlink" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>With <a class="reference internal" href="#cmdoption-verilator_coverage-write"><code class="xref std std-option docutils literal notranslate"><span class="pre">--write</span></code></a>, unlink all input files after the output
+has been successfully created.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-verilator_coverage-version">
+<span id="cmdoption-verilator-coverage-version"></span><span class="sig-name descname"><span class="pre">--version</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-verilator_coverage-version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Displays program version and exits.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-verilator_coverage-write">
+<span id="cmdoption-verilator-coverage-write"></span><span class="sig-name descname"><span class="pre">--write</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;filename&gt;</span></span><a class="headerlink" href="#cmdoption-verilator_coverage-write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Specifies the aggregate coverage results, summed across all the files,
+should be written to the given filename in verilator_coverage data format.
+This is useful for use in scripts to combine many coverage data files
+(likely generated from random test runs) into one master coverage file.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-verilator_coverage-write-info">
+<span id="cmdoption-verilator-coverage-write-info"></span><span class="sig-name descname"><span class="pre">--write-info</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;filename.info&gt;</span></span><a class="headerlink" href="#cmdoption-verilator_coverage-write-info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Specifies the aggregate coverage results, summed across all the files,
+should be written to the given filename in <strong class="command">lcov</strong> .info format.
+This may be used to feed into <strong class="command">lcov</strong> to aggregate or generate
+reports.</p>
+<p>The info format loses data compared to the Verilator coverage data format;
+the info will all forms of coverage converted to line style coverage, and
+if there are multiple coverage points on a single line, the minimum
+coverage across those points will be used to report coverage of the line.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="exe_verilator.html" class="btn btn-neutral float-left" title="verilator Arguments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="exe_verilator_gantt.html" class="btn btn-neutral float-right" title="verilator_gantt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="copyright.html">Copyright</a> 2021 by Wilson Snyder, under LGPL-3.0 or Artistic-2.0.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D27B0C9QEB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D27B0C9QEB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

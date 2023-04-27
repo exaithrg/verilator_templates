@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Input Languages &mdash; Verilator 4.210 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/vlt_sphinx.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/verilator_32x32_min.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Language Extensions" href="extensions.html" />
+    <link rel="prev" title="FAQ/Frequently Asked Questions" href="faq.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #45acf8" >
+            <a href="index.html">
+            <img src="_static/verilator_192_150_min.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.210
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="verilating.html">Verilating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connecting to Verilated Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulating.html">Simulating (Verilated-Model Runtime)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing and Reporting Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ/Frequently Asked Questions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Input Languages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#language-standard-support">Language Standard Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#verilog-2001-ieee-1364-2001-support">Verilog 2001 (IEEE 1364-2001) Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verilog-2005-ieee-1364-2005-support">Verilog 2005 (IEEE 1364-2005) Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#systemverilog-2005-ieee-1800-2005-support">SystemVerilog 2005 (IEEE 1800-2005) Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#systemverilog-2012-ieee-1800-2012-support">SystemVerilog 2012 (IEEE 1800-2012) Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#systemverilog-2017-ieee-1800-2017-support">SystemVerilog 2017 (IEEE 1800-2017) Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verilog-ams-support">Verilog AMS Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#synthesis-directive-assertion-support">Synthesis Directive Assertion Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#language-limitations">Language Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synthesis-subset">Synthesis Subset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#signal-naming">Signal Naming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bind">Bind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#class">Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dotted-cross-hierarchy-references">Dotted cross-hierarchy references</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#latches">Latches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structures-and-unions">Structures and Unions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time">Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unknown-states">Unknown States</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tri-inout">Tri/Inout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions-tasks">Functions &amp; Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generated-clocks">Generated Clocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gate-primitives">Gate Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specify-blocks">Specify blocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#array-initialization">Array Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#array-out-of-bounds">Array Out of Bounds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assertions">Assertions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encrypted-verilog">Encrypted Verilog</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#language-keyword-limitations">Language Keyword Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Language Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="executables.html">Executable and Argument Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="warnings.html">Errors and Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecations.html">Deprecations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors and Origins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Revision History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #45acf8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Verilator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Input Languages</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/verilator/verilator/blob/master/docs/guide/languages.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="input-languages">
+<h1>Input Languages<a class="headerlink" href="#input-languages" title="Permalink to this heading">¶</a></h1>
+<p>This section describes the languages Verilator takes as input.  See also
+<a class="reference internal" href="exe_verilator.html#configuration-files"><span class="std std-ref">Configuration Files</span></a>.</p>
+<section id="language-standard-support">
+<h2>Language Standard Support<a class="headerlink" href="#language-standard-support" title="Permalink to this heading">¶</a></h2>
+<section id="verilog-2001-ieee-1364-2001-support">
+<h3>Verilog 2001 (IEEE 1364-2001) Support<a class="headerlink" href="#verilog-2001-ieee-1364-2001-support" title="Permalink to this heading">¶</a></h3>
+<p>Verilator supports most Verilog 2001 language features.  This includes
+signed numbers, “always &#64;*”, generate statements, multidimensional arrays,
+localparam, and C-style declarations inside port lists.</p>
+</section>
+<section id="verilog-2005-ieee-1364-2005-support">
+<h3>Verilog 2005 (IEEE 1364-2005) Support<a class="headerlink" href="#verilog-2005-ieee-1364-2005-support" title="Permalink to this heading">¶</a></h3>
+<p>Verilator supports most Verilog 2005 language features.  This includes the
+`begin_keywords and `end_keywords compiler directives, $clog2, and the
+uwire keyword.</p>
+</section>
+<section id="systemverilog-2005-ieee-1800-2005-support">
+<h3>SystemVerilog 2005 (IEEE 1800-2005) Support<a class="headerlink" href="#systemverilog-2005-ieee-1800-2005-support" title="Permalink to this heading">¶</a></h3>
+<p>Verilator supports ==? and !=? operators, ++ and – in some contexts,
+$bits, $countbits, $countones, $error, $fatal, $info, $isunknown, $onehot,
+$onehot0, $unit, $warning, always_comb, always_ff, always_latch, bit, byte,
+chandle, const, do-while, enum, export, final, import, int, interface,
+logic, longint, modport, package, program, shortint, struct, time, typedef,
+union, var, void, priority case/if, and unique case/if.</p>
+<p>It also supports .name and .* interconnection.</p>
+<p>Verilator partially supports concurrent assert and cover statements; see
+the enclosed coverage tests for the syntax which is allowed.</p>
+<p>Verilator has limited support for class and related object-oriented
+constructs.</p>
+</section>
+<section id="systemverilog-2012-ieee-1800-2012-support">
+<h3>SystemVerilog 2012 (IEEE 1800-2012) Support<a class="headerlink" href="#systemverilog-2012-ieee-1800-2012-support" title="Permalink to this heading">¶</a></h3>
+<p>Verilator implements a full SystemVerilog-compliant preprocessor, including
+function call-like preprocessor defines, default define arguments,
+`__FILE__, `__LINE__ and `undefineall.</p>
+</section>
+<section id="systemverilog-2017-ieee-1800-2017-support">
+<h3>SystemVerilog 2017 (IEEE 1800-2017) Support<a class="headerlink" href="#systemverilog-2017-ieee-1800-2017-support" title="Permalink to this heading">¶</a></h3>
+<p>Verilator supports the 2017 “for” loop constructs, and several minor
+cleanups IEEE made in 1800-2017.</p>
+</section>
+<section id="verilog-ams-support">
+<h3>Verilog AMS Support<a class="headerlink" href="#verilog-ams-support" title="Permalink to this heading">¶</a></h3>
+<p>Verilator implements a very small subset of Verilog AMS (Verilog Analog and
+Mixed-Signal Extensions) with the subset corresponding to those VMS
+keywords with near equivalents in the Verilog 2005 or SystemVerilog 2009
+languages.</p>
+<p>AMS parsing is enabled with <a class="reference internal" href="exe_verilator.html#cmdoption-language"><code class="xref std std-option docutils literal notranslate"><span class="pre">--language</span> <span class="pre">VAMS</span></code></a> or
+<a class="reference internal" href="exe_verilator.html#cmdoption-language"><code class="xref std std-option docutils literal notranslate"><span class="pre">--language</span> <span class="pre">1800+VAMS</span></code></a>.</p>
+<p>At present Verilator implements ceil, exp, floor, ln, log, pow, sqrt,
+string, and wreal.</p>
+</section>
+<section id="synthesis-directive-assertion-support">
+<h3>Synthesis Directive Assertion Support<a class="headerlink" href="#synthesis-directive-assertion-support" title="Permalink to this heading">¶</a></h3>
+<p>With the <a class="reference internal" href="exe_verilator.html#cmdoption-assert"><code class="xref std std-option docutils literal notranslate"><span class="pre">--assert</span></code></a> option, Verilator reads any <code class="code docutils literal notranslate"><span class="pre">//synopsys</span>
+<span class="pre">full_case</span></code> or <code class="code docutils literal notranslate"><span class="pre">//synopsys</span> <span class="pre">parallel_case</span></code> directives.  The same
+applies to any <code class="code docutils literal notranslate"><span class="pre">//ambit</span> <span class="pre">synthesis</span></code>, <code class="code docutils literal notranslate"><span class="pre">//cadence</span></code> or
+<code class="code docutils literal notranslate"><span class="pre">//pragma</span></code> directives of the same form.</p>
+<p>When these synthesis directives are discovered, Verilator will either
+formally prove the directive to be true, or failing that, will insert the
+appropriate code to detect failing cases at simulation runtime and print an
+“Assertion failed” error message.</p>
+<p>Verilator likewise also asserts any “unique” or “priority” SystemVerilog
+keywords on case statement, as well as “unique” on if statements.  However,
+“priority if” is currently simply ignored.</p>
+</section>
+</section>
+<section id="language-limitations">
+<span id="id1"></span><h2>Language Limitations<a class="headerlink" href="#language-limitations" title="Permalink to this heading">¶</a></h2>
+<p>This section describes the language limitations of Verilator. Many of these
+restrictions are by intent.</p>
+<section id="synthesis-subset">
+<h3>Synthesis Subset<a class="headerlink" href="#synthesis-subset" title="Permalink to this heading">¶</a></h3>
+<p>Verilator supports the Synthesis subset with other verification constructs
+being added over time. Verilator also simulates events as Synopsys’s Design
+Compiler would; namely given a block of the form:</p>
+<div class="highlight-sv notranslate"><div class="highlight"><pre><span></span><span class="k">always</span><span class="w"> </span><span class="p">@(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">z</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This will recompute y when there is even a potential for change in x or a
+change in z, that is when the flops computing x or z evaluate (which is
+what Design Compiler will synthesize.)  A compliant simulator would only
+calculate y if x changes.  We recommend using always_comb to make the code
+run the same everywhere.  Also avoid putting $displays in combo blocks, as
+they may print multiple times when not desired, even on compliant
+simulators as event ordering is not specified.</p>
+</section>
+<section id="signal-naming">
+<h3>Signal Naming<a class="headerlink" href="#signal-naming" title="Permalink to this heading">¶</a></h3>
+<p>To avoid conflicts with C symbol naming, any character in a signal name
+that is not alphanumeric nor a single underscore will be replaced by __0hh
+where hh is the hex code of the character. To avoid conflicts with
+Verilator’s internal symbols, any double underscore are replaced with
+___05F (5F is the hex code of an underscore.)</p>
+</section>
+<section id="bind">
+<h3>Bind<a class="headerlink" href="#bind" title="Permalink to this heading">¶</a></h3>
+<p>sVerilator only supports bind to a target module name, not to an
+instance path.</p>
+</section>
+<section id="class">
+<h3>Class<a class="headerlink" href="#class" title="Permalink to this heading">¶</a></h3>
+<p>Verilator class support is limited but in active development.  Verilator
+supports members, and methods. Verilator does not support class static
+members, class extend, or class parameters.</p>
+</section>
+<section id="dotted-cross-hierarchy-references">
+<h3>Dotted cross-hierarchy references<a class="headerlink" href="#dotted-cross-hierarchy-references" title="Permalink to this heading">¶</a></h3>
+<p>Verilator supports dotted references to variables, functions and tasks in
+different modules. The portion before the dot must have a constant value;
+for example a[2].b is acceptable, while a[x].b is generally not.</p>
+<p>References into generated and arrayed instances use the instance names
+specified in the Verilog standard; arrayed instances are named
+<code class="docutils literal notranslate"><span class="pre">{instanceName}[{instanceNumber}]</span></code> in Verilog, which becomes
+<code class="docutils literal notranslate"><span class="pre">{instanceName}__BRA__{instanceNumber}__KET__</span></code> inside the generated C++
+code.</p>
+</section>
+<section id="latches">
+<h3>Latches<a class="headerlink" href="#latches" title="Permalink to this heading">¶</a></h3>
+<p>Verilator is optimized for edge sensitive (flop based) designs.  It will
+attempt to do the correct thing for latches, but most performance
+optimizations will be disabled around the latch.</p>
+</section>
+<section id="structures-and-unions">
+<h3>Structures and Unions<a class="headerlink" href="#structures-and-unions" title="Permalink to this heading">¶</a></h3>
+<p>Presently Verilator only supports packed structs and packed unions.  Rand
+and randc tags on members are simply ignored.  All structures and unions
+are represented as a single vector, which means that generating one member
+of a structure from blocking, and another from non-blocking assignments is
+unsupported.</p>
+</section>
+<section id="time">
+<h3>Time<a class="headerlink" href="#time" title="Permalink to this heading">¶</a></h3>
+<p>All delays (#) are ignored, as they are in synthesis.</p>
+</section>
+<section id="unknown-states">
+<span id="id2"></span><h3>Unknown States<a class="headerlink" href="#unknown-states" title="Permalink to this heading">¶</a></h3>
+<p>Verilator is mostly a two state simulator, not a four state simulator.
+However, it has two features which uncover most initialization bugs
+(including many that a four state simulator will miss.)</p>
+<p>Identity comparisons (=== or !==) are converted to standard ==/!= when
+neither side is a constant.  This may make the expression yield a different
+result compared to a four state simulator.  An === comparison to X will
+always be false, so that Verilog code which checks for uninitialized logic
+will not fire.</p>
+<p>Assigning X to a variable will actually assign a constant value as
+determined by the <a class="reference internal" href="exe_verilator.html#cmdoption-7"><code class="xref std std-option docutils literal notranslate"><span class="pre">--x-assign</span></code></a> option.  This allows runtime
+randomization, thus if the value is actually used, the random value should
+cause downstream errors.  Integers also get randomized, even though the
+Verilog 2001 specification says they initialize to zero.  Note however that
+randomization happens at initialization time and hence during a single
+simulation run, the same constant (but random) value will be used every
+time the assignment is executed.</p>
+<p>All variables, depending on <a class="reference internal" href="exe_verilator.html#cmdoption-9"><code class="xref std std-option docutils literal notranslate"><span class="pre">--x-initial</span></code></a> setting, are typically
+randomly initialized using a function.  By running several random
+simulation runs you can determine that reset is working correctly.  On the
+first run, have the function initialize variables to zero.  On the second,
+have it initialize variables to one.  On the third and following runs have
+it initialize them randomly.  If the results match, reset works.  (Note
+this is what the hardware will really do.)  In practice, just setting all
+variables to one at startup finds most problems (since typically control
+signals are active-high).</p>
+<p><a class="reference internal" href="exe_verilator.html#cmdoption-7"><code class="xref std std-option docutils literal notranslate"><span class="pre">--x-assign</span></code></a> applies to variables explicitly initialized or assigned
+an X. Uninitialized clocks are initialized to zero, while all other state
+holding variables are initialized to a random value.  Event driven
+simulators will generally trigger an edge on a transition from X to 1
+(posedge) or X to 0 (negedge). However, by default, since clocks are
+initialized to zero, Verilator will not trigger an initial negedge. Some
+code (particularly for reset) may rely on X-&gt;0 triggering an edge. The
+<a class="reference internal" href="exe_verilator.html#cmdoption-x-initial-edge"><code class="xref std std-option docutils literal notranslate"><span class="pre">--x-initial-edge</span></code></a> option enables this behavior. Comparing runs with
+and without this option will find such problems.</p>
+</section>
+<section id="tri-inout">
+<h3>Tri/Inout<a class="headerlink" href="#tri-inout" title="Permalink to this heading">¶</a></h3>
+<p>Verilator converts some simple tristate structures into two state.  Pullup,
+pulldown, bufif0, bufif1, notif0, notif1, pmos, nmos, tri0 and tri1 are
+also supported.  Simple comparisons with <code class="code docutils literal notranslate"><span class="pre">===</span> <span class="pre">1'bz</span></code> are also
+supported.</p>
+<p>An assignment of the form:</p>
+<div class="highlight-sv notranslate"><div class="highlight"><pre><span></span><span class="k">inout</span><span class="w"> </span><span class="n">driver</span><span class="p">;</span><span class="w"></span>
+<span class="kt">wire</span><span class="w"> </span><span class="n">driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">enable</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">output_value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mb">1&#39;bz</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Will be converted to:</p>
+<div class="highlight-sv notranslate"><div class="highlight"><pre><span></span><span class="k">input</span><span class="w"> </span><span class="n">driver</span><span class="p">;</span><span class="w">       </span><span class="c1">// Value being driven in from &quot;external&quot; drivers</span>
+<span class="k">output</span><span class="w"> </span><span class="n">driver__en</span><span class="p">;</span><span class="w">  </span><span class="c1">// True if driven from this module</span>
+<span class="k">output</span><span class="w"> </span><span class="n">driver__out</span><span class="p">;</span><span class="w"> </span><span class="c1">// Value being driven from this module</span>
+</pre></div>
+</div>
+<p>External logic will be needed to combine these signals with any external
+drivers.</p>
+<p>Tristate drivers are not supported inside functions and tasks; an inout
+there will be considered a two state variable that is read and written
+instead of a four state variable.</p>
+</section>
+<section id="functions-tasks">
+<h3>Functions &amp; Tasks<a class="headerlink" href="#functions-tasks" title="Permalink to this heading">¶</a></h3>
+<p>All functions and tasks will be inlined (will not become functions in C.)
+The only support provided is for simple statements in tasks (which may
+affect global variables).</p>
+<p>Recursive functions and tasks are not supported.  All inputs and outputs
+are automatic, as if they had the Verilog 2001 “automatic” keyword
+prepended.  (If you don’t know what this means, Verilator will do what you
+probably expect, what C does. The default behavior of Verilog is
+different.)</p>
+</section>
+<section id="generated-clocks">
+<h3>Generated Clocks<a class="headerlink" href="#generated-clocks" title="Permalink to this heading">¶</a></h3>
+<p>Verilator attempts to deal with generated and gated clocks correctly,
+however some cases cause problems in the scheduling algorithm which is
+optimized for performance.  The safest option is to have all clocks as
+primary inputs to the model, or wires directly attached to primary inputs.
+For proper behavior clock enables may also need the
+<a class="reference internal" href="extensions.html#cmdoption-verilator-32-clock_enable"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;clock_enable*/</span></code></a> metacomment.</p>
+</section>
+<section id="gate-primitives">
+<h3>Gate Primitives<a class="headerlink" href="#gate-primitives" title="Permalink to this heading">¶</a></h3>
+<p>The 2-state gate primitives (and, buf, nand, nor, not, or, xnor, xor) are
+directly converted to behavioral equivalents.  The 3-state and MOS gate
+primitives are not supported.  Tables are not supported.</p>
+</section>
+<section id="specify-blocks">
+<h3>Specify blocks<a class="headerlink" href="#specify-blocks" title="Permalink to this heading">¶</a></h3>
+<p>All specify blocks and timing checks are ignored. All min:typ:max delays
+use the typical value.</p>
+</section>
+<section id="array-initialization">
+<h3>Array Initialization<a class="headerlink" href="#array-initialization" title="Permalink to this heading">¶</a></h3>
+<p>When initializing a large array, you need to use non-delayed assignments.
+Verilator will tell you when this needs to be fixed; see the BLKLOOPINIT
+error for more information.</p>
+</section>
+<section id="array-out-of-bounds">
+<h3>Array Out of Bounds<a class="headerlink" href="#array-out-of-bounds" title="Permalink to this heading">¶</a></h3>
+<p>Writing a memory element that is outside the bounds specified for the array
+may cause a different memory element inside the array to be written
+instead.  For power-of-2 sized arrays, Verilator will give a width warning
+and the address.  For non-power-of-2-sizes arrays, index 0 will be written.</p>
+<p>Reading a memory element that is outside the bounds specified for the array
+will give a width warning and wrap around the power-of-2 size.  For
+non-power-of-2 sizes, it will return a unspecified constant of the
+appropriate width.</p>
+</section>
+<section id="assertions">
+<h3>Assertions<a class="headerlink" href="#assertions" title="Permalink to this heading">¶</a></h3>
+<p>Verilator is beginning to add support for assertions.  Verilator currently
+only converts assertions to simple <code class="code docutils literal notranslate"><span class="pre">if</span> <span class="pre">(...)</span> <span class="pre">error</span></code> statements, and
+coverage statements to increment the line counters described in the
+coverage section.</p>
+<p>Verilator does not support SEREs yet.  All assertion and coverage
+statements must be simple expressions that complete in one cycle.</p>
+</section>
+<section id="encrypted-verilog">
+<h3>Encrypted Verilog<a class="headerlink" href="#encrypted-verilog" title="Permalink to this heading">¶</a></h3>
+<p>Open source simulators like Verilator are unable to use encrypted RTL
+(i.e. IEEE P1735).  Talk to your IP vendor about delivering IP blocks via
+Verilator’s <a class="reference internal" href="exe_verilator.html#cmdoption-protect-lib"><code class="xref std std-option docutils literal notranslate"><span class="pre">--protect-lib</span></code></a> feature.</p>
+</section>
+</section>
+<section id="language-keyword-limitations">
+<h2>Language Keyword Limitations<a class="headerlink" href="#language-keyword-limitations" title="Permalink to this heading">¶</a></h2>
+<p>This section describes specific limitations for each language keyword.</p>
+<dl class="simple">
+<dt>`__FILE__, `__LINE__, `begin_keywords,
+`begin_keywords, `begin_keywords, `begin_keywords, `begin_keywords,
+`define, `else, `elsif, `end_keywords, `endif, `error, `ifdef,
+`ifndef, `include, `line, `systemc_ctor, `systemc_dtor,
+`systemc_header, `systemc_imp_header, `systemc_implementation,
+`systemc_interface, `undef, `verilog</dt><dd><p>Fully supported.</p>
+</dd>
+</dl>
+<dl>
+<dt>always, always_comb, always_ff, always_latch, and,
+assign, begin, buf, byte, case, casex, casez, default, defparam,
+do-while, else, end, endcase, endfunction, endgenerate, endmodule,
+endspecify, endtask, final, for, function, generate, genvar, if,
+initial, inout, input, int, integer, localparam, logic, longint,
+macromodule, module, nand, negedge, nor, not, or, output, parameter,
+posedge, reg, scalared, shortint, signed, supply0, supply1, task, time,
+tri, typedef, var, vectored, while, wire, xnor, xor</dt><dd><p>Generally supported.</p>
+</dd>
+<dt>++, – operators</dt><dd><p>Increment/decrement can only be used as standalone statements or in
+certain limited cases.</p>
+</dd>
+<dt>‘{} operator</dt><dd><p>Assignment patterns with order based, default, constant integer (array)
+or member identifier (struct/union) keys are supported.  Data type keys
+and keys which are computed from a constant expression are not supported.</p>
+</dd>
+<dt>`uselib</dt><dd><p>Uselib, a vendor specific library specification method, is ignored along
+with anything following it until the end of that line.</p>
+</dd>
+<dt>cast operator</dt><dd><p>Casting is supported only between simple scalar types, signed and
+unsigned, not arrays nor structs.</p>
+</dd>
+<dt>chandle</dt><dd><p>Treated as a “longint”; does not yet warn about operations that are
+specified as illegal on chandles.</p>
+</dd>
+<dt>disable</dt><dd><p>Disable statements may be used only if the block being disabled is a
+block the disable statement itself is inside.  This was commonly used to
+provide loop break and continue functionality before SystemVerilog added
+the break and continue keywords.</p>
+</dd>
+<dt>inside</dt><dd><p>Inside expressions may not include unpacked array traversal or $ as an
+upper bound.  Case inside and case matches are also unsupported.</p>
+</dd>
+<dt>interface</dt><dd><p>Interfaces and modports, including with generated data types are
+supported.  Generate blocks around modports are not supported, nor are
+virtual interfaces nor unnamed interfaces.</p>
+</dd>
+<dt>shortreal</dt><dd><p>Short floating point (shortreal) numbers are converted to real. Most
+other simulators either do not support float, or convert likewise.</p>
+</dd>
+<dt>specify specparam</dt><dd><p>All specify blocks and timing checks are ignored.</p>
+</dd>
+<dt>uwire</dt><dd><p>Verilator does not perform warning checking on uwires, it treats the
+uwire keyword as if it were the normal wire keyword.</p>
+</dd>
+<dt>$bits, $countbits, $countones, $finish, $isunknown, $onehot, $onehot0, $signed, $stime, $stop, $time, $unsigned,</dt><dd><p>Generally supported.</p>
+</dd>
+<dt>$dump/$dumpports and related</dt><dd><p>$dumpfile or $dumpports will create a VCD or FST file (which is based on
+the <a class="reference internal" href="exe_verilator.html#cmdoption-trace"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace</span></code></a> option given when the model was Verilated). This
+will take effect starting at the next eval() call.  If you have multiple
+Verilated designs under the same C model, then this will dump signals
+only from the design containing the $dumpvars.</p>
+<p>$dumpvars and $dumpports module identifier is ignored; the traced
+instances will always start at the top of the design. The levels argument
+is also ignored, use tracing_on/tracing_off pragmas instead.</p>
+<p>$dumpportson/$dumpportsoff/$dumpportsall/$dumpportslimit filename
+argument is ignored, only a single trace file may be active at once.</p>
+<p>$dumpall/$dumpportsall, $dumpon/$dumpportson, $dumpoff/$dumpportsoff, and
+$dumplimit/$dumpportlimit are currently ignored.</p>
+</dd>
+<dt>$error, $fatal, $info, $warning.</dt><dd><p>Generally supported.</p>
+</dd>
+<dt>$exit, $finish, $stop</dt><dd><p>The rarely used optional parameter to $finish and $stop is ignored. $exit
+is aliased to $finish.</p>
+</dd>
+<dt>$fopen, $fclose, $fdisplay, $ferror, $feof, $fflush, $fgetc, $fgets, $fscanf, $fwrite, $fscanf, $sscanf</dt><dd><p>Generally supported.</p>
+</dd>
+<dt>$fullskew, $hold, $nochange, $period, $recovery, $recrem, $removal, $setup, $setuphold, $skew, $timeskew, $width</dt><dd><p>All specify blocks and timing checks are ignored.</p>
+</dd>
+<dt>$random, $urandom, $urandom_range</dt><dd><p>Use <a class="reference internal" href="exe_sim.html#cmdoption-arg-verilator-seed-value"><code class="xref std std-option docutils literal notranslate"><span class="pre">+verilator+seed+&lt;value&gt;</span></code></a> runtime option to set the seed if
+there is no $random nor $urandom optional argument to set the seed.
+There is one random seed per C thread, not per module for $random, nor
+per object for random stability of $urandom/$urandom_range.</p>
+</dd>
+<dt>$readmemb, $readmemh</dt><dd><p>Read memory commands are supported.  Note Verilator and the Verilog
+specification does not include support for readmem to multi-dimensional
+arrays.</p>
+</dd>
+<dt>$test$plusargs, $value$plusargs</dt><dd><p>Supported, but the instantiating C++/SystemC wrapper must call</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">Verilated</span><span class="o">::</span><span class="n">commandArgs</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>to register the command line before calling $test$plusargs or
+$value$plusargs.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="faq.html" class="btn btn-neutral float-left" title="FAQ/Frequently Asked Questions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="extensions.html" class="btn btn-neutral float-right" title="Language Extensions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="copyright.html">Copyright</a> 2021 by Wilson Snyder, under LGPL-3.0 or Artistic-2.0.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D27B0C9QEB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D27B0C9QEB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connecting to Verilated Models &mdash; Verilator 4.210 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/vlt_sphinx.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/verilator_32x32_min.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Simulating (Verilated-Model Runtime)" href="simulating.html" />
+    <link rel="prev" title="Verilating" href="verilating.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #45acf8" >
+            <a href="index.html">
+            <img src="_static/verilator_192_150_min.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.210
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="verilating.html">Verilating</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Connecting to Verilated Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#structure-of-the-verilated-model">Structure of the Verilated Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#model-interface-changes-in-version-4-210">Model interface changes in version 4.210</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-to-c">Connecting to C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-to-systemc">Connecting to SystemC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#direct-programming-interface-dpi">Direct Programming Interface (DPI)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dpi-example">DPI Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dpi-system-task-functions">DPI System Task/Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dpi-imports-that-access-signals">DPI Imports that access signals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dpi-display-functions">DPI Display Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dpi-context-functions">DPI Context Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dpi-header-isolation">DPI Header Isolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#public-functions">Public Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#verification-procedural-interface-vpi">Verification Procedural Interface (VPI)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vpi-example">VPI Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#wrappers-and-model-evaluation-loop">Wrappers and Model Evaluation Loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verilated-and-verilatedcontext">Verilated and VerilatedContext</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simulating.html">Simulating (Verilated-Model Runtime)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing and Reporting Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ/Frequently Asked Questions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="languages.html">Input Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Language Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="executables.html">Executable and Argument Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="warnings.html">Errors and Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecations.html">Deprecations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors and Origins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Revision History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #45acf8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Verilator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Connecting to Verilated Models</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/verilator/verilator/blob/master/docs/guide/connecting.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="connecting-to-verilated-models">
+<span id="connecting"></span><h1>Connecting to Verilated Models<a class="headerlink" href="#connecting-to-verilated-models" title="Permalink to this heading">¶</a></h1>
+<section id="structure-of-the-verilated-model">
+<h2>Structure of the Verilated Model<a class="headerlink" href="#structure-of-the-verilated-model" title="Permalink to this heading">¶</a></h2>
+<p>Verilator outputs a <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">.h</span></code> header file which defines a class
+named <code class="code docutils literal notranslate"><span class="pre">{prefix}</span></code> which represents the generated model the user is
+supposed to instantiate.  This model class defines the interface of the
+Verilated model.</p>
+<p>Verilator will additionally create a <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">.cpp</span></code> file, together
+with additional .h and .cpp files for internals.  See the <code class="file docutils literal notranslate"><span class="pre">examples</span></code>
+directory in the kit for examples.  See <a class="reference internal" href="files.html#files-read-written"><span class="std std-ref">Files Read/Written</span></a> for
+information on all the files Verilator might output.</p>
+<p>The output of Verilator will contain a <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">.mk</span></code> file that may be
+used with Make to build a <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">__ALL.a</span></code> library with all required
+objects in it.</p>
+<p>The generated model class file manages all internal state required by the
+model, and exposes the following interface that allows interaction with the
+model:</p>
+<ul class="simple">
+<li><p>Top level IO ports are exposed as references to the appropriate internal
+equivalents.</p></li>
+<li><p>Public top level module instances are exposed as pointers to allow access
+to <code class="code docutils literal notranslate"><span class="pre">/*</span> <span class="pre">verilator</span> <span class="pre">public</span> <span class="pre">*/</span></code> items.</p></li>
+<li><p>The root of the design hierarchy (as in SystemVerilog <code class="code docutils literal notranslate"><span class="pre">$root</span></code>) is
+exposed via the <code class="code docutils literal notranslate"><span class="pre">rootp</span></code> member pointer to allow access to model
+internals, including <code class="code docutils literal notranslate"><span class="pre">/*</span> <span class="pre">verilator</span> <span class="pre">public_flat</span> <span class="pre">*/</span></code> items.</p></li>
+</ul>
+<section id="model-interface-changes-in-version-4-210">
+<span id="porting-from-pre-4-210"></span><h3>Model interface changes in version 4.210<a class="headerlink" href="#model-interface-changes-in-version-4-210" title="Permalink to this heading">¶</a></h3>
+<p>Starting from version 4.210, the model class is an interface object.</p>
+<p>Up until Verilator version 4.204 inclusive, the generated model class was
+also the instance of the top level instance in the design hierarchy (what
+you would refer to with <code class="code docutils literal notranslate"><span class="pre">$root</span></code> in SystemVerilog).  This meant that
+all internal variables that were implemented by Verilator in the root scope
+were accessible as members of the model class itself.  Note there were often
+many such variable due to module inlining, including <code class="code docutils literal notranslate"><span class="pre">/*</span> <span class="pre">verilator</span>
+<span class="pre">public_flat</span> <span class="pre">*/</span></code> items.</p>
+<p>This means that user code that accesses internal signals in the model
+(likely including <code class="code docutils literal notranslate"><span class="pre">/*</span> <span class="pre">verilator</span> <span class="pre">public_flat</span> <span class="pre">*/</span></code> signals, as they are
+often inlined into the root scope) will need to be updated as follows:</p>
+<ul class="simple">
+<li><p>No change required for accessing top level IO signals. These are directly
+accessible in the model class via references.</p></li>
+<li><p>No change required for accessing <code class="code docutils literal notranslate"><span class="pre">/*</span> <span class="pre">verilator</span> <span class="pre">public</span> <span class="pre">*/</span></code> items.
+These are directly accessible via sub-module pointers in the model class.</p></li>
+<li><p>Accessing any other internal members, including
+<code class="code docutils literal notranslate"><span class="pre">/*</span> <span class="pre">verilator</span> <span class="pre">public_flat</span> <span class="pre">*/</span></code> items requires the following changes:</p>
+<ul>
+<li><p>Additionally include <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">___024root.h</span></code>. This header defines
+type of the <code class="code docutils literal notranslate"><span class="pre">rootp</span></code> pointer within the model class. Note the
+<code class="code docutils literal notranslate"><span class="pre">__024</span></code> substring is the Verilator escape sequence for the
+<code class="code docutils literal notranslate"><span class="pre">$</span></code> character, i.e.: <code class="code docutils literal notranslate"><span class="pre">rootp</span></code> points to the Verilated
+SystemVerilog <code class="code docutils literal notranslate"><span class="pre">$root</span></code> scope.</p></li>
+<li><p>Replace <code class="code docutils literal notranslate"><span class="pre">modelp-&gt;internal-&gt;member-&gt;lookup</span></code> references with
+<code class="code docutils literal notranslate"><span class="pre">modelp-&gt;rootp-&gt;internal-&gt;member-&gt;lookup</span></code> references, which
+contain one additional indirection via the <code class="code docutils literal notranslate"><span class="pre">rootp</span></code> pointer.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="connecting-to-c">
+<span id="id1"></span><h2>Connecting to C++<a class="headerlink" href="#connecting-to-c" title="Permalink to this heading">¶</a></h2>
+<p>In C++ output mode (<a class="reference internal" href="exe_verilator.html#cmdoption-cc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--cc</span></code></a>), the Verilator generated model class is a
+simple C++ class.  The user must write a C++ wrapper and main loop for the
+simulation, which instantiates the model class, and link with the Verilated
+model.  Here is a simple example:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;verilated.h&gt;</span><span class="c1">          // Defines common routines</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1">             // Need std::cout</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Vtop.h&quot;</span><span class="c1">               // From Verilating &quot;top.v&quot;</span><span class="cp"></span>
+
+<span class="n">Vtop</span><span class="w"> </span><span class="o">*</span><span class="n">top</span><span class="p">;</span><span class="w">                      </span><span class="c1">// Instantiation of model</span>
+
+<span class="n">vluint64_t</span><span class="w"> </span><span class="n">main_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">       </span><span class="c1">// Current simulation time</span>
+<span class="c1">// This is a 64-bit integer to reduce wrap over issues and</span>
+<span class="c1">// allow modulus.  This is in units of the timeprecision</span>
+<span class="c1">// used in Verilog (or from --timescale-override)</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">sc_time_stamp</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">        </span><span class="c1">// Called by $time in Verilog</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">main_time</span><span class="p">;</span><span class="w">           </span><span class="c1">// converts to double, to match</span>
+<span class="w">                                </span><span class="c1">// what SystemC does</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Verilated</span><span class="o">::</span><span class="n">commandArgs</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span><span class="w">   </span><span class="c1">// Remember args</span>
+
+<span class="w">    </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vtop</span><span class="p">;</span><span class="w">             </span><span class="c1">// Create model</span>
+
+<span class="w">    </span><span class="n">top</span><span class="o">-&gt;</span><span class="n">reset_l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">           </span><span class="c1">// Set some inputs</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Verilated</span><span class="o">::</span><span class="n">gotFinish</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">main_time</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">top</span><span class="o">-&gt;</span><span class="n">reset_l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">   </span><span class="c1">// Deassert reset</span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">main_time</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">top</span><span class="o">-&gt;</span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">       </span><span class="c1">// Toggle clock</span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">main_time</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">top</span><span class="o">-&gt;</span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">top</span><span class="o">-&gt;</span><span class="n">eval</span><span class="p">();</span><span class="w">            </span><span class="c1">// Evaluate model</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">top</span><span class="o">-&gt;</span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">       </span><span class="c1">// Read a output</span>
+<span class="w">        </span><span class="n">main_time</span><span class="o">++</span><span class="p">;</span><span class="w">            </span><span class="c1">// Time passes...</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">top</span><span class="o">-&gt;</span><span class="k">final</span><span class="p">();</span><span class="w">               </span><span class="c1">// Done simulating</span>
+<span class="w">    </span><span class="c1">//    // (Though this example doesn&#39;t get here)</span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">top</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note top level IO signals are read and written as members of the model.  You
+call the <code class="code docutils literal notranslate"><span class="pre">eval()</span></code> method to evaluate the model.  When the simulation is
+complete call the <code class="code docutils literal notranslate"><span class="pre">final()</span></code> method to execute any SystemVerilog final
+blocks, and complete any assertions. See <a class="reference internal" href="#evaluation-loop"><span class="std std-ref">Wrappers and Model Evaluation Loop</span></a>.</p>
+</section>
+<section id="connecting-to-systemc">
+<h2>Connecting to SystemC<a class="headerlink" href="#connecting-to-systemc" title="Permalink to this heading">¶</a></h2>
+<p>In SystemC output mode (<a class="reference internal" href="exe_verilator.html#cmdoption-sc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--sc</span></code></a>), the Verilator generated model class
+is a SystemC SC_MODULE.  This module will attach directly into a SystemC
+netlist as an instantiation.</p>
+<p>The SC_MODULE gets the same pinout as the Verilog module, with the
+following type conversions: Pins of a single bit become bool.  Pins 2-32
+bits wide become uint32_t’s.  Pins 33-64 bits wide become sc_bv’s or
+vluint64_t’s depending on the <a class="reference internal" href="exe_verilator.html#cmdoption-no-pins64"><code class="xref std std-option docutils literal notranslate"><span class="pre">--no-pins64</span></code></a> option.  Wider pins
+become sc_bv’s.  (Uints simulate the fastest so are used where possible.)</p>
+<p>Model internals, including lower level sub-modules are not pure SystemC
+code.  This is a feature, as using the SystemC pin interconnect scheme
+everywhere would reduce performance by an order of magnitude.</p>
+</section>
+<section id="direct-programming-interface-dpi">
+<h2>Direct Programming Interface (DPI)<a class="headerlink" href="#direct-programming-interface-dpi" title="Permalink to this heading">¶</a></h2>
+<p>Verilator supports SystemVerilog Direct Programming Interface import and
+export statements.  Only the SystemVerilog form (“DPI-C”) is supported, not
+the original Synopsys-only DPI.</p>
+<section id="dpi-example">
+<h3>DPI Example<a class="headerlink" href="#dpi-example" title="Permalink to this heading">¶</a></h3>
+<p>In the SYSTEMC example above, if you wanted to import C++ functions into
+Verilog, put in our.v:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import &quot;DPI-C&quot; function int add (input int a, input int b);
+
+initial begin
+   $display(&quot;%x + %x = %x&quot;, 1, 2, add(1,2));
+endtask
+</pre></div>
+</div>
+<p>Then after Verilating, Verilator will create a file Vour__Dpi.h with the
+prototype to call this function:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>From the sc_main.cpp file (or another .cpp file passed to the Verilator
+command line, or the link), you’d then:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;svdpi.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Vour__Dpi.h&quot;</span><span class="cp"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="dpi-system-task-functions">
+<h3>DPI System Task/Functions<a class="headerlink" href="#dpi-system-task-functions" title="Permalink to this heading">¶</a></h3>
+<p>Verilator extends the DPI format to allow using the same scheme to
+efficiently add system functions.  Simply use a dollar-sign prefixed system
+function name for the import, but note it must be escaped.</p>
+<div class="highlight-sv notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="s">&quot;DPI-C&quot;</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="kt">integer</span><span class="w"> </span><span class="n">\$myRand;</span><span class="w"></span>
+
+<span class="k">initial</span><span class="w"> </span><span class="p">$</span><span class="n">display</span><span class="p">(</span><span class="s">&quot;myRand=%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">$</span><span class="n">myRand</span><span class="p">());</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Going the other direction, you can export Verilog tasks so they can be
+called from C++:</p>
+<div class="highlight-sv notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="s">&quot;DPI-C&quot;</span><span class="w"> </span><span class="k">task</span><span class="w"> </span><span class="n">publicSetBool</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">task</span><span class="w"> </span><span class="n">publicSetBool</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">input</span><span class="w"> </span><span class="kt">bit</span><span class="w"> </span><span class="n">in_bool</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="n">var_bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in_bool</span><span class="p">;</span><span class="w"></span>
+<span class="k">endtask</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Then after Verilating, Verilator will create a file Vour__Dpi.h with the
+prototype to call this function:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">publicSetBool</span><span class="p">(</span><span class="n">svBit</span><span class="w"> </span><span class="n">in_bool</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>From the sc_main.cpp file, you’d then:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Vour__Dpi.h&quot;</span><span class="cp"></span>
+<span class="n">publicSetBool</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Or, alternatively, call the function under the design class.  This isn’t
+DPI compatible but is easier to read and better supports multiple designs.</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Vour__Dpi.h&quot;</span><span class="cp"></span>
+<span class="n">Vour</span><span class="o">::</span><span class="n">publicSetBool</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// or top-&gt;publicSetBool(value);</span>
+</pre></div>
+</div>
+<p>Note that if the DPI task or function accesses any register or net within
+the RTL, it will require a scope to be set. This can be done using the
+standard functions within svdpi.h, after the module is instantiated, but
+before the task(s) and/or function(s) are called.</p>
+<p>For example, if the top level module is instantiated with the name “dut”
+and the name references within tasks are all hierarchical (dotted) names
+with respect to that top level module, then the scope could be set with</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;svdpi.h&quot;</span><span class="cp"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="n">svSetScope</span><span class="p">(</span><span class="n">svGetScopeFromName</span><span class="p">(</span><span class="s">&quot;TOP.dut&quot;</span><span class="p">));</span><span class="w"></span>
+</pre></div>
+</div>
+<p>(Remember that Verilator adds a “TOP” to the top of the module hierarchy.)</p>
+<p>Scope can also be set from within a DPI imported C function that has been
+called from Verilog by querying the scope of that function. See the
+sections on DPI Context Functions and DPI Header Isolation below and the
+comments within the svdpi.h header for more information.</p>
+</section>
+<section id="dpi-imports-that-access-signals">
+<h3>DPI Imports that access signals<a class="headerlink" href="#dpi-imports-that-access-signals" title="Permalink to this heading">¶</a></h3>
+<p>If a DPI import accesses a signal through the VPI Verilator will not be
+able to know what variables are accessed and may schedule the code
+inappropriately.  Ideally pass the values as inputs/outputs so the VPI is
+not required.  Alternatively a workaround is to use a non-inlined task as a
+wrapper:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">logic</span> <span class="n">din</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">This</span> <span class="n">DPI</span> <span class="n">function</span> <span class="n">will</span> <span class="n">read</span> <span class="s2">&quot;din&quot;</span>
+<span class="kn">import</span> <span class="s2">&quot;DPI-C&quot;</span> <span class="n">context</span> <span class="n">function</span> <span class="n">void</span> <span class="n">dpi_that_accesses_din</span><span class="p">();</span>
+
+<span class="n">always</span> <span class="o">@</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+   <span class="n">dpi_din_args</span><span class="p">(</span><span class="n">din</span><span class="p">);</span>
+
+<span class="n">task</span> <span class="n">dpi_din_args</span><span class="p">(</span><span class="nb">input</span> <span class="n">din</span><span class="p">);</span>
+   <span class="o">/*</span> <span class="n">verilator</span> <span class="n">no_inline_task</span> <span class="o">*/</span>
+   <span class="n">dpi_that_accesses_din</span><span class="p">();</span>
+<span class="n">endtask</span>
+</pre></div>
+</div>
+</section>
+<section id="dpi-display-functions">
+<h3>DPI Display Functions<a class="headerlink" href="#dpi-display-functions" title="Permalink to this heading">¶</a></h3>
+<p>Verilator allows writing $display like functions using this syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import &quot;DPI-C&quot; function void
+      \$my_display(input string formatted /*verilator sformat*/ );
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="extensions.html#cmdoption-verilator-32-sformat"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;sformat*/</span></code></a> metacomment indicates that this
+function accepts a $display like format specifier followed by any number of
+arguments to satisfy the format.</p>
+</section>
+<section id="dpi-context-functions">
+<h3>DPI Context Functions<a class="headerlink" href="#dpi-context-functions" title="Permalink to this heading">¶</a></h3>
+<p>Verilator supports IEEE DPI Context Functions.  Context imports pass the
+simulator context, including calling scope name, and filename and line
+number to the C code.  For example, in Verilog:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import &quot;DPI-C&quot; context function int dpic_line();
+initial $display(&quot;This is line %d, again, line %d\n&quot;, `line, dpic_line());
+</pre></div>
+</div>
+<p>This will call C++ code which may then use the svGet* functions to read
+information, in this case the line number of the Verilog statement that
+invoked the dpic_line function:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">dpic_line</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Get a scope:  svScope scope = svGetScope();</span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">scopenamep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">svGetNameFromScope</span><span class="p">(</span><span class="n">scope</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">scopenamep</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">filenamep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">lineno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">svGetCallerInfo</span><span class="p">(</span><span class="o">&amp;</span><span class="n">filenamep</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lineno</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;dpic_line called from scope %s on line %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="n">scopenamep</span><span class="p">,</span><span class="w"> </span><span class="n">lineno</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">lineno</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>See the IEEE Standard for more information.</p>
+</section>
+<section id="dpi-header-isolation">
+<h3>DPI Header Isolation<a class="headerlink" href="#dpi-header-isolation" title="Permalink to this heading">¶</a></h3>
+<p>Verilator places the IEEE standard header files such as svdpi.h into a
+separate include directory, vltstd (VeriLaTor STandarD).  When compiling
+most applications $VERILATOR_ROOT/include/vltstd would be in the include
+path along with the normal $VERILATOR_ROOT/include.  However, when
+compiling Verilated models into other simulators which have their own
+svdpi.h and similar standard files with different contents, the vltstd
+directory should not be included to prevent picking up incompatible
+definitions.</p>
+</section>
+<section id="public-functions">
+<h3>Public Functions<a class="headerlink" href="#public-functions" title="Permalink to this heading">¶</a></h3>
+<p>Instead of DPI exporting, there’s also Verilator public functions, which
+are slightly faster, but less compatible.</p>
+</section>
+</section>
+<section id="verification-procedural-interface-vpi">
+<h2>Verification Procedural Interface (VPI)<a class="headerlink" href="#verification-procedural-interface-vpi" title="Permalink to this heading">¶</a></h2>
+<p>Verilator supports a limited subset of the VPI.  This subset allows
+inspection, examination, value change callbacks, and depositing of values
+to public signals only.</p>
+<p>VPI is enabled with the Verilator <a class="reference internal" href="exe_verilator.html#cmdoption-vpi"><code class="xref std std-option docutils literal notranslate"><span class="pre">--vpi</span></code></a> option.</p>
+<p>To access signals via the VPI, Verilator must be told exactly which signals
+are to be accessed.  This is done using the Verilator public pragmas
+documented below.</p>
+<p>Verilator has an important difference from an event based simulator; signal
+values that are changed by the VPI will not immediately propagate their
+values, instead the top level header file’s <code class="code docutils literal notranslate"><span class="pre">eval()</span></code> method must be
+called.  Normally this would be part of the normal evaluation (i.e. the
+next clock edge), not as part of the value change.  This makes the
+performance of VPI routines extremely fast compared to event based
+simulators, but can confuse some test-benches that expect immediate
+propagation.</p>
+<p>Note the VPI by its specified implementation will always be much slower
+than accessing the Verilator values by direct reference
+(structure-&gt;module-&gt;signame), as the VPI accessors perform lookup in
+functions at simulation runtime requiring at best hundreds of instructions,
+while the direct references are evaluated by the compiler and result in
+only a couple of instructions.</p>
+<p>For signal callbacks to work the main loop of the program must call
+<code class="code docutils literal notranslate"><span class="pre">VerilatedVpi::callValueCbs()</span></code>.</p>
+<section id="vpi-example">
+<span id="id2"></span><h3>VPI Example<a class="headerlink" href="#vpi-example" title="Permalink to this heading">¶</a></h3>
+<p>In the below example, we have readme marked read-only, and writeme which if
+written from outside the model will have the same semantics as if it
+changed on the specified clock edge.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat &gt;our.v <span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<span class="s">  module our (input clk);</span>
+<span class="s">     reg readme   /*verilator public_flat_rd*/;</span>
+<span class="s">     reg writeme  /*verilator public_flat_rw @(posedge clk) */;</span>
+<span class="s">     initial $finish;</span>
+<span class="s">  endmodule</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+<p>There are many online tutorials and books on the VPI, but an example that
+accesses the above signal “readme” would be:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat &gt;sim_main.cpp &lt;&lt;<span class="s1">&#39;&lt;&lt;EOF&#39;</span>
+  <span class="c1">#include &quot;Vour.h&quot;</span>
+  <span class="c1">#include &quot;verilated.h&quot;</span>
+  <span class="c1">#include &quot;verilated_vpi.h&quot;  // Required to get definitions</span>
+
+  vluint64_t <span class="nv">main_time</span> <span class="o">=</span> <span class="m">0</span><span class="p">;</span>   // See comments <span class="k">in</span> first example
+  double sc_time_stamp<span class="o">()</span> <span class="o">{</span> <span class="k">return</span> main_time<span class="p">;</span> <span class="o">}</span>
+
+  void read_and_check<span class="o">()</span> <span class="o">{</span>
+      vpiHandle <span class="nv">vh1</span> <span class="o">=</span> vpi_handle_by_name<span class="o">((</span>PLI_BYTE8*<span class="o">)</span><span class="s2">&quot;TOP.our.readme&quot;</span>, NULL<span class="o">)</span><span class="p">;</span>
+      <span class="k">if</span> <span class="o">(</span>!vh1<span class="o">)</span> vl_fatal<span class="o">(</span>__FILE__, __LINE__, <span class="s2">&quot;sim_main&quot;</span>, <span class="s2">&quot;No handle found&quot;</span><span class="o">)</span><span class="p">;</span>
+      const char* <span class="nv">name</span> <span class="o">=</span> vpi_get_str<span class="o">(</span>vpiName, vh1<span class="o">)</span><span class="p">;</span>
+      printf<span class="o">(</span><span class="s2">&quot;Module name: %s\n&quot;</span>, name<span class="o">)</span><span class="p">;</span>  // Prints <span class="s2">&quot;readme&quot;</span>
+
+      s_vpi_value v<span class="p">;</span>
+      v.format <span class="o">=</span> vpiIntVal<span class="p">;</span>
+      vpi_get_value<span class="o">(</span>vh1, <span class="p">&amp;</span>v<span class="o">)</span><span class="p">;</span>
+      printf<span class="o">(</span><span class="s2">&quot;Value of v: %d\n&quot;</span>, v.value.integer<span class="o">)</span><span class="p">;</span>  // Prints <span class="s2">&quot;readme&quot;</span>
+  <span class="o">}</span>
+
+  int main<span class="o">(</span>int argc, char** argv, char** env<span class="o">)</span> <span class="o">{</span>
+      Verilated::commandArgs<span class="o">(</span>argc, argv<span class="o">)</span><span class="p">;</span>
+      Vour* <span class="nv">top</span> <span class="o">=</span> new Vour<span class="p">;</span>
+      Verilated::internalsDump<span class="o">()</span><span class="p">;</span>  // See scopes to <span class="nb">help</span> debug
+      <span class="k">while</span> <span class="o">(</span>!Verilated::gotFinish<span class="o">())</span> <span class="o">{</span>
+          top-&gt;eval<span class="o">()</span><span class="p">;</span>
+          VerilatedVpi::callValueCbs<span class="o">()</span><span class="p">;</span>  // For signal callbacks
+          read_and_check<span class="o">()</span><span class="p">;</span>
+      <span class="o">}</span>
+      delete top<span class="p">;</span>
+      <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+  <span class="o">}</span>
+EOF
+</pre></div>
+</div>
+</section>
+</section>
+<section id="wrappers-and-model-evaluation-loop">
+<span id="evaluation-loop"></span><h2>Wrappers and Model Evaluation Loop<a class="headerlink" href="#wrappers-and-model-evaluation-loop" title="Permalink to this heading">¶</a></h2>
+<p>When using SystemC, evaluation of the Verilated model is managed by the
+SystemC kernel, and for the most part can be ignored.  When using C++, the
+user must call <code class="code docutils literal notranslate"><span class="pre">eval()</span></code>, or <code class="code docutils literal notranslate"><span class="pre">eval_step()</span></code> and
+<code class="code docutils literal notranslate"><span class="pre">eval_end_step()</span></code>.</p>
+<p>1. When there is a single design instantiated at the C++ level that needs
+to evaluate within a given context, call <code class="code docutils literal notranslate"><span class="pre">designp-&gt;eval()</span></code>.</p>
+<p>2. When there are multiple designs instantiated at the C++ level that need
+to evaluate within a context, call <code class="code docutils literal notranslate"><span class="pre">first_designp-&gt;eval_step()</span></code> then
+<code class="code docutils literal notranslate"><span class="pre">-&gt;eval_step()</span></code> on all other designs.  Then call
+<code class="code docutils literal notranslate"><span class="pre">-&gt;eval_end_step()</span></code> on the first design then all other designs.  If
+there is only a single design, you would call <code class="code docutils literal notranslate"><span class="pre">eval_step()</span></code> then
+<code class="code docutils literal notranslate"><span class="pre">eval_end_step()</span></code>; in fact <code class="code docutils literal notranslate"><span class="pre">eval()</span></code> described above is just a
+wrapper which calls these two functions.</p>
+<p>When <code class="code docutils literal notranslate"><span class="pre">eval()</span></code> (or <code class="code docutils literal notranslate"><span class="pre">eval_step()</span></code>) is called Verilator looks for
+changes in clock signals and evaluates related sequential always blocks,
+such as computing always_ff &#64; (posedge…) outputs.  Then Verilator
+evaluates combinatorial logic.</p>
+<p>Note combinatorial logic is not computed before sequential always blocks
+are computed (for speed reasons). Therefore it is best to set any non-clock
+inputs up with a separate <code class="code docutils literal notranslate"><span class="pre">eval()</span></code> call before changing clocks.</p>
+<p>Alternatively, if all always_ff statements use only the posedge of clocks,
+or all inputs go directly to always_ff statements, as is typical, then you
+can change non-clock inputs on the negative edge of the input clock, which
+will be faster as there will be fewer <code class="code docutils literal notranslate"><span class="pre">eval()</span></code> calls.</p>
+<p>For more information on evaluation, see <code class="file docutils literal notranslate"><span class="pre">docs/internals.rst</span></code> in the
+distribution.</p>
+</section>
+<section id="verilated-and-verilatedcontext">
+<h2>Verilated and VerilatedContext<a class="headerlink" href="#verilated-and-verilatedcontext" title="Permalink to this heading">¶</a></h2>
+<p>Multiple Verilated models may be part of the same simulation context, that
+is share a VPI interface, sense of time, and common settings.  This common
+simulation context information is stored in a <code class="docutils literal notranslate"><span class="pre">VerilatedContext</span></code>
+structure.  If a <code class="docutils literal notranslate"><span class="pre">VerilatedContext</span></code> is not created prior to creating a
+model, a default global one is created automatically.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Verilated::</span></code> methods, including the <code class="docutils literal notranslate"><span class="pre">Verilated::commandArgs</span></code> call
+shown above, simply call VerilatedContext methods using the default global
+VerilatedContext.  (Technically they operate on the last one used by a
+given thread.)  If you are using multiple simulation contexts you should
+not use the Verilated:: methods, and instead always use VerilatedContext
+methods called on the appropriate VerilatedContext object.</p>
+<p>For methods available under Verilated and VerilatedContext see
+<code class="file docutils literal notranslate"><span class="pre">include/verilated.h</span></code> in the distribution.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="verilating.html" class="btn btn-neutral float-left" title="Verilating" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="simulating.html" class="btn btn-neutral float-right" title="Simulating (Verilated-Model Runtime)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="copyright.html">Copyright</a> 2021 by Wilson Snyder, under LGPL-3.0 or Artistic-2.0.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D27B0C9QEB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D27B0C9QEB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

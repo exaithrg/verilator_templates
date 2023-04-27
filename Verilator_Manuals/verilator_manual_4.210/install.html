@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; Verilator 4.210 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/vlt_sphinx.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/verilator_32x32_min.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Verilating" href="verilating.html" />
+    <link rel="prev" title="Examples in the Distribution" href="example_dist.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #45acf8" >
+            <a href="index.html">
+            <img src="_static/verilator_192_150_min.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.210
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#package-manager-quick-install">Package Manager Quick Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-quick-install">Git Quick Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-build-instructions">Detailed Build Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#os-requirements">OS Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-prerequisites">Install Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#install-systemc">Install SystemC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-gtkwave">Install GTKWave</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#obtain-sources">Obtain Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-configure">Auto Configure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eventual-installation-options">Eventual Installation Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#run-in-place-from-verilator-root">1. Run-in-Place from VERILATOR_ROOT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-into-a-specific-location">2. Install into a specific location</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-into-a-specific-path">3. Install into a Specific Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-system-globally">4. Install System Globally</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configure">Configure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compile">Compile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test">Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#verilator-build-docker-container">Verilator Build Docker Container</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rebuilding">Rebuilding</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#verilator-executable-docker-container">Verilator Executable Docker Container</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#internals">Internals</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="verilating.html">Verilating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connecting to Verilated Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulating.html">Simulating (Verilated-Model Runtime)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing and Reporting Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ/Frequently Asked Questions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="languages.html">Input Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Language Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="executables.html">Executable and Argument Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="warnings.html">Errors and Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecations.html">Deprecations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors and Origins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Revision History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #45acf8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Verilator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installation</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/verilator/verilator/blob/master/docs/guide/install.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h1>
+<p>This section discusses how to install Verilator.</p>
+<section id="package-manager-quick-install">
+<span id="id2"></span><h2>Package Manager Quick Install<a class="headerlink" href="#package-manager-quick-install" title="Permalink to this heading">¶</a></h2>
+<p>Using a distribution’s package manager is the easiest way to get
+started. (Note packages are unlikely to have the most recent version, so
+<a class="reference internal" href="#git-install"><span class="std std-ref">Git Quick Install</span></a>, might be a better alternative.) To install as a
+package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">verilator</span>   <span class="c1"># On Ubuntu</span>
+</pre></div>
+</div>
+</section>
+<section id="git-quick-install">
+<span id="git-install"></span><h2>Git Quick Install<a class="headerlink" href="#git-quick-install" title="Permalink to this heading">¶</a></h2>
+<p>Installing Verilator from Git provides the most flexibility. For additional
+options and details see <a class="reference internal" href="#detailed-build-instructions"><span class="std std-ref">Detailed Build Instructions</span></a> below.</p>
+<p>In brief, to install from git:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prerequisites:</span>
+<span class="c1">#sudo apt-get install git perl python3 make autoconf g++ flex bison ccache</span>
+<span class="c1">#sudo apt-get install libgoogle-perftools-dev numactl perl-doc</span>
+<span class="c1">#sudo apt-get install libfl2  # Ubuntu only (ignore if gives error)</span>
+<span class="c1">#sudo apt-get install libfl-dev  # Ubuntu only (ignore if gives error)</span>
+<span class="c1">#sudo apt-get install zlibc zlib1g zlib1g-dev  # Ubuntu only (ignore if gives error)</span>
+
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">verilator</span><span class="o">/</span><span class="n">verilator</span>   <span class="c1"># Only first time</span>
+<span class="c1">## Note the URL above is not a page you can see with a browser, it&#39;s for git only</span>
+
+<span class="c1"># Every time you need to build:</span>
+<span class="n">unsetenv</span> <span class="n">VERILATOR_ROOT</span>  <span class="c1"># For csh; ignore error if on bash</span>
+<span class="n">unset</span> <span class="n">VERILATOR_ROOT</span>  <span class="c1"># For bash</span>
+<span class="n">cd</span> <span class="n">verilator</span>
+<span class="n">git</span> <span class="n">pull</span>        <span class="c1"># Make sure git repository is up-to-date</span>
+<span class="n">git</span> <span class="n">tag</span>         <span class="c1"># See what versions exist</span>
+<span class="c1">#git checkout master      # Use development branch (e.g. recent bug fixes)</span>
+<span class="c1">#git checkout stable      # Use most recent stable release</span>
+<span class="c1">#git checkout v{version}  # Switch to specified release version</span>
+
+<span class="n">autoconf</span>        <span class="c1"># Create ./configure script</span>
+<span class="o">./</span><span class="n">configure</span>     <span class="c1"># Configure and create Makefile</span>
+<span class="n">make</span> <span class="o">-</span><span class="n">j</span>         <span class="c1"># Build Verilator itself</span>
+<span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</pre></div>
+</div>
+</section>
+<section id="detailed-build-instructions">
+<span id="id3"></span><h2>Detailed Build Instructions<a class="headerlink" href="#detailed-build-instructions" title="Permalink to this heading">¶</a></h2>
+<p>This section describes details of the build process, and assumes you are
+building from Git. For using a pre-built binary for your Linux
+distribution, see instead <a class="reference internal" href="#package-manager-quick-install"><span class="std std-ref">Package Manager Quick Install</span></a>.</p>
+<section id="os-requirements">
+<h3>OS Requirements<a class="headerlink" href="#os-requirements" title="Permalink to this heading">¶</a></h3>
+<p>Verilator is developed and has primary testing on Ubuntu, with additional
+testing on FreeBSD and Apple OS-X. Versions have also built on Redhat
+Linux, HPUX and Solaris. It should run with minor porting on any
+GNU/Linux-ish platform. Verilator also works on Windows under Cygwin, and
+Windows under MinGW (gcc -mno-cygwin). Verilated output (not Verilator
+itself) compiles under all the options above, plus using MSVC++.</p>
+</section>
+<section id="install-prerequisites">
+<h3>Install Prerequisites<a class="headerlink" href="#install-prerequisites" title="Permalink to this heading">¶</a></h3>
+<p>To build or run Verilator you need these standard packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">git</span> <span class="n">perl</span> <span class="n">python3</span> <span class="n">make</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">g</span><span class="o">++</span>  <span class="c1"># Alternatively, clang</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libgz</span>  <span class="c1"># Non-Ubuntu (ignore if gives error)</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libfl2</span>  <span class="c1"># Ubuntu only (ignore if gives error)</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libfl</span><span class="o">-</span><span class="n">dev</span>  <span class="c1"># Ubuntu only (ignore if gives error)</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">zlibc</span> <span class="n">zlib1g</span> <span class="n">zlib1g</span><span class="o">-</span><span class="n">dev</span>  <span class="c1"># Ubuntu only (ignore if gives error)</span>
+</pre></div>
+</div>
+<p>To build or run the following are optional but should be installed for good
+performance:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ccache</span>  <span class="c1"># If present at build, needed for run</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libgoogle</span><span class="o">-</span><span class="n">perftools</span><span class="o">-</span><span class="n">dev</span> <span class="n">numactl</span> <span class="n">perl</span><span class="o">-</span><span class="n">doc</span>
+</pre></div>
+</div>
+<p>To build Verilator you will need to install these packages; these do not
+need to be present to run Verilator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">git</span> <span class="n">autoconf</span> <span class="n">flex</span> <span class="n">bison</span>
+</pre></div>
+</div>
+<p>Those developing Verilator itself may also want these (see internals.rst):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">gdb</span> <span class="n">graphviz</span> <span class="n">cmake</span> <span class="n">clang</span> <span class="n">clang</span><span class="o">-</span><span class="nb">format</span><span class="o">-</span><span class="mi">11</span> <span class="n">gprof</span> <span class="n">lcov</span>
+<span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">sphinx</span> <span class="n">sphinx_rtd_theme</span> <span class="n">breathe</span>
+<span class="n">cpan</span> <span class="n">install</span> <span class="n">Pod</span><span class="p">::</span><span class="n">Perldoc</span>
+<span class="n">cpan</span> <span class="n">install</span> <span class="n">Parallel</span><span class="p">::</span><span class="n">Forker</span>
+</pre></div>
+</div>
+<section id="install-systemc">
+<h4>Install SystemC<a class="headerlink" href="#install-systemc" title="Permalink to this heading">¶</a></h4>
+<p>If you will be using SystemC (vs straight C++ output), download <a class="reference external" href="https://www.accellera.org/downloads/standards/systemc">SystemC</a>.  Follow their
+installation instructions. You will need to set the
+<a class="reference internal" href="environment.html#cmdoption-arg-SYSTEMC_INCLUDE"><code class="xref std std-option docutils literal notranslate"><span class="pre">SYSTEMC_INCLUDE</span></code></a> environment variable to point to the include
+directory with <code class="docutils literal notranslate"><span class="pre">systemc.h</span></code> in it, and set the <a class="reference internal" href="environment.html#cmdoption-arg-SYSTEMC_LIBDIR"><code class="xref std std-option docutils literal notranslate"><span class="pre">SYSTEMC_LIBDIR</span></code></a>
+environment variable to point to the directory with <code class="docutils literal notranslate"><span class="pre">libsystemc.a</span></code> in it.</p>
+</section>
+<section id="install-gtkwave">
+<h4>Install GTKWave<a class="headerlink" href="#install-gtkwave" title="Permalink to this heading">¶</a></h4>
+<p>To make use of Verilator FST tracing you will want <a class="reference external" href="http://gtkwave.sourceforge.net/">GTKwave</a> installed, however this is not
+required at Verilator build time.</p>
+</section>
+</section>
+<section id="obtain-sources">
+<h3>Obtain Sources<a class="headerlink" href="#obtain-sources" title="Permalink to this heading">¶</a></h3>
+<p>Get the sources from the git repository: (You need do this only once,
+ever.)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">verilator</span><span class="o">/</span><span class="n">verilator</span>   <span class="c1"># Only first time</span>
+<span class="c1">## Note the URL above is not a page you can see with a browser, it&#39;s for git only</span>
+</pre></div>
+</div>
+<p>Enter the checkout and determine what version/branch to use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">verilator</span>
+<span class="n">git</span> <span class="n">pull</span>        <span class="c1"># Make sure we&#39;re up-to-date</span>
+<span class="n">git</span> <span class="n">tag</span>         <span class="c1"># See what versions exist</span>
+<span class="c1">#git checkout master      # Use development branch (e.g. recent bug fix)</span>
+<span class="c1">#git checkout stable      # Use most recent release</span>
+<span class="c1">#git checkout v{version}  # Switch to specified release version</span>
+</pre></div>
+</div>
+</section>
+<section id="auto-configure">
+<h3>Auto Configure<a class="headerlink" href="#auto-configure" title="Permalink to this heading">¶</a></h3>
+<p>Create the configuration script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">autoconf</span>        <span class="c1"># Create ./configure script</span>
+</pre></div>
+</div>
+</section>
+<section id="eventual-installation-options">
+<h3>Eventual Installation Options<a class="headerlink" href="#eventual-installation-options" title="Permalink to this heading">¶</a></h3>
+<p>Before configuring the build, you have to decide how you’re going to
+eventually install Verilator onto your system. Verilator will be compiling
+the current value of the environment variables <a class="reference internal" href="environment.html#cmdoption-arg-VERILATOR_ROOT"><code class="xref std std-option docutils literal notranslate"><span class="pre">VERILATOR_ROOT</span></code></a>,
+<a class="reference internal" href="environment.html#cmdoption-arg-SYSTEMC_INCLUDE"><code class="xref std std-option docutils literal notranslate"><span class="pre">SYSTEMC_INCLUDE</span></code></a>, and <a class="reference internal" href="environment.html#cmdoption-arg-SYSTEMC_LIBDIR"><code class="xref std std-option docutils literal notranslate"><span class="pre">SYSTEMC_LIBDIR</span></code></a> as defaults into
+the executable, so they must be correct before configuring.</p>
+<p>These are the installation options:</p>
+<section id="run-in-place-from-verilator-root">
+<h4>1. Run-in-Place from VERILATOR_ROOT<a class="headerlink" href="#run-in-place-from-verilator-root" title="Permalink to this heading">¶</a></h4>
+<p>Our personal favorite is to always run Verilator in-place from its Git
+directory. This allows the easiest experimentation and upgrading, and
+allows many versions of Verilator to co-exist on a system.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export VERILATOR_ROOT=`pwd`   # if your shell is bash
+setenv VERILATOR_ROOT `pwd`   # if your shell is csh
+./configure
+# Running will use files from $VERILATOR_ROOT, so no install needed
+</pre></div>
+</div>
+<p>Note after installing (below steps), a calling program or shell must set
+the environment variable <a class="reference internal" href="environment.html#cmdoption-arg-VERILATOR_ROOT"><code class="xref std std-option docutils literal notranslate"><span class="pre">VERILATOR_ROOT</span></code></a> to point to this Git
+directory, then execute <code class="docutils literal notranslate"><span class="pre">$VERILATOR_ROOT/bin/verilator</span></code>, which will find
+the path to all needed files.</p>
+</section>
+<section id="install-into-a-specific-location">
+<h4>2. Install into a specific location<a class="headerlink" href="#install-into-a-specific-location" title="Permalink to this heading">¶</a></h4>
+<p>You may eventually be installing onto a project/company-wide “CAD” tools
+disk that may support multiple versions of every tool. Tell configure the
+eventual destination directory name.  We recommend the destination location
+include the Verilator version name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>unset VERILATOR_ROOT      # if your shell is bash
+unsetenv VERILATOR_ROOT   # if your shell is csh
+# For the tarball, use the version number instead of git describe
+./configure --prefix /CAD_DISK/verilator/`git describe | sed &quot;s/verilator_//&quot;`
+</pre></div>
+</div>
+<p>Note after installing (below steps), if you use <a class="reference external" href="http://modules.sourceforge.net/">modulecmd</a>, you’ll want a module file like the
+following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>set install_root /CAD_DISK/verilator/{version-number-used-above}
+unsetenv VERILATOR_ROOT
+prepend-path PATH $install_root/bin
+prepend-path MANPATH $install_root/man
+prepend-path PKG_CONFIG_PATH $install_root/share/pkgconfig
+</pre></div>
+</div>
+</section>
+<section id="install-into-a-specific-path">
+<h4>3. Install into a Specific Path<a class="headerlink" href="#install-into-a-specific-path" title="Permalink to this heading">¶</a></h4>
+<p>You may eventually install Verilator into a specific installation prefix,
+as most GNU tools support:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">unset</span> <span class="n">VERILATOR_ROOT</span>      <span class="c1"># if your shell is bash</span>
+<span class="n">unsetenv</span> <span class="n">VERILATOR_ROOT</span>   <span class="c1"># if your shell is csh</span>
+<span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">verilator</span><span class="o">-</span><span class="n">VERSION</span>
+</pre></div>
+</div>
+<p>Then after installing (below steps) you will need to add
+<code class="docutils literal notranslate"><span class="pre">/opt/verilator-VERSION/bin</span></code> to your <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> environment variable.</p>
+</section>
+<section id="install-system-globally">
+<h4>4. Install System Globally<a class="headerlink" href="#install-system-globally" title="Permalink to this heading">¶</a></h4>
+<p>The final option is to eventually install Verilator globally, using
+configure’s default system paths:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">unset</span> <span class="n">VERILATOR_ROOT</span>      <span class="c1"># if your shell is bash</span>
+<span class="n">unsetenv</span> <span class="n">VERILATOR_ROOT</span>   <span class="c1"># if your shell is csh</span>
+<span class="o">./</span><span class="n">configure</span>
+</pre></div>
+</div>
+<p>Then after installing (below) the binaries should be in a location that is
+already in your <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> environment variable.</p>
+</section>
+</section>
+<section id="configure">
+<h3>Configure<a class="headerlink" href="#configure" title="Permalink to this heading">¶</a></h3>
+<p>The command to configure the package was described in the previous step.
+Developers should configure to have more complete developer tests.
+Additional packages may be required for these tests.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">VERILATOR_AUTHOR_SITE</span><span class="o">=</span><span class="mi">1</span>    <span class="c1"># Put in your .bashrc</span>
+<span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">longtests</span>  <span class="o">...</span><span class="n">above</span> <span class="n">options</span><span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="compile">
+<h3>Compile<a class="headerlink" href="#compile" title="Permalink to this heading">¶</a></h3>
+<p>Compile Verilator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">-</span><span class="n">j</span>
+</pre></div>
+</div>
+</section>
+<section id="test">
+<h3>Test<a class="headerlink" href="#test" title="Permalink to this heading">¶</a></h3>
+<p>Check the compilation by running self-tests:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">test</span>
+</pre></div>
+</div>
+</section>
+<section id="install">
+<h3>Install<a class="headerlink" href="#install" title="Permalink to this heading">¶</a></h3>
+<p>If you used any install option other than the <a class="reference external" href="#_1_run_in_place_from_verilator_root">1. Run-in-Place from
+VERILATOR_ROOT</a> scheme, install
+the files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">install</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="verilator-build-docker-container">
+<h2>Verilator Build Docker Container<a class="headerlink" href="#verilator-build-docker-container" title="Permalink to this heading">¶</a></h2>
+<p>This Verilator Build Docker Container is set up to compile and test a
+Verilator build. It uses the following parameters:</p>
+<ul class="simple">
+<li><p>Source repository (default: <a class="reference external" href="https://github.com/verilator/verilator">https://github.com/verilator/verilator</a>)</p></li>
+<li><p>Source revision (default: master)</p></li>
+<li><p>Compiler (GCC 9.3.0, clang 10.0.0, default: 9.3.0)</p></li>
+</ul>
+<p>The container is published as <code class="docutils literal notranslate"><span class="pre">verilator/verilator-buildenv</span></code> on <a class="reference external" href="https://hub.docker.com/repository/docker/verilator/verilator-buildenv">docker
+hub</a>.</p>
+<p>To run the basic build using the current Verilator master:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="n">verilator</span><span class="o">/</span><span class="n">verilator</span><span class="o">-</span><span class="n">buildenv</span>
+</pre></div>
+</div>
+<p>To also run tests:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="n">verilator</span><span class="o">/</span><span class="n">verilator</span><span class="o">-</span><span class="n">buildenv</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>To change the compiler:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="o">-</span><span class="n">e</span> <span class="n">CC</span><span class="o">=</span><span class="n">clang</span><span class="o">-</span><span class="mi">10</span> <span class="o">-</span><span class="n">e</span> <span class="n">CXX</span><span class="o">=</span><span class="n">clang</span><span class="o">++-</span><span class="mi">10</span> <span class="n">verilator</span><span class="o">/</span><span class="n">verilator</span><span class="o">-</span><span class="n">buildenv</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>The tests that involve gdb are not working due to security restrictions.
+To run those too:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="o">-</span><span class="n">e</span> <span class="n">CC</span><span class="o">=</span><span class="n">clang</span><span class="o">-</span><span class="mi">10</span> <span class="o">-</span><span class="n">e</span> <span class="n">CXX</span><span class="o">=</span><span class="n">clang</span><span class="o">++-</span><span class="mi">10</span> <span class="o">--</span><span class="n">cap</span><span class="o">-</span><span class="n">add</span><span class="o">=</span><span class="n">SYS_PTRACE</span> <span class="o">--</span><span class="n">security</span><span class="o">-</span><span class="n">opt</span> <span class="n">seccomp</span><span class="o">=</span><span class="n">unconfined</span> <span class="n">verilator</span><span class="o">/</span><span class="n">verilator</span><span class="o">-</span><span class="n">buildenv</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>Rather then building using a remote git repository you may prefer to use a
+working copy on the local filesystem. Mount the local working copy path as
+a volume and use that in place of git. When doing this be careful to have
+all changes committed to the local git area. To build the current HEAD from
+top of a repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run -ti -v ${PWD}:/tmp/repo -e REPO=/tmp/repo -e REV=`git rev-parse --short HEAD` --cap-add=SYS_PTRACE --security-opt seccomp=unconfined verilator/verilator-buildenv test
+</pre></div>
+</div>
+<section id="rebuilding">
+<h3>Rebuilding<a class="headerlink" href="#rebuilding" title="Permalink to this heading">¶</a></h3>
+<p>To rebuild the Verilator-buildenv docker image, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>This will also build SystemC under all supported compiler variants to
+reduce the SystemC testing time.</p>
+</section>
+</section>
+<section id="verilator-executable-docker-container">
+<h2>Verilator Executable Docker Container<a class="headerlink" href="#verilator-executable-docker-container" title="Permalink to this heading">¶</a></h2>
+<p>The Verilator Executable Docker Container allows you to run Verilator
+easily as a docker image, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="n">verilator</span><span class="o">/</span><span class="n">verilator</span><span class="p">:</span><span class="n">latest</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>This will install the container, run the latest Verilator and print
+Verilator’s version.</p>
+<p>Containers are automatically built for all released versions, so you may
+easily compare results across versions, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="n">verilator</span><span class="o">/</span><span class="n">verilator</span><span class="p">:</span><span class="mf">4.030</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>Verilator needs to read and write files on the local system. To simplify
+this process, use the <code class="docutils literal notranslate"><span class="pre">verilator-docker</span></code> convenience script. This script
+takes the version number, and all remaining arguments are passed through to
+Verilator. e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">verilator</span><span class="o">-</span><span class="n">docker</span> <span class="mf">4.030</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">verilator</span><span class="o">-</span><span class="n">docker</span> <span class="mf">4.030</span> <span class="o">--</span><span class="n">cc</span> <span class="n">test</span><span class="o">.</span><span class="n">v</span>
+</pre></div>
+</div>
+<p>If you prefer not to use <code class="docutils literal notranslate"><span class="pre">verilator-docker</span></code> you must give the container
+access to your files as a volume with appropriate user rights.  For example
+to Verilate test.v:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run -ti -v ${PWD}:/work --user $(id -u):$(id -g) verilator/verilator:latest --cc test.v
+</pre></div>
+</div>
+<p>This method can only access files below the current directory. An
+alternative is setup the volume <code class="docutils literal notranslate"><span class="pre">-workdir</span></code>.</p>
+<p>You can also work in the container by setting the entrypoint (don’t forget
+to mount a volume if you want your work persistent):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="o">--</span><span class="n">entrypoint</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span> <span class="n">verilator</span><span class="o">/</span><span class="n">verilator</span><span class="p">:</span><span class="n">latest</span>
+</pre></div>
+</div>
+<p>You can also use the container to build Verilator at a specific commit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">--</span><span class="n">build</span><span class="o">-</span><span class="n">arg</span> <span class="n">SOURCE_COMMIT</span><span class="o">=&lt;</span><span class="n">commit</span><span class="o">&gt;</span> <span class="o">.</span>
+</pre></div>
+</div>
+<section id="internals">
+<h3>Internals<a class="headerlink" href="#internals" title="Permalink to this heading">¶</a></h3>
+<p>The Dockerfile builds Verilator and removes the tree when completed to
+reduce the image size. The entrypoint is set as a wrapper script
+(<code class="docutils literal notranslate"><span class="pre">verilator-wrap.sh</span></code>). That script 1. calls Verilator, and 2. copies the
+Verilated runtime files to the <code class="docutils literal notranslate"><span class="pre">obj_dir</span></code> or the <code class="docutils literal notranslate"><span class="pre">-Mdir</span></code>
+respectively. This allows the user to have the files to they may later
+build the C++ output with the matching runtime files. The wrapper also
+patches the Verilated Makefile accordingly.</p>
+<p>There is also a hook defined that is run by docker hub via automated
+builds.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example_dist.html" class="btn btn-neutral float-left" title="Examples in the Distribution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="verilating.html" class="btn btn-neutral float-right" title="Verilating" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="copyright.html">Copyright</a> 2021 by Wilson Snyder, under LGPL-3.0 or Artistic-2.0.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D27B0C9QEB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D27B0C9QEB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

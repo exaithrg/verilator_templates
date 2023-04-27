@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributing and Reporting Bugs &mdash; Verilator 4.210 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/vlt_sphinx.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/verilator_32x32_min.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="FAQ/Frequently Asked Questions" href="faq.html" />
+    <link rel="prev" title="Simulating (Verilated-Model Runtime)" href="simulating.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #45acf8" >
+            <a href="index.html">
+            <img src="_static/verilator_192_150_min.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.210
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="verilating.html">Verilating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connecting to Verilated Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulating.html">Simulating (Verilated-Model Runtime)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing and Reporting Bugs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#announcements">Announcements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing-to-verilator">Contributing to Verilator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#did-you-find-a-bug">Did you find a bug?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#did-you-write-a-patch-that-fixes-a-bug">Did you write a patch that fixes a bug?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#do-you-have-questions">Do you have questions?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-of-conduct">Code of Conduct</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ/Frequently Asked Questions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="languages.html">Input Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Language Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="executables.html">Executable and Argument Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="warnings.html">Errors and Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecations.html">Deprecations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors and Origins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Revision History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #45acf8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Verilator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Contributing and Reporting Bugs</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/verilator/verilator/blob/master/docs/guide/contributing.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="contributing-and-reporting-bugs">
+<h1>Contributing and Reporting Bugs<a class="headerlink" href="#contributing-and-reporting-bugs" title="Permalink to this heading">¶</a></h1>
+<section id="announcements">
+<h2>Announcements<a class="headerlink" href="#announcements" title="Permalink to this heading">¶</a></h2>
+<p>To get notified of new releases and other important announcements, go to
+<a class="reference external" href="https://github.com/verilator/verilator-announce">Verilator announcement repository</a> and follow the
+instructions there.</p>
+</section>
+<section id="reporting-bugs">
+<h2>Reporting Bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this heading">¶</a></h2>
+<p>First, check the <a class="reference internal" href="languages.html#language-limitations"><span class="std std-ref">Language Limitations</span></a> section.</p>
+<p>Next, try the <a class="reference internal" href="exe_verilator.html#cmdoption-debug"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug</span></code></a> option.  This will enable additional
+internal assertions, and may help identify the problem.</p>
+<p>Finally, reduce your code to the smallest possible routine that exhibits
+the bug.  Even better, create a test in the <code class="file docutils literal notranslate"><span class="pre">test_regress/t</span></code>
+directory, as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> test_regress
+cp -p t/t_EXAMPLE.pl t/t_BUG.pl
+cp -p t/t_EXAMPLE.v t/t_BUG.v
+</pre></div>
+</div>
+<p>There are many hints on how to write a good test in the
+<code class="file docutils literal notranslate"><span class="pre">test_regress/driver.pl</span></code> documentation which can be seen by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$VERILATOR_ROOT</span>  <span class="c1"># Need the original distribution kit</span>
+test_regress/driver.pl --help
+</pre></div>
+</div>
+<p>Edit <code class="file docutils literal notranslate"><span class="pre">t/t_BUG.pl</span></code> to suit your example; you can do anything you want
+in the Verilog code there; just make sure it retains the single clk input
+and no outputs.  Now, the following should fail:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$VERILATOR_ROOT</span>  <span class="c1"># Need the original distribution kit</span>
+<span class="nb">cd</span> test_regress
+t/t_BUG.pl  <span class="c1"># Run on Verilator</span>
+t/t_BUG.pl --debug <span class="c1"># Run on Verilator, passing --debug to Verilator</span>
+t/t_BUG.pl --vcs  <span class="c1"># Run on VCS simulator</span>
+t/t_BUG.pl --nc<span class="p">|</span>--iv<span class="p">|</span>--ghdl  <span class="c1"># Likewise on other simulators</span>
+</pre></div>
+</div>
+<p>The test driver accepts a number of options, many of which mirror the main
+Verilator options. For example the previous test could have been run with
+debugging enabled.  The full set of test options can be seen by running
+<strong class="command">driver.pl --help</strong> as shown above.</p>
+<p>Finally, report the bug at <a class="reference external" href="https://verilator.org/issues">Verilator Issues</a>.  The bug will become publicly visible; if
+this is unacceptable, mail the bug report to <code class="docutils literal notranslate"><span class="pre">wsnyder&#64;wsnyder.org</span></code>.</p>
+</section>
+<section id="contributing-to-verilator">
+<h2>Contributing to Verilator<a class="headerlink" href="#contributing-to-verilator" title="Permalink to this heading">¶</a></h2>
+<p>Thanks for using Verilator! We welcome your contributions in whatever form.</p>
+<p>This contributing document contains some suggestions that may make
+contributions flow more efficiently.</p>
+<section id="did-you-find-a-bug">
+<h3>Did you find a bug?<a class="headerlink" href="#did-you-find-a-bug" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Please <strong>Ensure the bug was not already reported</strong> by searching
+<a class="reference external" href="https://verilator.org/issues">Verilator Issues</a>.</p></li>
+<li><p>If you’re unable to find an open issue addressing the problem, <a class="reference external" href="https://verilator.org/issues/new">open a
+new Verilator issue</a>.</p>
+<ul>
+<li><p>Be sure to include a <strong>code sample</strong> or an <strong>executable test case</strong>
+demonstrating the bug and expected behavior that is not occurring.</p></li>
+<li><p>The ideal example works against other simulators, and is in the
+test_regress/t test format, as described in <a class="reference external" href="internals.rst">docs/internals</a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="did-you-write-a-patch-that-fixes-a-bug">
+<h3>Did you write a patch that fixes a bug?<a class="headerlink" href="#did-you-write-a-patch-that-fixes-a-bug" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Please <a class="reference external" href="https://verilator.org/issues/new">Open a new issue</a>.</p></li>
+<li><p>You may attach a patch to the issue, or (preferred) may request a
+GitHub pull request.</p>
+<ul>
+<li><p>Verilator uses GitHub Actions to provide continuous integration.  You
+may want to enable Actions on your GitHub branch to ensure your changes
+keep the tests passing. See <a class="reference external" href="internals.rst">docs/internals</a>.</p></li>
+</ul>
+</li>
+<li><p>Your source-code contributions must be certified as open source,
+under the <a class="reference external" href="https://developercertificate.org/">Developer Certificate of
+Origin</a>. On your first
+contribution, you must either:</p>
+<ul>
+<li><p>Have your patch include the addition of your name to <a class="reference external" href="CONTRIBUTORS">docs/CONTRIBUTORS</a> (preferred).</p></li>
+<li><p>Use “git -s” as part of your commit. This adds a “signed-of-by”
+attribute which will certify your contribution as described in the
+<a class="reference external" href="https://github.com/wking/signed-off-by/blob/master/Documentation/SubmittingPatches">Signed-of-By convention</a>.</p></li>
+<li><p>Email, or post in an issue a statement that you certify your
+contributions.</p></li>
+<li><p>In any of these cases your name will be added to <a class="reference external" href="CONTRIBUTORS">docs/CONTRIBUTORS</a> and you are agreeing all future contributions are
+also certified.</p></li>
+<li><p>We occasionally accept contributions where people do not want their
+name published. Please email us; you must still privately certify your
+contribution.</p></li>
+</ul>
+</li>
+<li><p>Your test contributions are generally considered released into the
+Creative Commons Public Domain (CC0), unless you request otherwise or
+put a GNU/Artistic license on your file.</p></li>
+<li><p>Most important is we get your patch. If you’d like to clean up
+indentation and related issues ahead of our feedback, that is
+appreciated; please see the coding conventions in <a class="reference external" href="internals.rst">docs/internals</a>.</p></li>
+</ul>
+</section>
+<section id="do-you-have-questions">
+<h3>Do you have questions?<a class="headerlink" href="#do-you-have-questions" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Please see FAQ section and rest of the <a class="reference external" href="https://verilator.org/verilator_doc.html">Verilator
+manual</a>, or <a class="reference external" href="https://verilator.org/verilator_doc.pdf">Verilator
+manual (PDF)</a>.</p></li>
+<li><p>Ask any question in the <a class="reference external" href="https://verilator.org/forum">Verilator forum</a>.</p></li>
+</ul>
+</section>
+<section id="code-of-conduct">
+<h3>Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Our contributors and participants pledge to make participation in our
+project and our community a positive experience for everyone. We follow
+the <a class="reference external" href="https://www.contributor-covenant.org/version/1/4/code-of-conduct/">Contributor Covenant version 1.4</a>.</p></li>
+</ul>
+<p>Thanks!</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="simulating.html" class="btn btn-neutral float-left" title="Simulating (Verilated-Model Runtime)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="faq.html" class="btn btn-neutral float-right" title="FAQ/Frequently Asked Questions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="copyright.html">Copyright</a> 2021 by Wilson Snyder, under LGPL-3.0 or Artistic-2.0.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D27B0C9QEB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D27B0C9QEB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

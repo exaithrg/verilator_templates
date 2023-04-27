@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verilating &mdash; Verilator 4.210 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/vlt_sphinx.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/verilator_32x32_min.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Connecting to Verilated Models" href="connecting.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #45acf8" >
+            <a href="index.html">
+            <img src="_static/verilator_192_150_min.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.210
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Verilating</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#c-and-systemc-generation">C++ and SystemC Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hierarchical-verilation">Hierarchical Verilation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitations">Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overlapping-verilation-and-compilation">Overlapping Verilation and Compilation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cross-compilation">Cross Compilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multithreading">Multithreading</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#multithreaded-verilog-and-library-support">Multithreaded Verilog and Library Support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gnu-make">GNU Make</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cmake">CMake</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#verilate-in-cmake">Verilate in CMake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#systemc-link-in-cmake">SystemC Link in CMake</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connecting to Verilated Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulating.html">Simulating (Verilated-Model Runtime)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing and Reporting Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ/Frequently Asked Questions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="languages.html">Input Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Language Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="executables.html">Executable and Argument Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="warnings.html">Errors and Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecations.html">Deprecations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors and Origins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Revision History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #45acf8" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Verilator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Verilating</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/verilator/verilator/blob/master/docs/guide/verilating.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="verilating">
+<h1>Verilating<a class="headerlink" href="#verilating" title="Permalink to this heading">¶</a></h1>
+<p>Verilator may be used in five major ways:</p>
+<ul class="simple">
+<li><p>With the <a class="reference internal" href="exe_verilator.html#cmdoption-cc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--cc</span></code></a> or <a class="reference internal" href="exe_verilator.html#cmdoption-sc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--sc</span></code></a> options, Verilator will translate
+the design into C++ or SystemC code respectively.  See <a class="reference internal" href="#c-and-systemc-generation"><span class="std std-ref">C++ and SystemC Generation</span></a>.</p></li>
+<li><p>With the <a class="reference internal" href="exe_verilator.html#cmdoption-lint-only"><code class="xref std std-option docutils literal notranslate"><span class="pre">--lint-only</span></code></a> option, Verilator will lint the design to
+check for warnings but will not typically create any output files.</p></li>
+<li><p>With the <a class="reference internal" href="exe_verilator.html#cmdoption-xml-only"><code class="xref std std-option docutils literal notranslate"><span class="pre">--xml-only</span></code></a> option, Verilator will create XML output
+that may be used to feed into other user-designed tools.  See
+<code class="file docutils literal notranslate"><span class="pre">docs/xml.rst</span></code> in the distribution.</p></li>
+<li><p>With the <a class="reference internal" href="exe_verilator.html#cmdoption-E"><code class="xref std std-option docutils literal notranslate"><span class="pre">-E</span></code></a> option, Verilator will preprocess the code according
+to IEEE preprocessing rules, and write the output to standard out. This
+is useful to feed other tools, and to debug how “`define” statements are
+expanded.</p></li>
+</ul>
+<section id="c-and-systemc-generation">
+<span id="id1"></span><h2>C++ and SystemC Generation<a class="headerlink" href="#c-and-systemc-generation" title="Permalink to this heading">¶</a></h2>
+<p>Verilator will translate a SystemVerilog design into C++ with the
+<a class="reference internal" href="exe_verilator.html#cmdoption-cc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--cc</span></code></a> option, or into SystemC with the <a class="reference internal" href="exe_verilator.html#cmdoption-sc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--sc</span></code></a> option.</p>
+<p>When using these options:</p>
+<ol class="arabic simple">
+<li><p>Verilator reads the input Verilog code, determines all “top modules” that
+is modules or programs that are not used as instances under other cells.
+If <a class="reference internal" href="exe_verilator.html#cmdoption-top-module"><code class="xref std std-option docutils literal notranslate"><span class="pre">--top-module</span></code></a> is used, then that determines the top module and
+all other top modules are removed, otherwise a <a class="reference internal" href="warnings.html#cmdoption-arg-MULTITOP"><code class="xref std std-option docutils literal notranslate"><span class="pre">MULTITOP</span></code></a> warning
+is given.</p></li>
+<li><p>Verilator writes the C++/SystemC code to output files into the
+<a class="reference internal" href="exe_verilator.html#cmdoption-Mdir"><code class="xref std std-option docutils literal notranslate"><span class="pre">--Mdir</span></code></a> option-specified directory, or defaults to “obj_dir”.
+The prefix is set with <a class="reference internal" href="exe_verilator.html#cmdoption-prefix"><code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code></a>, or defaults to the name of the
+top module.</p></li>
+<li><p>If <a class="reference internal" href="exe_verilator.html#cmdoption-exe"><code class="xref std std-option docutils literal notranslate"><span class="pre">--exe</span></code></a> is used, Verilator creates makefiles to generate a
+simulation executable, otherwise it creates makefiles to generate an
+archive (.a) containing the objects.</p></li>
+<li><p>If <a class="reference internal" href="exe_verilator.html#cmdoption-build"><code class="xref std std-option docutils literal notranslate"><span class="pre">--build</span></code></a> option was used, it calls <a class="reference internal" href="#gnu-make"><span class="std std-ref">GNU Make</span></a> or
+<a class="reference internal" href="#cmake"><span class="std std-ref">CMake</span></a> to build the model.</p></li>
+</ol>
+<p>Once a model is built it is then typically run, see <a class="reference internal" href="simulating.html#simulating"><span class="std std-ref">Simulating (Verilated-Model Runtime)</span></a>.</p>
+</section>
+<section id="hierarchical-verilation">
+<span id="id2"></span><h2>Hierarchical Verilation<a class="headerlink" href="#hierarchical-verilation" title="Permalink to this heading">¶</a></h2>
+<p>Large designs may take long (e.g. 10+ minutes) and huge memory (e.g. 100+
+GB) to Verilate.  In hierarchical mode, the user manually selects some
+large lower-level hierarchy blocks to separate from the larger design. For
+example a core may be the hierarchy block, and separated out of a
+multi-core SoC.</p>
+<p>Verilator is run in hierarchical mode on the whole SoC.  Verilator will
+make two models, one for the CPU hierarchy block, and one for the SoC.  The
+Verialted code for the SoC will automatically call the CPU Verilated model.</p>
+<p>The current hierarchical Verilation is based on protect-lib. Each hierarchy
+block is Verilated to a protect-lib. User modules of the hierarchy blocks
+will see a tiny wrapper generated by protect-lib instead of the actual
+design.</p>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h3>
+<p>Users need to mark one or more moderate size module as hierarchy block(s).
+There are two ways to mark a module:</p>
+<ul class="simple">
+<li><p>Write <a class="reference internal" href="extensions.html#cmdoption-verilator-32-hier_block"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;hier_block*/</span></code></a> metacomment in HDL code.</p></li>
+<li><p>Add a <a class="reference internal" href="exe_verilator.html#cmdoption-arg-hier_block"><code class="xref std std-option docutils literal notranslate"><span class="pre">hier_block</span></code></a> line in a the <a class="reference internal" href="exe_verilator.html#configuration-files"><span class="std std-ref">Configuration Files</span></a>.</p></li>
+</ul>
+<p>Then pass the <a class="reference internal" href="exe_verilator.html#cmdoption-hierarchical"><code class="xref std std-option docutils literal notranslate"><span class="pre">--hierarchical</span></code></a> option to Verilator</p>
+<p>Compilation is the same as when not using hierarchical mode.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make -C obj_dir -f Vtop_module_name.mk
+</pre></div>
+</div>
+</section>
+<section id="limitations">
+<h3>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading">¶</a></h3>
+<p>Hierarchy blocks have some limitations including:</p>
+<ul class="simple">
+<li><p>The hierarchy block cannot be accessed using dot (.) from upper module(s)
+or other hierarchy blocks.</p></li>
+<li><p>Signals in the block cannot be traced.</p></li>
+<li><p>Modport cannot be used at the hierarchical block boundary.</p></li>
+<li><p>The simulation speed is likely to not be as fast as flat Verilation, in
+which all modules are globally scheduled.</p></li>
+<li><p>Generated clocks may not work correctly if they are generated in the
+hierarchical model and pass up into another hierarchical model or the top
+module.</p></li>
+</ul>
+<p>But, the following usage is supported:</p>
+<ul class="simple">
+<li><p>Nested hierarchy blocks. A hierarchy block may instantiate other
+hierarchy blocks.</p></li>
+<li><p>Parameterized hierarchy block. Parameters of a hierarchy block can be
+overridden using <code class="code docutils literal notranslate"><span class="pre">#(.param_name(value))</span></code> construct.</p></li>
+</ul>
+</section>
+<section id="overlapping-verilation-and-compilation">
+<span id="id3"></span><h3>Overlapping Verilation and Compilation<a class="headerlink" href="#overlapping-verilation-and-compilation" title="Permalink to this heading">¶</a></h3>
+<p>Verilator needs to run 2 + <em>N</em> times in hierarchical Verilation, where <em>N</em>
+is the number of hierarchy blocks. One of the two is for the top module
+which refers wrappers of all other hierarchy blocks.  The second one of the
+two is the initial run that searches modules marked with
+<a class="reference internal" href="extensions.html#cmdoption-verilator-32-hier_block"><code class="xref std std-option docutils literal notranslate"><span class="pre">/*verilator&amp;32;hier_block*/</span></code></a> metacomment and creates a plan and
+write in <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">_hier.mk</span></code>.  This initial run internally invokes
+other <em>N</em> + 1 runs, so you don’t have to care about these <em>N</em> + 1 times of
+run. The additional <em>N</em> is the Verilator run for each hierarchical block.</p>
+<p>If :<a class="reference internal" href="exe_verilator.html#cmdoption-j"><code class="xref std std-option docutils literal notranslate"><span class="pre">-j</span> <span class="pre">{jobs}</span></code></a> option is specified, Verilation for hierarchy
+blocks runs in parallel.</p>
+<p>If <a class="reference internal" href="exe_verilator.html#cmdoption-build"><code class="xref std std-option docutils literal notranslate"><span class="pre">--build</span></code></a> option is specified, C++ compilation also runs as soon
+as a hierarchy block is Verilated. C++ compilation and Verilation for other
+hierarchy blocks run simultaneously.</p>
+</section>
+</section>
+<section id="cross-compilation">
+<h2>Cross Compilation<a class="headerlink" href="#cross-compilation" title="Permalink to this heading">¶</a></h2>
+<p>Verilator supports cross-compiling Verilated code.  This is generally used
+to run Verilator on a Linux system and produce C++ code that is then compiled
+on Windows.</p>
+<p>Cross compilation involves up to three different OSes.  The build system is
+where you configured and compiled Verilator, the host system where you run
+Verilator, and the target system where you compile the Verilated code and
+run the simulation.</p>
+<p>Currently, Verilator requires the build and host system type to be the
+same, though the target system type may be different.  To support this,
+<strong class="command">./configure</strong> and make Verilator on the build system.  Then, run
+Verilator on the host system.  Finally, the output of Verilator may be
+compiled on the different target system.</p>
+<p>To support this, none of the files that Verilator produces will reference
+any configure generated build-system specific files, such as
+<code class="file docutils literal notranslate"><span class="pre">config.h</span></code> (which is renamed in Verilator to <code class="file docutils literal notranslate"><span class="pre">config_build.h</span></code>
+to reduce confusion.)  The disadvantage of this approach is that
+<code class="file docutils literal notranslate"><span class="pre">include/verilatedos.h</span></code> must self-detect the requirements of the
+target system, rather than using configure.</p>
+<p>The target system may also require edits to the Makefiles, the simple
+Makefiles produced by Verilator presume the target system is the same type
+as the build system.</p>
+</section>
+<section id="multithreading">
+<span id="id4"></span><h2>Multithreading<a class="headerlink" href="#multithreading" title="Permalink to this heading">¶</a></h2>
+<p>Verilator supports multithreaded simulation models.</p>
+<p>With <a class="reference internal" href="exe_verilator.html#cmdoption-no-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--no-threads</span></code></a>, the default, the model is not thread safe, and
+any use of more than one thread calling into one or even different
+Verilated models may result in unpredictable behavior. This gives the
+highest single thread performance.</p>
+<p>With <a class="reference internal" href="exe_verilator.html#cmdoption-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--threads</span> <span class="pre">1</span></code></a>, the generated model is single
+threaded, however the support libraries are multithread safe. This allows
+different instantiations of model(s) to potentially each be run under a
+different thread. All threading is the responsibility of the user’s C++
+testbench.</p>
+<p>With <a class="reference internal" href="exe_verilator.html#cmdoption-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--threads</span> <span class="pre">{N}</span></code></a>, where N is at least 2, the
+generated model will be designed to run in parallel on N threads. The
+thread calling eval() provides one of those threads, and the generated
+model will create and manage the other N-1 threads. It’s the client’s
+responsibility not to oversubscribe the available CPU cores. Under CPU
+oversubscription, the Verilated model should not livelock nor deadlock,
+however, you can expect performance to be far worse than it would be with
+proper ratio of threads and CPU cores.</p>
+<p>The remainder of this section describe behavior with <a class="reference internal" href="exe_verilator.html#cmdoption-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--threads</span> <span class="pre">1</span></code></a> or <a class="reference internal" href="exe_verilator.html#cmdoption-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--threads</span> <span class="pre">{N}</span></code></a> (not
+<a class="reference internal" href="exe_verilator.html#cmdoption-no-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--no-threads</span></code></a>).</p>
+<p><code class="code docutils literal notranslate"><span class="pre">VL_THREADED</span></code> is defined in the C++ code when compiling a threaded
+Verilated module, causing the Verilated support classes become threadsafe.</p>
+<p>The thread used for constructing a model must be the same thread that calls
+<code class="code docutils literal notranslate"><span class="pre">eval()</span></code> into the model, this is called the “eval thread”. The thread
+used to perform certain global operations such as saving and tracing must
+be done by a “main thread”. In most cases the eval thread and main thread
+are the same thread (i.e. the user’s top C++ testbench runs on a single
+thread), but this is not required.</p>
+<p>The <a class="reference internal" href="exe_verilator.html#cmdoption-trace-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-threads</span></code></a> options can be used to produce trace dumps
+using multiple threads. If <a class="reference internal" href="exe_verilator.html#cmdoption-trace-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-threads</span></code></a> is set without
+<a class="reference internal" href="exe_verilator.html#cmdoption-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--threads</span></code></a>, then <a class="reference internal" href="exe_verilator.html#cmdoption-trace-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-threads</span></code></a> will imply
+<a class="reference internal" href="exe_verilator.html#cmdoption-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--threads</span> <span class="pre">1</span></code></a>, i.e.: the support libraries will be
+thread safe.</p>
+<p>With <a class="reference internal" href="exe_verilator.html#cmdoption-trace-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-threads</span> <span class="pre">0</span></code></a>, trace dumps are produced
+on the main thread. This again gives the highest single thread performance.</p>
+<p>With <a class="reference internal" href="exe_verilator.html#cmdoption-trace-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-threads</span> <span class="pre">{N}</span></code></a>, where N is at least 1,
+N additional threads will be created and managed by the trace files (e.g.:
+VerilatedVcdC or VerilatedFstC), to generate the trace dump. The main
+thread will be released to proceed with execution as soon as possible,
+though some blocking of the main thread is still necessary while capturing
+the trace. Different trace formats can utilize a various number of
+threads. See the <a class="reference internal" href="exe_verilator.html#cmdoption-trace-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-threads</span></code></a> option.</p>
+<p>When running a multithreaded model, the default Linux task scheduler often
+works against the model, by assuming threads are short lived, and thus
+often schedules threads using multiple hyperthreads within the same
+physical core. For best performance use the <strong class="command">numactl</strong> program to
+(when the threading count fits) select unique physical cores on the same
+socket. The same applies for <a class="reference internal" href="exe_verilator.html#cmdoption-trace-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace-threads</span></code></a> as well.</p>
+<p>As an example, if a model was Verilated with <a class="reference internal" href="exe_verilator.html#cmdoption-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--threads</span> <span class="pre">4</span></code></a>, we consult:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>egrep <span class="s1">&#39;processor|physical id|core id&#39;</span> /proc/cpuinfo
+</pre></div>
+</div>
+<p>To select cores 0, 1, 2, and 3 that are all located on the same socket (0)
+but different physical cores.  (Also useful is <strong class="command">numactl
+--hardware</strong>, or <strong class="command">lscpu</strong> but those doesn’t show Hyperthreading
+cores.) Then we execute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>numactl -m <span class="m">0</span> -C <span class="m">0</span>,1,2,3 -- verilated_executable_name
+</pre></div>
+</div>
+<p>This will limit memory to socket 0, and threads to cores 0, 1, 2, 3,
+(presumably on socket 0) optimizing performance.  Of course this must be
+adjusted if you want another simulator using e.g. socket 1, or if you
+Verilated with a different number of threads.  To see what CPUs are
+actually used, use <a class="reference internal" href="exe_verilator.html#cmdoption-prof-threads"><code class="xref std std-option docutils literal notranslate"><span class="pre">--prof-threads</span></code></a>.</p>
+<section id="multithreaded-verilog-and-library-support">
+<h3>Multithreaded Verilog and Library Support<a class="headerlink" href="#multithreaded-verilog-and-library-support" title="Permalink to this heading">¶</a></h3>
+<p>$display/$stop/$finish are delayed until the end of an eval() call in order
+to maintain ordering between threads. This may result in additional tasks
+completing after the $stop or $finish.</p>
+<p>If using <a class="reference internal" href="exe_verilator.html#cmdoption-coverage"><code class="xref std std-option docutils literal notranslate"><span class="pre">--coverage</span></code></a>, the coverage routines are fully thread safe.</p>
+<p>If using the DPI, Verilator assumes pure DPI imports are thread safe,
+balancing performance versus safety. See <a class="reference internal" href="exe_verilator.html#cmdoption-2"><code class="xref std std-option docutils literal notranslate"><span class="pre">--threads-dpi</span></code></a>.</p>
+<p>If using <a class="reference internal" href="exe_verilator.html#cmdoption-savable"><code class="xref std std-option docutils literal notranslate"><span class="pre">--savable</span></code></a>, the save/restore classes are not multithreaded
+and must be called only by the eval thread.</p>
+<p>If using <a class="reference internal" href="exe_verilator.html#cmdoption-sc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--sc</span></code></a>, the SystemC kernel is not thread safe, therefore
+the eval thread and main thread must be the same.</p>
+<p>If using <a class="reference internal" href="exe_verilator.html#cmdoption-trace"><code class="xref std std-option docutils literal notranslate"><span class="pre">--trace</span></code></a>, the tracing classes must be constructed and
+called from the main thread.</p>
+<p>If using <a class="reference internal" href="exe_verilator.html#cmdoption-vpi"><code class="xref std std-option docutils literal notranslate"><span class="pre">--vpi</span></code></a>, since SystemVerilog VPI was not architected by
+IEEE to be multithreaded, Verilator requires all VPI calls are only made
+from the main thread.</p>
+</section>
+</section>
+<section id="gnu-make">
+<span id="id5"></span><h2>GNU Make<a class="headerlink" href="#gnu-make" title="Permalink to this heading">¶</a></h2>
+<p>Verilator defaults to creating GNU Make makefiles for the model.  Verilator
+will call make automatically when the :vlopt:’–build’ option is used.</p>
+<p>If calling Verilator from a makefile, the :vlopt:’-MMD’ option will create
+a dependency file which will allow Make to only run Verilator if input
+Verilog files change.</p>
+</section>
+<section id="cmake">
+<span id="id6"></span><h2>CMake<a class="headerlink" href="#cmake" title="Permalink to this heading">¶</a></h2>
+<p>Verilator can be run using CMake, which takes care of both running
+Verilator and compiling the output. There is a CMake example in the
+examples/ directory. The following is a minimal CMakeLists.txt that would
+build the code listed in <a class="reference internal" href="example_cc.html#example-c-execution"><span class="std std-ref">Example C++ Execution</span></a></p>
+<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">project</span><span class="p">(</span><span class="s">cmake_example</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">verilator</span><span class="w"> </span><span class="s">HINTS</span><span class="w"> </span><span class="o">$ENV{</span><span class="nv">VERILATOR_ROOT</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">Vour</span><span class="w"> </span><span class="s">sim_main.cpp</span><span class="p">)</span>
+<span class="nb">verilate</span><span class="p">(</span><span class="s">Vour</span><span class="w"> </span><span class="s">SOURCES</span><span class="w"> </span><span class="s">our.v</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="code docutils literal notranslate"><span class="pre">find_package</span></code> will automatically find an installed copy of
+Verilator, or use a local build if VERILATOR_ROOT is set.</p>
+<p>It is recommended to use CMake &gt;= 3.12 and the Ninja generator, though
+other combinations should work. To build with CMake, change to the folder
+containing CMakeLists.txt and run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir build
+<span class="nb">cd</span> build
+cmake -GNinja ..
+ninja
+</pre></div>
+</div>
+<p>Or to build with your system default generator:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir build
+<span class="nb">cd</span> build
+cmake ..
+cmake --build .
+</pre></div>
+</div>
+<p>If you’re building the example you should have an executable to run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./Vour
+</pre></div>
+</div>
+<p>The package sets the CMake variables verilator_FOUND, VERILATOR_ROOT and
+VERILATOR_BIN to the appropriate values, and also creates a verilate()
+function. verilate() will automatically create custom commands to run
+Verilator and add the generated C++ sources to the target specified.</p>
+<section id="verilate-in-cmake">
+<h3>Verilate in CMake<a class="headerlink" href="#verilate-in-cmake" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">verilate</span><span class="p">(</span><span class="s">target</span><span class="w"> </span><span class="s">SOURCES</span><span class="w"> </span><span class="s">source</span><span class="w"> </span><span class="s">...</span><span class="w"> </span><span class="s">[TOP_MODULE</span><span class="w"> </span><span class="s">top]</span><span class="w"> </span><span class="s">[PREFIX</span><span class="w"> </span><span class="s">name]</span>
+<span class="w">         </span><span class="s">[TRACE]</span><span class="w"> </span><span class="s">[TRACE_FST]</span><span class="w"> </span><span class="s">[SYSTEMC]</span><span class="w"> </span><span class="s">[COVERAGE]</span>
+<span class="w">         </span><span class="s">[INCLUDE_DIRS</span><span class="w"> </span><span class="s">dir</span><span class="w"> </span><span class="s">...]</span><span class="w"> </span><span class="s">[OPT_SLOW</span><span class="w"> </span><span class="s">...]</span><span class="w"> </span><span class="s">[OPT_FAST</span><span class="w"> </span><span class="s">...]</span>
+<span class="w">         </span><span class="s">[OPT_GLOBAL</span><span class="w"> </span><span class="s">..]</span><span class="w"> </span><span class="s">[DIRECTORY</span><span class="w"> </span><span class="s">dir]</span><span class="w"> </span><span class="s">[THREADS</span><span class="w"> </span><span class="s">num]</span>
+<span class="w">         </span><span class="s">[TRACE_THREADS</span><span class="w"> </span><span class="s">num]</span><span class="w"> </span><span class="s">[VERILATOR_ARGS</span><span class="w"> </span><span class="s">...]</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Lowercase and … should be replaced with arguments, the uppercase parts
+delimit the arguments and can be passed in any order, or left out entirely
+if optional.</p>
+<p>verilate(target …) can be called multiple times to add other Verilog
+modules to an executable or library target.</p>
+<p>When generating Verilated SystemC sources, you should also include the
+SystemC include directories and link to the SystemC libraries.</p>
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">target</span></span></dt>
+<dd><p>Name of a target created by add_executable or add_library.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">COVERAGE</span></span></dt>
+<dd><p>Optional. Enables coverage if present, equivalent to “VERILATOR_ARGS
+–coverage”</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">DIRECTORY</span></span></dt>
+<dd><p>Optional. Set the verilator output directory. It is preferable to use
+the default, which will avoid collisions with other files.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">INCLUDE_DIRS</span></span></dt>
+<dd><p>Optional. Sets directories that Verilator searches (same as -y).</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">OPT_SLOW</span></span></dt>
+<dd><p>Optional. Set compiler options for the slow path. You may want to reduce
+the optimization level to improve compile times with large designs.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">OPT_FAST</span></span></dt>
+<dd><p>Optional. Set compiler options for the fast path.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">OPT_GLOBAL</span></span></dt>
+<dd><p>Optional. Set compiler options for the common runtime library used by
+Verilated models.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">PREFIX</span></span></dt>
+<dd><p>Optional. Sets the Verilator output prefix. Defaults to the name of the
+first source file with a “V” prepended. Must be unique in each call to
+verilate(), so this is necessary if you build a module multiple times
+with different parameters. Must be a valid C++ identifier, i.e. contains
+no white space and only characters A-Z, a-z, 0-9 or _.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">SOURCES</span></span></dt>
+<dd><p>List of Verilog files to Verilate. Must have at least one file.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">SYSTEMC</span></span></dt>
+<dd><p>Optional. Enables SystemC mode, defaults to C++ if not specified.</p>
+<p>When using Accellera’s SystemC with CMake support, a CMake target is
+available that simplifies the SystemC steps. This will only work if the
+SystemC installation can be found by CMake. This can be configured by
+setting the CMAKE_PREFIX_PATH variable during CMake configuration.</p>
+<p>Don’t forget to set the same C++ standard for the Verilated sources as
+the SystemC library. This can be specified using the SYSTEMC_CXX_FLAGS
+environment variable.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">THREADS</span></span></dt>
+<dd><p>Optional. Generated a multi-threaded model, same as “–threads”.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">TRACE_THREADS</span></span></dt>
+<dd><p>Optional. Generated multi-threaded trace dumping, same as
+“–trace-threads”.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">TOP_MODULE</span></span></dt>
+<dd><p>Optional. Sets the name of the top module. Defaults to the name of the
+first file in the SOURCES array.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">TRACE</span></span></dt>
+<dd><p>Optional. Enables VCD tracing if present, equivalent to “VERILATOR_ARGS
+–trace”.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">TRACE_FST</span></span></dt>
+<dd><p>Optional. Enables FST tracing if present, equivalent to “VERILATOR_ARGS
+–trace-fst”.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">VERILATOR_ARGS</span></span></dt>
+<dd><p>Optional. Extra arguments to Verilator. Do not specify <a class="reference internal" href="exe_verilator.html#cmdoption-Mdir"><code class="xref std std-option docutils literal notranslate"><span class="pre">--Mdir</span></code></a>
+or <a class="reference internal" href="exe_verilator.html#cmdoption-prefix"><code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code></a> here, use DIRECTORY or PREFIX.</p>
+</dd></dl>
+
+</section>
+<section id="systemc-link-in-cmake">
+<h3>SystemC Link in CMake<a class="headerlink" href="#systemc-link-in-cmake" title="Permalink to this heading">¶</a></h3>
+<p>Verilator’s CMake support provides a convenience function to automatically
+find and link to the SystemC library.  It can be used as:</p>
+<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">verilator_link_systemc</span><span class="p">(</span><span class="s">target</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where target is the name of your target.</p>
+<p>The search paths can be configured by setting some variables:</p>
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">SYSTEMC_INCLUDE</span></span></dt>
+<dd><p>Sets the direct path to the SystemC includes.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">SYSTEMC_LIBDIR</span></span></dt>
+<dd><p>Sets the direct path to the SystemC libraries.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">SYSTEMC_ROOT</span></span></dt>
+<dd><p>Sets the installation prefix of an installed SystemC library.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">SYSTEMC</span></span></dt>
+<dd><p>Sets the installation prefix of an installed SystemC library. (Same as
+SYSTEMC_ROOT).</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="connecting.html" class="btn btn-neutral float-right" title="Connecting to Verilated Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="copyright.html">Copyright</a> 2021 by Wilson Snyder, under LGPL-3.0 or Artistic-2.0.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D27B0C9QEB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D27B0C9QEB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
