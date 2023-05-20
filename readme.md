@@ -1,10 +1,15 @@
 # Verilator_Templates
 
+## Notes
+
+I have a plan to merge [exaithrg/iverilog_templates](https://github.com/exaithrg/iverilog_templates), [exaithrg/verilator_templates](https://github.com/exaithrg/verilator_templates) and [exaithrg/nvboard_templates](https://github.com/exaithrg/nvboard_templates). So this repository may be replaced by the merged one in the future.
+
 **Support Verilator Version: `4.210`**
 
 Manual: [Verilator_4.210_Users_Guide](https://github.com/exaithrg/Verilator_4.210_Users_Guide)
 
 ## TODO
+
 use top.cpp and top.v in all templates
 
 ## comb
@@ -23,8 +28,6 @@ https://github.com/NJU-ProjectN/nvboard
 https://github.com/exaithrg/iverilog_templates
 https://github.com/exaithrg/nvboard_templates
 ```
-
-
 
 # How to install Verilator 5.008 with zsh
 
